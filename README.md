@@ -5,6 +5,12 @@
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 [![Pathway](https://img.shields.io/badge/Built%20with-Pathway-3535EE.svg)](https://pathway.com/)
 
+<div align="center">
+
+**🌐 [View Live Demo](https://ide-birch-01200854.figma.site/) | 📊 [Dashboard](http://localhost:8501) | 📚 [Documentation](docs/TECHNICAL.md)**
+
+</div>
+
 > **Streaming anomalies. Self-updating memory. Decisions that trigger actions.**
 
 AstraGuard AI is an intelligent autonomous fault detection and recovery system for CubeSats, evolved for the **Synaptix Frontier AI Hackathon @ IIT Madras**. The system demonstrates **streaming awareness, adaptive memory, and autonomous decision-making** using Pathway's real-time engine and biologically-inspired memory architecture.
