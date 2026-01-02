@@ -13,6 +13,7 @@ from core.error_handling import (
 )
 from core.component_health import get_health_monitor, HealthStatus
 from core.circuit_breaker import CircuitBreaker, CircuitOpenError, register_circuit_breaker
+from core.retry import Retry
 from core.metrics import (
     ANOMALY_DETECTIONS_TOTAL,
     ANOMALY_MODEL_LOAD_ERRORS_TOTAL,
@@ -43,7 +44,7 @@ _model_loader_cb = register_circuit_breaker(
 async def _load_model_impl() -> bool:
     """
     Internal implementation of model loading.
-    Wrapped by circuit breaker.
+    Wrapped by retry logic first, then circuit breaker.
     
     Returns:
         True if model loaded successfully, False otherwise
@@ -99,12 +100,29 @@ async def _load_model_fallback() -> bool:
     return False
 
 
+# Apply retry decorator: 3 attempts with 0.5-8s exponential backoff + jitter
+# Retry BEFORE circuit breaker to handle transient failures
+@Retry(
+    max_attempts=3,
+    base_delay=0.5,
+    max_delay=8.0,
+    allowed_exceptions=(TimeoutError, ConnectionError, OSError, asyncio.TimeoutError),
+    jitter_type="full"
+)
+async def _load_model_with_retry() -> bool:
+    """
+    Model loading with retry wrapper.
+    Retries on transient failures before circuit breaker engagement.
+    """
+    return await _load_model_impl()
 def load_model() -> bool:
     """
-    Load the anomaly detection model with circuit breaker protection.
+    Load the anomaly detection model with retry + circuit breaker protection.
     
-    Circuit breaker prevents cascading failures by failing fast if model
-    loading fails repeatedly, and automatically switches to heuristic fallback.
+    Pattern: Retry (transient failures) → CircuitBreaker (cascading failures)
+    
+    The retry decorator handles transient failures (timeouts, connection resets).
+    The circuit breaker handles persistent failures (protection from cascading).
     
     Returns:
         True if model loaded successfully, False otherwise (heuristic mode)
@@ -119,10 +137,10 @@ def load_model() -> bool:
             loop = asyncio.new_event_loop()
             asyncio.set_event_loop(loop)
         
-        # Call through circuit breaker with fallback
+        # Call through retry (handles transient) then circuit breaker (handles cascading)
         result = loop.run_until_complete(
             _model_loader_cb.call(
-                _load_model_impl,
+                _load_model_with_retry,  # Retry wrapper
                 fallback=_load_model_fallback
             )
         )
@@ -137,28 +155,6 @@ def load_model() -> bool:
         logger.error(f"Unexpected error during model load: {e}")
         ANOMALY_MODEL_LOAD_ERRORS_TOTAL.inc()
         _USING_HEURISTIC_MODE = True
-        return False
-        _MODEL_LOADED = False
-        health_monitor.mark_degraded(
-            "anomaly_detector",
-            error_msg=f"Model load failed: {str(e)}",
-            fallback_active=True,
-            metadata={
-                "mode": "heuristic",
-                "reason": str(e),
-            }
-        )
-        return False
-    except Exception as e:
-        logger.error(f"Unexpected error loading anomaly model: {e}")
-        _USING_HEURISTIC_MODE = True
-        _MODEL_LOADED = False
-        health_monitor.mark_degraded(
-            "anomaly_detector",
-            error_msg=f"Unexpected error: {str(e)}",
-            fallback_active=True,
-            metadata={"mode": "heuristic"}
-        )
         return False
 
 
