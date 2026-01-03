@@ -210,7 +210,7 @@ class ChaosEngine:
             duration_seconds: Duration of failure
 
         Returns:
-            True if system handled failure gracefully
+            True if system detected and handled failure with graceful degradation
         """
         logger.info(f"Injecting Redis failure for {duration_seconds}s")
         start_time = time.time()
@@ -236,7 +236,7 @@ class ChaosEngine:
         logger.info(
             f"Redis failure injection complete (degradation detected: {degradation_detected})"
         )
-        return degradation_detected or True  # Graceful degradation or fallback
+        return degradation_detected
 
     async def test_circuit_breaker(self) -> bool:
         """Test circuit breaker resilience.
