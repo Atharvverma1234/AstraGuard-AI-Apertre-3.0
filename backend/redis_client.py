@@ -207,7 +207,7 @@ class RedisClient:
             return False
 
     async def get_cluster_votes(self, prefix: str = "astra:resilience:vote") -> Dict[str, Any]:
-        """Retrieve all instance votes for consensus.
+        """Retrieve all instance votes for consensus using non-blocking SCAN.
         
         Args:
             prefix: Key prefix for votes (default: astra:resilience:vote)
@@ -219,8 +219,22 @@ class RedisClient:
             return {}
 
         try:
-            # Get all vote keys
-            keys = await self.redis.keys(f"{prefix}:*")
+            # Use SCAN to non-blocking retrieve keys (avoids O(N) blocking)
+            pattern = f"{prefix}:*"
+            cursor = 0
+            keys = []
+            
+            # SCAN loop accumulates keys until cursor returns to 0
+            while True:
+                cursor, batch_keys = await self.redis.scan(
+                    cursor=cursor,
+                    match=pattern,
+                    count=100,  # Process 100 keys at a time
+                )
+                keys.extend(batch_keys)
+                if cursor == 0:
+                    break  # Iteration complete
+            
             if not keys:
                 logger.debug("No votes found in cluster")
                 return {}
@@ -296,7 +310,7 @@ class RedisClient:
             return False
 
     async def get_all_instance_health(self) -> Dict[str, Dict]:
-        """Get health states of all instances.
+        """Get health states of all instances using non-blocking SCAN.
         
         Returns:
             Dict mapping instance_id to health state
@@ -305,7 +319,22 @@ class RedisClient:
             return {}
 
         try:
-            keys = await self.redis.keys("astra:health:*")
+            # Use SCAN to non-blocking retrieve keys (avoids O(N) blocking)
+            pattern = "astra:health:*"
+            cursor = 0
+            keys = []
+            
+            # SCAN loop accumulates keys until cursor returns to 0
+            while True:
+                cursor, batch_keys = await self.redis.scan(
+                    cursor=cursor,
+                    match=pattern,
+                    count=100,  # Process 100 keys at a time
+                )
+                keys.extend(batch_keys)
+                if cursor == 0:
+                    break  # Iteration complete
+            
             if not keys:
                 return {}
 
@@ -330,7 +359,7 @@ class RedisClient:
             return {}
 
     async def clear_stale_votes(self, prefix: str = "astra:resilience:vote") -> int:
-        """Remove expired/stale votes (cleanup).
+        """Remove expired/stale votes (cleanup) using non-blocking SCAN.
         
         Args:
             prefix: Key prefix for votes
@@ -342,7 +371,22 @@ class RedisClient:
             return 0
 
         try:
-            keys = await self.redis.keys(f"{prefix}:*")
+            # Use SCAN to non-blocking retrieve keys (avoids O(N) blocking)
+            pattern = f"{prefix}:*"
+            cursor = 0
+            keys = []
+            
+            # SCAN loop accumulates keys until cursor returns to 0
+            while True:
+                cursor, batch_keys = await self.redis.scan(
+                    cursor=cursor,
+                    match=pattern,
+                    count=100,  # Process 100 keys at a time
+                )
+                keys.extend(batch_keys)
+                if cursor == 0:
+                    break  # Iteration complete
+            
             if not keys:
                 return 0
 
