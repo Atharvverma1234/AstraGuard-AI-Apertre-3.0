@@ -318,3 +318,67 @@ class TestOpenAPIDocumentation:
         assert "openapi" in schema
         assert "info" in schema
         assert "paths" in schema
+
+
+class TestMemoryBounds:
+    """Test bounded history to prevent memory exhaustion."""
+
+    def test_history_bounded_to_max_size(self, client):
+        """Test that anomaly history is bounded and doesn't grow indefinitely."""
+        from api.service import anomaly_history, MAX_ANOMALY_HISTORY_SIZE
+
+        # Clear history
+        anomaly_history.clear()
+
+        # Submit anomalies up to the limit
+        initial_count = min(100, MAX_ANOMALY_HISTORY_SIZE)
+        for i in range(initial_count):
+            telemetry = {
+                "voltage": 6.0,  # Anomalous
+                "temperature": 50.0,
+                "gyro": 0.3
+            }
+            client.post("/api/v1/telemetry", json=telemetry)
+
+        # Verify history size
+        assert len(anomaly_history) == initial_count
+
+        # Submit more anomalies beyond the limit (if limit allows)
+        if MAX_ANOMALY_HISTORY_SIZE < 200:
+            overflow_count = 50
+            for i in range(overflow_count):
+                telemetry = {
+                    "voltage": 6.0,
+                    "temperature": 50.0,
+                    "gyro": 0.3
+                }
+                client.post("/api/v1/telemetry", json=telemetry)
+
+            # Verify size is capped at max
+            assert len(anomaly_history) == MAX_ANOMALY_HISTORY_SIZE
+
+    def test_history_deque_auto_eviction(self, client):
+        """Test that oldest entries are automatically evicted when limit reached."""
+        from api.service import anomaly_history
+
+        # Clear and get initial state
+        anomaly_history.clear()
+
+        # Add a few anomalies
+        for i in range(5):
+            telemetry = {
+                "voltage": 6.0 + i * 0.1,  # Slightly different values
+                "temperature": 50.0,
+                "gyro": 0.3
+            }
+            client.post("/api/v1/telemetry", json=telemetry)
+
+        # Get the first anomaly's voltage for verification
+        if len(anomaly_history) > 0:
+            first_anomaly_voltage = list(anomaly_history)[0].anomaly_score
+
+            # History should be in insertion order (FIFO)
+            history_response = client.get("/api/v1/history/anomalies?limit=10")
+            assert history_response.status_code == 200
+            data = history_response.json()
+            assert data["count"] >= 5

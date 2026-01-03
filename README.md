@@ -220,9 +220,8 @@ if result['is_anomaly']:
 ```
 
 **Documentation:**
-- [API Quick Start Guide](API_QUICKSTART.md)
-- [Complete API Documentation](API_IMPLEMENTATION_CHANGELOG.md)
 - [Usage Examples](examples/api_usage_examples.py)
+- [Complete Changelog](CHANGES.md)
 
 ---
 

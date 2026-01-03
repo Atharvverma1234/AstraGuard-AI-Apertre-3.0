@@ -4,9 +4,11 @@ AstraGuard AI REST API Service
 FastAPI-based REST API for telemetry ingestion and anomaly detection.
 """
 
+import os
 import time
 from datetime import datetime
 from typing import List
+from collections import deque
 from fastapi import FastAPI, HTTPException, status
 from fastapi.middleware.cors import CORSMiddleware
 from contextlib import asynccontextmanager
@@ -34,12 +36,15 @@ from memory_engine.memory_store import AdaptiveMemoryStore
 import numpy as np
 
 
+# Configuration
+MAX_ANOMALY_HISTORY_SIZE = 10000  # Maximum number of anomalies to keep in memory
+
 # Global state
 state_machine = None
 policy_loader = None
 phase_aware_handler = None
 memory_store = None
-anomaly_history = []
+anomaly_history = deque(maxlen=MAX_ANOMALY_HISTORY_SIZE)  # Bounded deque prevents memory exhaustion
 start_time = time.time()
 
 
@@ -80,13 +85,20 @@ app = FastAPI(
     lifespan=lifespan
 )
 
+# CORS configuration from environment variables
+# Security: Never use allow_origins=["*"] with allow_credentials=True in production
+ALLOWED_ORIGINS = os.getenv(
+    "ALLOWED_ORIGINS",
+    "http://localhost:3000,http://localhost:8080,http://127.0.0.1:3000"
+).split(",")
+
 # CORS middleware
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # Configure appropriately for production
+    allow_origins=ALLOWED_ORIGINS,  # Configured via ALLOWED_ORIGINS env var
     allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
+    allow_methods=["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allow_headers=["Content-Type", "Authorization", "Accept"],
 )
 
 
@@ -208,7 +220,7 @@ async def submit_telemetry(telemetry: TelemetryInput):
         raise HTTPException(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
             detail=f"Anomaly detection failed: {str(e)}"
-        )
+        ) from e
 
 
 @app.post("/api/v1/telemetry/batch", response_model=BatchAnomalyResponse)
@@ -295,7 +307,7 @@ async def update_phase(request: PhaseUpdateRequest):
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
             detail=f"Phase transition failed: {str(e)}"
-        )
+        ) from e
 
 
 @app.get("/api/v1/memory/stats", response_model=MemoryStats)
@@ -320,7 +332,8 @@ async def get_anomaly_history(
     severity_min: float = None
 ):
     """Retrieve anomaly history with optional filtering."""
-    filtered = anomaly_history.copy()
+    # Convert deque to list for filtering operations
+    filtered = list(anomaly_history)
 
     # Filter by time range
     if start_time:
@@ -332,8 +345,8 @@ async def get_anomaly_history(
     if severity_min is not None:
         filtered = [a for a in filtered if a.severity_score >= severity_min]
 
-    # Apply limit
-    filtered = filtered[-limit:]
+    # Apply limit (get last N items)
+    filtered = filtered[-limit:] if len(filtered) > limit else filtered
 
     return AnomalyHistoryResponse(
         count=len(filtered),
