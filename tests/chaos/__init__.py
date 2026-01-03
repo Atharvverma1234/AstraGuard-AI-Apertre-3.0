@@ -276,6 +276,10 @@ async def test_chaos_metrics_recorded(chaos_engine):
     
     result = await chaos_engine._inject_model_loader_failure(duration_seconds=1)
     
+    # Verify counter incremented after injection
+    post_count = CHAOS_INJECTIONS.labels(fault_type="model_loader")._value.get() if hasattr(CHAOS_INJECTIONS, '_value') else 0
+    assert post_count == initial_count + 1, f"Expected counter to increment from {initial_count} to {initial_count + 1}, got {post_count}"
+    
     assert result is True
 
 
