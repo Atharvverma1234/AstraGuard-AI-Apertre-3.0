@@ -249,6 +249,42 @@ We are looking for **6–10 contributors** for ECWoC '26 to help us build someth
    ```
 
 ---
+```md
+### 🛠️ Common Issues & Troubleshooting
+
+- **Python version errors**
+  - **Issue**: Installation fails due to unsupported Python version.
+  - **Solution**: Ensure Python `3.9+` is installed and selected correctly.
+    ```bash
+    python --version
+    ```
+
+- **Dependency installation failure**
+  - **Issue**: `pip install -r requirements.txt` fails.
+  - **Solution**: Upgrade pip and retry:
+    ```bash
+    pip install --upgrade pip
+    pip install -r requirements.txt
+    ```
+
+- **Streamlit command not found**
+  - **Issue**: `streamlit` is not recognized as a command.
+  - **Solution**: Install Streamlit explicitly:
+    ```bash
+    pip install streamlit
+    ```
+
+- **Port already in use**
+  - **Issue**: Dashboard fails to start due to port conflict.
+  - **Solution**: Stop the conflicting service or run Streamlit on another port:
+    ```bash
+    streamlit run dashboard/app.py --server.port 8502
+    ```
+
+- **Environment variable issues**
+  - **Issue**: Application behaves unexpectedly due to missing environment variables.
+  - **Solution**: Ensure required variables are set as described in the documentation.
+
 
 ## 🤝 Contributing
 
