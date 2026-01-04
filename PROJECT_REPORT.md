@@ -415,6 +415,8 @@ except Exception as e:
 | `2061970` | fix: address 3 HIGH priority security/robustness/performance issues | 2 files | ✅ Pushed |
 | `1ad3f7a` | docs: add comprehensive PROJECT_REPORT.md documenting all resolved issues | 1 file | ✅ Pushed |
 | `b133adc` | fix: address 5 MEDIUM priority issues - error context, type hints, enums, and file I/O | 3 files | ✅ Pushed |
+| `8362079` | docs: update PROJECT_REPORT with 5 MEDIUM priority issues resolved | 1 file | ✅ Pushed |
+| `aad2aad` | fix: add context to generic error logging (LOW priority issue #11) | 3 files | ✅ Pushed |
 
 ---
 
@@ -431,39 +433,11 @@ except Exception as e:
 #### Issue #11: Generic Error Logging Lacking Context
 - **Severity**: LOW
 - **Files**: `state_machine/state_engine.py`, `backend/health_monitor.py`
-- **Component**: Error Logging and Observability
-- **Problem**: Generic logger calls without contextual metadata
-  - Errors logged without component/endpoint/state context
-  - Hard to correlate logs with system state during debugging
-  - Missing `extra` parameters for structured logging
-- **Fix**: Enhanced error logging with contextual metadata
-- **Implementation**:
-  ```python
-  # Before
-  logger.error(f"Error during cascade: {e}", exc_info=True)
-  
-  # After
-  logger.error(
-      f"Error during cascade: {e}",
-      extra={
-          "component": "health_monitor",
-          "endpoint": "/cascade",
-          "error_type": type(e).__name__,
-          "previous_phase": previous_phase.value,  # When relevant
-          "current_state": self.current_state.value,
-      },
-      exc_info=True,
-  )
-  ```
-- **Context Added**:
-  - Component identification
-  - Endpoint/function name
-  - Error type (not just message)
-  - Relevant state information (phases, states, transitions)
-  - Full traceback when appropriate
-- **Impact**: LOW - Improves log searchability and correlation
+- **Problem**: Error logs lacked contextual metadata for debugging
+- **Fix**: Added structured logging with component, endpoint, error type, and state information
+- **Impact**: LOW - Improved log searchability and correlation
 - **Status**: ✅ RESOLVED
-- **Commit**: `c8a1b2d` (pending push)
+- **Commit**: `aad2aad`
 
 ---
 
