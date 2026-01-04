@@ -1,0 +1,6 @@
+extraction:
+  python:
+    index:
+      invoke:
+        - python -m py_compile .
+    python_version: 3

@@ -87,7 +87,7 @@ class FeedbackCLI:
         processed = [json.loads(e.model_dump_json()) for e in pending]
         FeedbackCLI.save_processed(processed)
         Path("feedback_pending.json").unlink(missing_ok=True)
-        print(f"\n🎉 {len(pending)} events processed → review complete!")
+        print(f"\n🎉 {len(pending)} events processed → review complete! → ready for #53 pinning")
 
 
 def _get_phase_description(phase: str) -> str:
