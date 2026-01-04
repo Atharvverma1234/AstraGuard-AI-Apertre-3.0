@@ -70,6 +70,14 @@ class FeedbackPinner:
         self.processed_path.unlink(missing_ok=True)
         Path("feedback_pending.json").unlink(missing_ok=True)
 
+        # Trigger policy updates from pinned feedback (#54)
+        try:
+            from security_engine.policy_engine import process_policy_updates
+            process_policy_updates(self.memory)
+        except Exception:
+            # Non-blocking: policy update errors don't block feedback pinning
+            pass
+
         return stats
 
     def _update_resonance(self, event: FeedbackEvent, weight: float) -> None:
