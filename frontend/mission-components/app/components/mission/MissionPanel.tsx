@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Satellite, MissionPhase } from '../../types/mission';
 import missionData from '../../mocks/mission.json';
 import { SatelliteCard } from './SatelliteCard';
@@ -15,16 +15,17 @@ const cycleTasks: Record<string, string[]> = {
   'sat-006': ['Telemetry', 'Signal Boost', 'Transmission'],
 };
 
-let taskIndices: Record<string, number> = {};
-
 export const MissionPanel: React.FC<{ onSelectSatellite?: (satId: string) => void }> = ({ onSelectSatellite }) => {
   const [satellites, setSatellites] = useState<Satellite[]>(missionData.satellites as Satellite[]);
   const [phases, setPhases] = useState<MissionPhase[]>(missionData.phases as MissionPhase[]);
-  const [selectedSat, setSelectedSat] = useState<Satellite | null>(null);
+  const [selectedSatId, setSelectedSatId] = useState<string | null>(null);
+  const taskIndicesRef = useRef<Record<string, number>>({});
+
+  const selectedSat = satellites.find((s) => s.id === selectedSatId) || null;
 
   useEffect(() => {
     missionData.satellites.forEach((sat) => {
-      taskIndices[sat.id] = 0;
+      taskIndicesRef.current[sat.id] = 0;
     });
   }, []);
 
@@ -33,10 +34,10 @@ export const MissionPanel: React.FC<{ onSelectSatellite?: (satId: string) => voi
       setSatellites((prev) =>
         prev.map((sat) => {
           const tasks = cycleTasks[sat.id] || ['Data Dump'];
-          taskIndices[sat.id] = (taskIndices[sat.id] || 0) % tasks.length;
+          taskIndicesRef.current[sat.id] = ((taskIndicesRef.current[sat.id] || 0) + 1) % tasks.length;
           return {
             ...sat,
-            task: tasks[taskIndices[sat.id]],
+            task: tasks[taskIndicesRef.current[sat.id]],
             latency:
               sat.latency === 0 ? 0 : Math.max(20, sat.latency + (Math.random() - 0.5) * 20),
           };
@@ -60,10 +61,10 @@ export const MissionPanel: React.FC<{ onSelectSatellite?: (satId: string) => voi
 
   return (
     <div className="space-y-8 max-w-7xl mx-auto">
-      <section className="glow-cyan/50">
-        <h2 className="text-2xl font-bold mb-6 text-cyan-400 glow-cyan flex items-center">
+      <section className="glow-teal/50">
+        <h2 className="text-2xl font-bold mb-6 text-teal-400 glow-teal flex items-center">
           Satellite Status{' '}
-          <span className="ml-2 text-sm bg-cyan-500/20 px-3 py-1 rounded-full">
+          <span className="ml-2 text-sm bg-teal-500/20 px-3 py-1 rounded-full">
             {satellites.filter((s) => s.status === 'Nominal').length}/6 Nominal
           </span>
         </h2>
@@ -72,9 +73,9 @@ export const MissionPanel: React.FC<{ onSelectSatellite?: (satId: string) => voi
             <SatelliteCard
               key={sat.id}
               {...sat}
-              isSelected={selectedSat?.id === sat.id}
+              isSelected={selectedSatId === sat.id}
               onClick={() => {
-                setSelectedSat(sat);
+                setSelectedSatId(sat.id);
                 onSelectSatellite?.(sat.orbitSlot);
               }}
             />
@@ -83,26 +84,24 @@ export const MissionPanel: React.FC<{ onSelectSatellite?: (satId: string) => voi
       </section>
 
       {selectedSat && (
-        <div className="p-6 bg-black/50 backdrop-blur-xl rounded-2xl border border-cyan-500/30 glow-cyan">
-          <h3 className="text-xl font-bold text-cyan-400 mb-4">
-            Selected: {selectedSat.orbitSlot}
-          </h3>
+        <div className="p-6 bg-black/50 backdrop-blur-xl rounded-2xl border border-teal-500/30 glow-teal">
+          <h3 className="text-xl font-bold text-teal-400 mb-4">Selected: {selectedSat.orbitSlot}</h3>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
             <div>
-              <span className="opacity-75">Status:</span>{' '}
-              <span className="font-mono text-cyan-400">{selectedSat.status}</span>
+              <span className="opacity-75">Status:</span>
+              <div className="font-mono text-teal-400">{selectedSat.status}</div>
             </div>
             <div>
-              <span className="opacity-75">Latency:</span>{' '}
-              <span className="font-mono text-cyan-400">{selectedSat.latency}ms</span>
+              <span className="opacity-75">Latency:</span>
+              <div className="font-mono text-teal-400">{Math.round(selectedSat.latency)}ms</div>
             </div>
             <div>
-              <span className="opacity-75">Task:</span>{' '}
-              <span className="font-mono text-cyan-400">{selectedSat.task}</span>
+              <span className="opacity-75">Task:</span>
+              <div className="font-mono text-teal-400">{selectedSat.task}</div>
             </div>
             <div>
-              <span className="opacity-75">Signal:</span>{' '}
-              <span className="font-mono text-cyan-400">{selectedSat.signal}%</span>
+              <span className="opacity-75">Signal:</span>
+              <div className="font-mono text-teal-400">{selectedSat.signal}%</div>
             </div>
           </div>
         </div>

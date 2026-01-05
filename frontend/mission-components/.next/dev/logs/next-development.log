@@ -1,0 +1,3166 @@
+[00:00:01.473] Server  LOG      ✓ Ready in 950ms
+[00:00:08.206] Server  ERROR    ⨯ ./app/page.tsx
+Reading source code for parsing failed
+An unexpected error happened while trying to read the source code to parse: failed to convert rope into string
+
+Caused by:
+- invalid utf-8 sequence of 1 bytes from index 0
+
+
+
+./app/globals.css
+Error evaluating Node.js code
+CssSyntaxError: D:\Elite_Coders\AstraGuard-AI\frontend\mission-components\app\globals.css:99:1: Unclosed block
+    [at Input.error (turbopack:///[project]/node_modules/postcss/lib/input.js:135:16)]
+    [at Parser.unclosedBlock (turbopack:///[project]/node_modules/postcss/lib/parser.js:575:22)]
+    [at Parser.endFile (turbopack:///[project]/node_modules/postcss/lib/parser.js:335:35)]
+    [at Parser.parse (turbopack:///[project]/node_modules/postcss/lib/parser.js:476:10)]
+    [at parse (turbopack:///[project]/node_modules/postcss/lib/parse.js:11:12)]
+    [at new LazyResult (turbopack:///[project]/node_modules/postcss/lib/lazy-result.js:165:16)]
+    [at Processor.process (turbopack:///[project]/node_modules/postcss/lib/processor.js:53:14)]
+    [at transform (turbopack:///[turbopack-node]/transforms/postcss.ts:70:51)]
+    [at run (turbopack:///[turbopack-node]/ipc/evaluate.ts:92:29)]
+    [at run (turbopack:///[turbopack-node]/ipc/evaluate.ts:115:11)]
+
+Import trace:
+  Client Component Browser:
+    ./app/globals.css [Client Component Browser]
+    ./app/layout.tsx [Server Component]
+
+
+[00:00:08.215] Server  ERROR    ⨯ ./app/page.tsx
+Reading source code for parsing failed
+An unexpected error happened while trying to read the source code to parse: failed to convert rope into string
+
+Caused by:
+- invalid utf-8 sequence of 1 bytes from index 0
+
+
+
+./app/globals.css
+Error evaluating Node.js code
+CssSyntaxError: D:\Elite_Coders\AstraGuard-AI\frontend\mission-components\app\globals.css:99:1: Unclosed block
+    [at Input.error (turbopack:///[project]/node_modules/postcss/lib/input.js:135:16)]
+    [at Parser.unclosedBlock (turbopack:///[project]/node_modules/postcss/lib/parser.js:575:22)]
+    [at Parser.endFile (turbopack:///[project]/node_modules/postcss/lib/parser.js:335:35)]
+    [at Parser.parse (turbopack:///[project]/node_modules/postcss/lib/parser.js:476:10)]
+    [at parse (turbopack:///[project]/node_modules/postcss/lib/parse.js:11:12)]
+    [at new LazyResult (turbopack:///[project]/node_modules/postcss/lib/lazy-result.js:165:16)]
+    [at Processor.process (turbopack:///[project]/node_modules/postcss/lib/processor.js:53:14)]
+    [at transform (turbopack:///[turbopack-node]/transforms/postcss.ts:70:51)]
+    [at run (turbopack:///[turbopack-node]/ipc/evaluate.ts:92:29)]
+    [at run (turbopack:///[turbopack-node]/ipc/evaluate.ts:115:11)]
+
+Import trace:
+  Client Component Browser:
+    ./app/globals.css [Client Component Browser]
+    ./app/layout.tsx [Server Component]
+
+
+[00:00:08.222] Server  ERROR    ⨯ ./app/page.tsx
+Reading source code for parsing failed
+An unexpected error happened while trying to read the source code to parse: failed to convert rope into string
+
+Caused by:
+- invalid utf-8 sequence of 1 bytes from index 0
+
+
+
+./app/globals.css
+Error evaluating Node.js code
+CssSyntaxError: D:\Elite_Coders\AstraGuard-AI\frontend\mission-components\app\globals.css:99:1: Unclosed block
+    [at Input.error (turbopack:///[project]/node_modules/postcss/lib/input.js:135:16)]
+    [at Parser.unclosedBlock (turbopack:///[project]/node_modules/postcss/lib/parser.js:575:22)]
+    [at Parser.endFile (turbopack:///[project]/node_modules/postcss/lib/parser.js:335:35)]
+    [at Parser.parse (turbopack:///[project]/node_modules/postcss/lib/parser.js:476:10)]
+    [at parse (turbopack:///[project]/node_modules/postcss/lib/parse.js:11:12)]
+    [at new LazyResult (turbopack:///[project]/node_modules/postcss/lib/lazy-result.js:165:16)]
+    [at Processor.process (turbopack:///[project]/node_modules/postcss/lib/processor.js:53:14)]
+    [at transform (turbopack:///[turbopack-node]/transforms/postcss.ts:70:51)]
+    [at run (turbopack:///[turbopack-node]/ipc/evaluate.ts:92:29)]
+    [at run (turbopack:///[turbopack-node]/ipc/evaluate.ts:115:11)]
+
+Import trace:
+  Client Component Browser:
+    ./app/globals.css [Client Component Browser]
+    ./app/layout.tsx [Server Component]
+
+
+[00:00:08.227] Server  ERROR    ⨯ ./app/page.tsx
+Reading source code for parsing failed
+An unexpected error happened while trying to read the source code to parse: failed to convert rope into string
+
+Caused by:
+- invalid utf-8 sequence of 1 bytes from index 0
+
+
+
+./app/globals.css
+Error evaluating Node.js code
+CssSyntaxError: D:\Elite_Coders\AstraGuard-AI\frontend\mission-components\app\globals.css:99:1: Unclosed block
+    [at Input.error (turbopack:///[project]/node_modules/postcss/lib/input.js:135:16)]
+    [at Parser.unclosedBlock (turbopack:///[project]/node_modules/postcss/lib/parser.js:575:22)]
+    [at Parser.endFile (turbopack:///[project]/node_modules/postcss/lib/parser.js:335:35)]
+    [at Parser.parse (turbopack:///[project]/node_modules/postcss/lib/parser.js:476:10)]
+    [at parse (turbopack:///[project]/node_modules/postcss/lib/parse.js:11:12)]
+    [at new LazyResult (turbopack:///[project]/node_modules/postcss/lib/lazy-result.js:165:16)]
+    [at Processor.process (turbopack:///[project]/node_modules/postcss/lib/processor.js:53:14)]
+    [at transform (turbopack:///[turbopack-node]/transforms/postcss.ts:70:51)]
+    [at run (turbopack:///[turbopack-node]/ipc/evaluate.ts:92:29)]
+    [at run (turbopack:///[turbopack-node]/ipc/evaluate.ts:115:11)]
+
+Import trace:
+  Client Component Browser:
+    ./app/globals.css [Client Component Browser]
+    ./app/layout.tsx [Server Component]
+
+
+[00:00:08.232] Server  ERROR    ⨯ ./app/page.tsx
+Reading source code for parsing failed
+An unexpected error happened while trying to read the source code to parse: failed to convert rope into string
+
+Caused by:
+- invalid utf-8 sequence of 1 bytes from index 0
+
+
+
+./app/globals.css
+Error evaluating Node.js code
+CssSyntaxError: D:\Elite_Coders\AstraGuard-AI\frontend\mission-components\app\globals.css:99:1: Unclosed block
+    [at Input.error (turbopack:///[project]/node_modules/postcss/lib/input.js:135:16)]
+    [at Parser.unclosedBlock (turbopack:///[project]/node_modules/postcss/lib/parser.js:575:22)]
+    [at Parser.endFile (turbopack:///[project]/node_modules/postcss/lib/parser.js:335:35)]
+    [at Parser.parse (turbopack:///[project]/node_modules/postcss/lib/parser.js:476:10)]
+    [at parse (turbopack:///[project]/node_modules/postcss/lib/parse.js:11:12)]
+    [at new LazyResult (turbopack:///[project]/node_modules/postcss/lib/lazy-result.js:165:16)]
+    [at Processor.process (turbopack:///[project]/node_modules/postcss/lib/processor.js:53:14)]
+    [at transform (turbopack:///[turbopack-node]/transforms/postcss.ts:70:51)]
+    [at run (turbopack:///[turbopack-node]/ipc/evaluate.ts:92:29)]
+    [at run (turbopack:///[turbopack-node]/ipc/evaluate.ts:115:11)]
+
+Import trace:
+  Client Component Browser:
+    ./app/globals.css [Client Component Browser]
+    ./app/layout.tsx [Server Component]
+
+
+[00:00:08.237] Server  ERROR    ⨯ ./app/page.tsx
+Reading source code for parsing failed
+An unexpected error happened while trying to read the source code to parse: failed to convert rope into string
+
+Caused by:
+- invalid utf-8 sequence of 1 bytes from index 0
+
+
+
+./app/globals.css
+Error evaluating Node.js code
+CssSyntaxError: D:\Elite_Coders\AstraGuard-AI\frontend\mission-components\app\globals.css:99:1: Unclosed block
+    [at Input.error (turbopack:///[project]/node_modules/postcss/lib/input.js:135:16)]
+    [at Parser.unclosedBlock (turbopack:///[project]/node_modules/postcss/lib/parser.js:575:22)]
+    [at Parser.endFile (turbopack:///[project]/node_modules/postcss/lib/parser.js:335:35)]
+    [at Parser.parse (turbopack:///[project]/node_modules/postcss/lib/parser.js:476:10)]
+    [at parse (turbopack:///[project]/node_modules/postcss/lib/parse.js:11:12)]
+    [at new LazyResult (turbopack:///[project]/node_modules/postcss/lib/lazy-result.js:165:16)]
+    [at Processor.process (turbopack:///[project]/node_modules/postcss/lib/processor.js:53:14)]
+    [at transform (turbopack:///[turbopack-node]/transforms/postcss.ts:70:51)]
+    [at run (turbopack:///[turbopack-node]/ipc/evaluate.ts:92:29)]
+    [at run (turbopack:///[turbopack-node]/ipc/evaluate.ts:115:11)]
+
+Import trace:
+  Client Component Browser:
+    ./app/globals.css [Client Component Browser]
+    ./app/layout.tsx [Server Component]
+
+
+[00:00:12.189] Browser ERROR   uncaughtError: Error: ./app/page.tsx
+Reading source code for parsing failed
+An unexpected error happened while trying to read the source code to parse: failed to convert rope into string
+
+Caused by:
+- invalid utf-8 sequence of 1 bytes from index 0
+
+
+[00:00:12.372] Browser ERROR   ./app/page.tsx
+Reading source code for parsing failed
+An unexpected error happened while trying to read the source code to parse: failed to convert rope into string
+
+Caused by:
+- invalid utf-8 sequence of 1 bytes from index 0
+[00:00:12.372] Browser ERROR   ./app/globals.css
+Error evaluating Node.js code
+CssSyntaxError: D:\Elite_Coders\AstraGuard-AI\frontend\mission-components\app\globals.css:99:1: Unclosed block
+    [at Input.error (turbopack:///[project]/node_modules/postcss/lib/input.js:135:16)]
+    [at Parser.unclosedBlock (turbopack:///[project]/node_modules/postcss/lib/parser.js:575:22)]
+    [at Parser.endFile (turbopack:///[project]/node_modules/postcss/lib/parser.js:335:35)]
+    [at Parser.parse (turbopack:///[project]/node_modules/postcss/lib/parser.js:476:10)]
+    [at parse (turbopack:///[project]/node_modules/postcss/lib/parse.js:11:12)]
+    [at new LazyResult (turbopack:///[project]/node_modules/postcss/lib/lazy-result.js:165:16)]
+    [at Processor.process (turbopack:///[project]/node_modules/postcss/lib/processor.js:53:14)]
+    [at transform (turbopack:///[turbopack-node]/transforms/postcss.ts:70:51)]
+    [at run (turbopack:///[turbopack-node]/ipc/evaluate.ts:92:29)]
+    [at run (turbopack:///[turbopack-node]/ipc/evaluate.ts:115:11)]
+
+Import trace:
+  Client Component Browser:
+    ./app/globals.css [Client Component Browser]
+    ./app/layout.tsx [Server Component]
+[00:00:12.416] Server  ERROR    ⨯ ./app/page.tsx
+Reading source code for parsing failed
+An unexpected error happened while trying to read the source code to parse: failed to convert rope into string
+
+Caused by:
+- invalid utf-8 sequence of 1 bytes from index 0
+
+
+
+./app/globals.css
+Error evaluating Node.js code
+CssSyntaxError: D:\Elite_Coders\AstraGuard-AI\frontend\mission-components\app\globals.css:99:1: Unclosed block
+    [at Input.error (turbopack:///[project]/node_modules/postcss/lib/input.js:135:16)]
+    [at Parser.unclosedBlock (turbopack:///[project]/node_modules/postcss/lib/parser.js:575:22)]
+    [at Parser.endFile (turbopack:///[project]/node_modules/postcss/lib/parser.js:335:35)]
+    [at Parser.parse (turbopack:///[project]/node_modules/postcss/lib/parser.js:476:10)]
+    [at parse (turbopack:///[project]/node_modules/postcss/lib/parse.js:11:12)]
+    [at new LazyResult (turbopack:///[project]/node_modules/postcss/lib/lazy-result.js:165:16)]
+    [at Processor.process (turbopack:///[project]/node_modules/postcss/lib/processor.js:53:14)]
+    [at transform (turbopack:///[turbopack-node]/transforms/postcss.ts:70:51)]
+    [at run (turbopack:///[turbopack-node]/ipc/evaluate.ts:92:29)]
+    [at run (turbopack:///[turbopack-node]/ipc/evaluate.ts:115:11)]
+
+Import trace:
+  Client Component Browser:
+    ./app/globals.css [Client Component Browser]
+    ./app/layout.tsx [Server Component]
+
+
+[00:00:12.542] Browser ERROR   uncaughtError: Error: ./app/page.tsx
+Reading source code for parsing failed
+An unexpected error happened while trying to read the source code to parse: failed to convert rope into string
+
+Caused by:
+- invalid utf-8 sequence of 1 bytes from index 0
+
+
+[00:00:12.752] Browser ERROR   ./app/page.tsx
+Reading source code for parsing failed
+An unexpected error happened while trying to read the source code to parse: failed to convert rope into string
+
+Caused by:
+- invalid utf-8 sequence of 1 bytes from index 0
+[00:00:12.752] Browser ERROR   ./app/globals.css
+Error evaluating Node.js code
+CssSyntaxError: D:\Elite_Coders\AstraGuard-AI\frontend\mission-components\app\globals.css:99:1: Unclosed block
+    [at Input.error (turbopack:///[project]/node_modules/postcss/lib/input.js:135:16)]
+    [at Parser.unclosedBlock (turbopack:///[project]/node_modules/postcss/lib/parser.js:575:22)]
+    [at Parser.endFile (turbopack:///[project]/node_modules/postcss/lib/parser.js:335:35)]
+    [at Parser.parse (turbopack:///[project]/node_modules/postcss/lib/parser.js:476:10)]
+    [at parse (turbopack:///[project]/node_modules/postcss/lib/parse.js:11:12)]
+    [at new LazyResult (turbopack:///[project]/node_modules/postcss/lib/lazy-result.js:165:16)]
+    [at Processor.process (turbopack:///[project]/node_modules/postcss/lib/processor.js:53:14)]
+    [at transform (turbopack:///[turbopack-node]/transforms/postcss.ts:70:51)]
+    [at run (turbopack:///[turbopack-node]/ipc/evaluate.ts:92:29)]
+    [at run (turbopack:///[turbopack-node]/ipc/evaluate.ts:115:11)]
+
+Import trace:
+  Client Component Browser:
+    ./app/globals.css [Client Component Browser]
+    ./app/layout.tsx [Server Component]
+[00:00:12.752] Browser ERROR   ./app/page.tsx
+Reading source code for parsing failed
+An unexpected error happened while trying to read the source code to parse: failed to convert rope into string
+
+Caused by:
+- invalid utf-8 sequence of 1 bytes from index 0
+[00:00:12.752] Browser ERROR   ./app/globals.css
+Error evaluating Node.js code
+CssSyntaxError: D:\Elite_Coders\AstraGuard-AI\frontend\mission-components\app\globals.css:99:1: Unclosed block
+    [at Input.error (turbopack:///[project]/node_modules/postcss/lib/input.js:135:16)]
+    [at Parser.unclosedBlock (turbopack:///[project]/node_modules/postcss/lib/parser.js:575:22)]
+    [at Parser.endFile (turbopack:///[project]/node_modules/postcss/lib/parser.js:335:35)]
+    [at Parser.parse (turbopack:///[project]/node_modules/postcss/lib/parser.js:476:10)]
+    [at parse (turbopack:///[project]/node_modules/postcss/lib/parse.js:11:12)]
+    [at new LazyResult (turbopack:///[project]/node_modules/postcss/lib/lazy-result.js:165:16)]
+    [at Processor.process (turbopack:///[project]/node_modules/postcss/lib/processor.js:53:14)]
+    [at transform (turbopack:///[turbopack-node]/transforms/postcss.ts:70:51)]
+    [at run (turbopack:///[turbopack-node]/ipc/evaluate.ts:92:29)]
+    [at run (turbopack:///[turbopack-node]/ipc/evaluate.ts:115:11)]
+
+Import trace:
+  Client Component Browser:
+    ./app/globals.css [Client Component Browser]
+    ./app/layout.tsx [Server Component]
+[00:00:49.703] Browser ERROR   ./app/page.tsx
+Reading source code for parsing failed
+An unexpected error happened while trying to read the source code to parse: failed to convert rope into string
+
+Caused by:
+- invalid utf-8 sequence of 1 bytes from index 0
+[00:00:51.819] Browser ERROR   ./app/page.tsx
+Reading source code for parsing failed
+An unexpected error happened while trying to read the source code to parse: failed to convert rope into string
+
+Caused by:
+- invalid utf-8 sequence of 1 bytes from index 0
+[00:01:10.898] Server  ERROR    ⨯ ./app/page.tsx
+Reading source code for parsing failed
+An unexpected error happened while trying to read the source code to parse: failed to convert rope into string
+
+Caused by:
+- invalid utf-8 sequence of 1 bytes from index 0
+
+
+[00:01:11.005] Browser ERROR   uncaughtError: Error: ./app/page.tsx
+Reading source code for parsing failed
+An unexpected error happened while trying to read the source code to parse: failed to convert rope into string
+
+Caused by:
+- invalid utf-8 sequence of 1 bytes from index 0
+
+
+[00:01:11.151] Browser ERROR   ./app/page.tsx
+Reading source code for parsing failed
+An unexpected error happened while trying to read the source code to parse: failed to convert rope into string
+
+Caused by:
+- invalid utf-8 sequence of 1 bytes from index 0
+[00:01:11.151] Browser ERROR   ./app/page.tsx
+Reading source code for parsing failed
+An unexpected error happened while trying to read the source code to parse: failed to convert rope into string
+
+Caused by:
+- invalid utf-8 sequence of 1 bytes from index 0
+[00:01:28.119] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[00:01:28.123] Server  WARN     ⚠ Fast Refresh had to perform a full reload when ./node_modules/next/dist/shared/lib/router/router.js changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[00:01:28.123] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[00:02:57.412] Server  ERROR    ⨯ ./app/dashboard/page.tsx:121:25
+Ecmascript file had an error
+  119 | }
+  120 |
+> 121 | export default function Dashboard() {
+      |                         ^^^^^^^^^
+  122 |   const [satellites, setSatellites] = useState<Satellite[]>([
+  123 |     { id: 1, name: 'SAT-001', status: 'Nominal', signal: 95, latency: 120 },
+  124 |     { id: 2, name: 'SAT-002', status: 'Nominal', signal: 92, latency: 125 },
+
+the name `Dashboard` is defined multiple times
+
+Import traces:
+  Client Component Browser:
+    ./app/dashboard/page.tsx [Client Component Browser]
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/dashboard/page.tsx [Client Component SSR]
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+
+
+./app/dashboard/page.tsx:121:1
+Ecmascript file had an error
+  119 | }
+  120 |
+> 121 | export default function Dashboard() {
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 122 |   const [satellites, setSatellites] = useState<Satellite[]>([
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 123 |     { id: 1, name: 'SAT-001', status: 'Nominal', signal: 95, latency: 120 },
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 124 |     { id: 2, name: 'SAT-002', status: 'Nominal', signal: 92, latency: 125 },
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 125 |     { id: 3, name: 'SAT-003', status: 'Degraded', signal: 65, latency: 250 },
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 126 |     { id: 4, name: 'SAT-004', status: 'Nominal', signal: 88, latency: 130 },
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 127 |     { id: 5, name: 'SAT-005', status: 'Nominal', signal: 91, latency: 115 },
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 128 |     { id: 6, name: 'SAT-006', status: 'Critical', signal: 20, latency: 500 },
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 129 |   ]);
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 130 |
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 131 |   const [phase, setPhase] = useState(73);
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 132 |   const [task, setTask] = useState('Orbital Adjustment');
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 133 |
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 134 |   useEffect(() => {
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 135 |     const timer = setInterval(() => {
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 136 |       setPhase((prev: number) => (prev >= 100 ? 0 : prev + 2));
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 137 |       setTask((prev: string) => 
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 138 |         prev === 'Orbital Adjustment' ? 'Station Keeping' : 'Orbital Adjustment'
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 139 |       );
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 140 |       
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 141 |       setSatellites((prev: Satellite[]) =>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 142 |         prev.map((sat: Satellite) => ({
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 143 |           ...sat,
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 144 |           signal: Math.max(10, Math.min(99, sat.signal + (Math.random() - 0.5) * 15)),
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 145 |           latency: Math.max(100, Math.min(600, sat.latency + (Math.random() - 0.5) * 50)),
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 146 |         }))
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 147 |       );
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 148 |     }, 3000);
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 149 |     return () => clearInterval(timer);
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 150 |   }, []);
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 151 |
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 152 |   const getStatusColor = (status: string) => {
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 153 |     switch (status) {
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 154 |       case 'Nominal':
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 155 |         return 'text-green-400';
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 156 |       case 'Degraded':
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 157 |         return 'text-yellow-400';
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 158 |       case 'Critical':
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 159 |         return 'text-red-400';
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 160 |       default:
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 161 |         return 'text-gray-400';
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 162 |     }
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 163 |   };
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 164 |
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 165 |   return (
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 166 |     <div className="min-h-screen bg-black text-white p-6">
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 167 |       <div className="max-w-7xl mx-auto">
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 168 |         {/* Header */}
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 169 |         <div className="mb-8">
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 170 |           <h1 className="text-5xl font-bold mb-2 text-cyan-400">Mission Control</h1>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 171 |           <p className="text-gray-400">AstraGuard AI Satellite Operations Dashboard</p>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 172 |         </div>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 173 |
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 174 |         {/* Satellite Grid */}
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 175 |         <div className="mb-8">
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 176 |           <h2 className="text-2xl font-bold mb-4 text-cyan-300">Active Satellites</h2>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 177 |           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-4">
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 178 |             {satellites.map((sat: Satellite) => (
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 179 |               <div
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 180 |                 key={sat.id}
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 181 |                 className="bg-slate-900 border border-cyan-500 rounded p-4 hover:bg-slate-800 transition hover:border-cyan-300 glow-cyan"
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 182 |               >
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 183 |                 <div className="font-bold text-cyan-300 mb-2">{sat.name}</div>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 184 |                 <div className="text-sm mb-3">
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 185 |                   <div className="flex justify-between mb-2">
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 186 |                     <span>Status:</span>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 187 |                     <span className={getStatusColor(sat.status)}>{sat.status}</span>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 188 |                   </div>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 189 |                   <div className="flex justify-between">
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 190 |                     <span>Signal:</span>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 191 |                     <span className="text-cyan-400">{Math.round(sat.signal)}%</span>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 192 |                   </div>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 193 |                   <div className="flex justify-between">
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 194 |                     <span>Latency:</span>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 195 |                     <span className="text-cyan-400">{Math.round(sat.latency)}ms</span>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 196 |                   </div>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 197 |                 </div>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 198 |                 <div className="w-full bg-slate-700 h-2 rounded overflow-hidden">
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 199 |                   <div
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 200 |                     className="bg-cyan-500 h-full rounded transition-all"
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 201 |                     style={{ width: `${sat.signal}%` }}
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 202 |                   ></div>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 203 |                 </div>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 204 |               </div>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 205 |             ))}
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 206 |           </div>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 207 |         </div>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 208 |
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 209 |         {/* Mission Status */}
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 210 |         <div className="bg-slate-900 border border-cyan-500 rounded p-6 glow-cyan">
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 211 |           <h2 className="text-2xl font-bold mb-4 text-cyan-300">Mission Status</h2>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 212 |           
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 213 |           <div className="mb-6">
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 214 |             <div className="flex justify-between mb-2">
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 215 |               <span>Stable Orbit Phase</span>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 216 |               <span className="text-cyan-400 font-bold">{phase}%</span>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 217 |             </div>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 218 |             <div className="w-full bg-slate-700 h-4 rounded overflow-hidden">
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 219 |               <div
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 220 |                 className="bg-gradient-to-r from-cyan-500 to-blue-500 h-full transition-all"
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 221 |                 style={{ width: `${phase}%` }}
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 222 |               ></div>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 223 |             </div>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 224 |           </div>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 225 |
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 226 |           <div className="bg-slate-800 rounded p-4 border border-slate-700">
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 227 |             <div className="text-sm text-gray-400 mb-2">Current Task</div>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 228 |             <div className="text-xl font-bold text-cyan-300">{task}</div>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 229 |             <div className="text-sm text-gray-400 mt-2">
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 230 |               ETA: {phase >= 90 ? '15 minutes' : phase >= 50 ? '45 minutes' : '2 hours'}
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 231 |             </div>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 232 |           </div>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 233 |         </div>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 234 |       </div>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 235 |     </div>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 236 |   );
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 237 | }
+      | ^^
+  238 |
+
+the name `default` is exported multiple times
+
+Import traces:
+  Client Component Browser:
+    ./app/dashboard/page.tsx [Client Component Browser]
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/dashboard/page.tsx [Client Component SSR]
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+
+[00:02:57.585] Server  LOG      ✓ Compiled in 70.2s
+[00:02:57.606] Browser ERROR   uncaughtError: Error: ./app/dashboard/page.tsx:121:25
+Ecmascript file had an error
+  119 | }
+  120 |
+> 121 | export default function Dashboard() {
+      |                         ^^^^^^^^^
+  122 |   const [satellites, setSatellites] = useState<Satellite[]>([
+  123 |     { id: 1, name: 'SAT-001', status: 'Nominal', signal: 95, latency: 120 },
+  124 |     { id: 2, name: 'SAT-002', status: 'Nominal', signal: 92, latency: 125 },
+
+the name `Dashboard` is defined multiple times
+
+Import traces:
+  Client Component Browser:
+    ./app/dashboard/page.tsx [Client Component Browser]
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/dashboard/page.tsx [Client Component SSR]
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+
+[00:02:57.800] Browser ERROR   ./app/dashboard/page.tsx:121:25
+Ecmascript file had an error
+  119 | }
+  120 |
+> 121 | export default function Dashboard() {
+      |                         ^^^^^^^^^
+  122 |   const [satellites, setSatellites] = useState<Satellite[]>([
+  123 |     { id: 1, name: 'SAT-001', status: 'Nominal', signal: 95, latency: 120 },
+  124 |     { id: 2, name: 'SAT-002', status: 'Nominal', signal: 92, latency: 125 },
+
+the name `Dashboard` is defined multiple times
+
+Import traces:
+  Client Component Browser:
+    ./app/dashboard/page.tsx [Client Component Browser]
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/dashboard/page.tsx [Client Component SSR]
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+[00:02:57.800] Browser ERROR   ./app/dashboard/page.tsx:121:1
+Ecmascript file had an error
+  119 | }
+  120 |
+> 121 | export default function Dashboard() {
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 122 |   const [satellites, setSatellites] = useState<Satellite[]>([
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 123 |     { id: 1, name: 'SAT-001', status: 'Nominal', signal: 95, latency: 120 },
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 124 |     { id: 2, name: 'SAT-002', status: 'Nominal', signal: 92, latency: 125 },
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 125 |     { id: 3, name: 'SAT-003', status: 'Degraded', signal: 65, latency: 250 },
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 126 |     { id: 4, name: 'SAT-004', status: 'Nominal', signal: 88, latency: 130 },
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 127 |     { id: 5, name: 'SAT-005', status: 'Nominal', signal: 91, latency: 115 },
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 128 |     { id: 6, name: 'SAT-006', status: 'Critical', signal: 20, latency: 500 },
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 129 |   ]);
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 130 |
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 131 |   const [phase, setPhase] = useState(73);
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 132 |   const [task, setTask] = useState('Orbital Adjustment');
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 133 |
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 134 |   useEffect(() => {
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 135 |     const timer = setInterval(() => {
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 136 |       setPhase((prev: number) => (prev >= 100 ? 0 : prev + 2));
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 137 |       setTask((prev: string) => 
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 138 |         prev === 'Orbital Adjustment' ? 'Station Keeping' : 'Orbital Adjustment'
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 139 |       );
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 140 |       
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 141 |       setSatellites((prev: Satellite[]) =>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 142 |         prev.map((sat: Satellite) => ({
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 143 |           ...sat,
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 144 |           signal: Math.max(10, Math.min(99, sat.signal + (Math.random() - 0.5) * 15)),
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 145 |           latency: Math.max(100, Math.min(600, sat.latency + (Math.random() - 0.5) * 50)),
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 146 |         }))
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 147 |       );
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 148 |     }, 3000);
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 149 |     return () => clearInterval(timer);
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 150 |   }, []);
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 151 |
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 152 |   const getStatusColor = (status: string) => {
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 153 |     switch (status) {
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 154 |       case 'Nominal':
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 155 |         return 'text-green-400';
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 156 |       case 'Degraded':
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 157 |         return 'text-yellow-400';
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 158 |       case 'Critical':
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 159 |         return 'text-red-400';
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 160 |       default:
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 161 |         return 'text-gray-400';
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 162 |     }
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 163 |   };
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 164 |
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 165 |   return (
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 166 |     <div className="min-h-screen bg-black text-white p-6">
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 167 |       <div className="max-w-7xl mx-auto">
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 168 |         {/* Header */}
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 169 |         <div className="mb-8">
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 170 |           <h1 className="text-5xl font-bold mb-2 text-cyan-400">Mission Control</h1>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 171 |           <p className="text-gray-400">AstraGuard AI Satellite Operations Dashboard</p>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 172 |         </div>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 173 |
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 174 |         {/* Satellite Grid */}
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 175 |         <div className="mb-8">
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 176 |           <h2 className="text-2xl font-bold mb-4 text-cyan-300">Active Satellites</h2>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 177 |           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-4">
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 178 |             {satellites.map((sat: Satellite) => (
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 179 |               <div
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 180 |                 key={sat.id}
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 181 |                 className="bg-slate-900 border border-cyan-500 rounded p-4 hover:bg-slate-800 transition hover:border-cyan-300 glow-cyan"
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 182 |               >
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 183 |                 <div className="font-bold text-cyan-300 mb-2">{sat.name}</div>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 184 |                 <div className="text-sm mb-3">
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 185 |                   <div className="flex justify-between mb-2">
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 186 |                     <span>Status:</span>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 187 |                     <span className={getStatusColor(sat.status)}>{sat.status}</span>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 188 |                   </div>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 189 |                   <div className="flex justify-between">
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 190 |                     <span>Signal:</span>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 191 |                     <span className="text-cyan-400">{Math.round(sat.signal)}%</span>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 192 |                   </div>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 193 |                   <div className="flex justify-between">
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 194 |                     <span>Latency:</span>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 195 |                     <span className="text-cyan-400">{Math.round(sat.latency)}ms</span>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 196 |                   </div>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 197 |                 </div>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 198 |                 <div className="w-full bg-slate-700 h-2 rounded overflow-hidden">
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 199 |                   <div
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 200 |                     className="bg-cyan-500 h-full rounded transition-all"
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 201 |                     style={{ width: `${sat.signal}%` }}
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 202 |                   ></div>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 203 |                 </div>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 204 |               </div>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 205 |             ))}
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 206 |           </div>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 207 |         </div>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 208 |
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 209 |         {/* Mission Status */}
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 210 |         <div className="bg-slate-900 border border-cyan-500 rounded p-6 glow-cyan">
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 211 |           <h2 className="text-2xl font-bold mb-4 text-cyan-300">Mission Status</h2>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 212 |           
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 213 |           <div className="mb-6">
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 214 |             <div className="flex justify-between mb-2">
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 215 |               <span>Stable Orbit Phase</span>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 216 |               <span className="text-cyan-400 font-bold">{phase}%</span>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 217 |             </div>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 218 |             <div className="w-full bg-slate-700 h-4 rounded overflow-hidden">
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 219 |               <div
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 220 |                 className="bg-gradient-to-r from-cyan-500 to-blue-500 h-full transition-all"
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 221 |                 style={{ width: `${phase}%` }}
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 222 |               ></div>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 223 |             </div>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 224 |           </div>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 225 |
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 226 |           <div className="bg-slate-800 rounded p-4 border border-slate-700">
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 227 |             <div className="text-sm text-gray-400 mb-2">Current Task</div>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 228 |             <div className="text-xl font-bold text-cyan-300">{task}</div>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 229 |             <div className="text-sm text-gray-400 mt-2">
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 230 |               ETA: {phase >= 90 ? '15 minutes' : phase >= 50 ? '45 minutes' : '2 hours'}
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 231 |             </div>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 232 |           </div>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 233 |         </div>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 234 |       </div>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 235 |     </div>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 236 |   );
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 237 | }
+      | ^^
+  238 |
+
+the name `default` is exported multiple times
+
+Import traces:
+  Client Component Browser:
+    ./app/dashboard/page.tsx [Client Component Browser]
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/dashboard/page.tsx [Client Component SSR]
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+[00:02:57.800] Browser ERROR   ./app/dashboard/page.tsx:121:25
+Ecmascript file had an error
+  119 | }
+  120 |
+> 121 | export default function Dashboard() {
+      |                         ^^^^^^^^^
+  122 |   const [satellites, setSatellites] = useState<Satellite[]>([
+  123 |     { id: 1, name: 'SAT-001', status: 'Nominal', signal: 95, latency: 120 },
+  124 |     { id: 2, name: 'SAT-002', status: 'Nominal', signal: 92, latency: 125 },
+
+the name `Dashboard` is defined multiple times
+
+Import traces:
+  Client Component Browser:
+    ./app/dashboard/page.tsx [Client Component Browser]
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/dashboard/page.tsx [Client Component SSR]
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+[00:02:57.800] Browser ERROR   ./app/dashboard/page.tsx:121:1
+Ecmascript file had an error
+  119 | }
+  120 |
+> 121 | export default function Dashboard() {
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 122 |   const [satellites, setSatellites] = useState<Satellite[]>([
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 123 |     { id: 1, name: 'SAT-001', status: 'Nominal', signal: 95, latency: 120 },
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 124 |     { id: 2, name: 'SAT-002', status: 'Nominal', signal: 92, latency: 125 },
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 125 |     { id: 3, name: 'SAT-003', status: 'Degraded', signal: 65, latency: 250 },
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 126 |     { id: 4, name: 'SAT-004', status: 'Nominal', signal: 88, latency: 130 },
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 127 |     { id: 5, name: 'SAT-005', status: 'Nominal', signal: 91, latency: 115 },
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 128 |     { id: 6, name: 'SAT-006', status: 'Critical', signal: 20, latency: 500 },
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 129 |   ]);
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 130 |
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 131 |   const [phase, setPhase] = useState(73);
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 132 |   const [task, setTask] = useState('Orbital Adjustment');
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 133 |
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 134 |   useEffect(() => {
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 135 |     const timer = setInterval(() => {
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 136 |       setPhase((prev: number) => (prev >= 100 ? 0 : prev + 2));
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 137 |       setTask((prev: string) => 
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 138 |         prev === 'Orbital Adjustment' ? 'Station Keeping' : 'Orbital Adjustment'
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 139 |       );
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 140 |       
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 141 |       setSatellites((prev: Satellite[]) =>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 142 |         prev.map((sat: Satellite) => ({
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 143 |           ...sat,
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 144 |           signal: Math.max(10, Math.min(99, sat.signal + (Math.random() - 0.5) * 15)),
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 145 |           latency: Math.max(100, Math.min(600, sat.latency + (Math.random() - 0.5) * 50)),
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 146 |         }))
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 147 |       );
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 148 |     }, 3000);
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 149 |     return () => clearInterval(timer);
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 150 |   }, []);
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 151 |
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 152 |   const getStatusColor = (status: string) => {
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 153 |     switch (status) {
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 154 |       case 'Nominal':
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 155 |         return 'text-green-400';
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 156 |       case 'Degraded':
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 157 |         return 'text-yellow-400';
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 158 |       case 'Critical':
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 159 |         return 'text-red-400';
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 160 |       default:
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 161 |         return 'text-gray-400';
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 162 |     }
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 163 |   };
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 164 |
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 165 |   return (
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 166 |     <div className="min-h-screen bg-black text-white p-6">
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 167 |       <div className="max-w-7xl mx-auto">
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 168 |         {/* Header */}
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 169 |         <div className="mb-8">
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 170 |           <h1 className="text-5xl font-bold mb-2 text-cyan-400">Mission Control</h1>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 171 |           <p className="text-gray-400">AstraGuard AI Satellite Operations Dashboard</p>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 172 |         </div>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 173 |
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 174 |         {/* Satellite Grid */}
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 175 |         <div className="mb-8">
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 176 |           <h2 className="text-2xl font-bold mb-4 text-cyan-300">Active Satellites</h2>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 177 |           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-4">
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 178 |             {satellites.map((sat: Satellite) => (
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 179 |               <div
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 180 |                 key={sat.id}
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 181 |                 className="bg-slate-900 border border-cyan-500 rounded p-4 hover:bg-slate-800 transition hover:border-cyan-300 glow-cyan"
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 182 |               >
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 183 |                 <div className="font-bold text-cyan-300 mb-2">{sat.name}</div>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 184 |                 <div className="text-sm mb-3">
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 185 |                   <div className="flex justify-between mb-2">
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 186 |                     <span>Status:</span>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 187 |                     <span className={getStatusColor(sat.status)}>{sat.status}</span>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 188 |                   </div>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 189 |                   <div className="flex justify-between">
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 190 |                     <span>Signal:</span>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 191 |                     <span className="text-cyan-400">{Math.round(sat.signal)}%</span>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 192 |                   </div>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 193 |                   <div className="flex justify-between">
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 194 |                     <span>Latency:</span>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 195 |                     <span className="text-cyan-400">{Math.round(sat.latency)}ms</span>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 196 |                   </div>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 197 |                 </div>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 198 |                 <div className="w-full bg-slate-700 h-2 rounded overflow-hidden">
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 199 |                   <div
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 200 |                     className="bg-cyan-500 h-full rounded transition-all"
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 201 |                     style={{ width: `${sat.signal}%` }}
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 202 |                   ></div>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 203 |                 </div>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 204 |               </div>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 205 |             ))}
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 206 |           </div>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 207 |         </div>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 208 |
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 209 |         {/* Mission Status */}
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 210 |         <div className="bg-slate-900 border border-cyan-500 rounded p-6 glow-cyan">
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 211 |           <h2 className="text-2xl font-bold mb-4 text-cyan-300">Mission Status</h2>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 212 |           
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 213 |           <div className="mb-6">
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 214 |             <div className="flex justify-between mb-2">
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 215 |               <span>Stable Orbit Phase</span>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 216 |               <span className="text-cyan-400 font-bold">{phase}%</span>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 217 |             </div>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 218 |             <div className="w-full bg-slate-700 h-4 rounded overflow-hidden">
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 219 |               <div
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 220 |                 className="bg-gradient-to-r from-cyan-500 to-blue-500 h-full transition-all"
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 221 |                 style={{ width: `${phase}%` }}
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 222 |               ></div>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 223 |             </div>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 224 |           </div>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 225 |
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 226 |           <div className="bg-slate-800 rounded p-4 border border-slate-700">
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 227 |             <div className="text-sm text-gray-400 mb-2">Current Task</div>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 228 |             <div className="text-xl font-bold text-cyan-300">{task}</div>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 229 |             <div className="text-sm text-gray-400 mt-2">
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 230 |               ETA: {phase >= 90 ? '15 minutes' : phase >= 50 ? '45 minutes' : '2 hours'}
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 231 |             </div>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 232 |           </div>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 233 |         </div>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 234 |       </div>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 235 |     </div>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 236 |   );
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 237 | }
+      | ^^
+  238 |
+
+the name `default` is exported multiple times
+
+Import traces:
+  Client Component Browser:
+    ./app/dashboard/page.tsx [Client Component Browser]
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/dashboard/page.tsx [Client Component SSR]
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+[00:05:10.230] Server  LOG      ✓ Compiled in 89.4s
+[00:05:11.264] Browser ERROR   uncaughtError: Error: Hydration failed because the server rendered text didn't match the client. As a result this tree will be regenerated on the client. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+https://react.dev/link/hydration-mismatch
+
+  ...
+    <SegmentViewNode type="page" pagePath="page.tsx">
+      <SegmentTrieNode>
+      <ClientPageRoot Component={function Dashboard} serverProvidedParams={{...}}>
+        <Dashboard params={Promise} searchParams={Promise}>
+          <div className="dashboard-...">
+            <DashboardHeader>
+            <div className="flex h-[ca...">
+              <VerticalNav>
+              <main className="flex-1 p-6...">
+                <nav>
+                <div className="flex gap-6...">
+                  <div>
+                  <aside className="w-96 flex ...">
+                    <AlertFeed>
+                      <div className="p-4 rounde...">
+                        <h3>
+                        <div className="space-y-2 ...">
+                          <div className="p-3 rounde...">
+                            <div className="flex justi...">
+                              <span>
+                              <span className="text-xs opacity-75">
++                               10:33:54 PM
+-                               10:33:53 pm
+                            ...
+                          ...
+                    ...
+    ...
+
+[00:05:25.772] Browser ERROR   uncaughtError: Error: Hydration failed because the server rendered text didn't match the client. As a result this tree will be regenerated on the client. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+https://react.dev/link/hydration-mismatch
+
+  ...
+    <SegmentViewNode type="page" pagePath="page.tsx">
+      <SegmentTrieNode>
+      <ClientPageRoot Component={function Dashboard} serverProvidedParams={{...}}>
+        <Dashboard params={Promise} searchParams={Promise}>
+          <div className="dashboard-...">
+            <DashboardHeader>
+            <div className="flex h-[ca...">
+              <VerticalNav>
+              <main className="flex-1 p-6...">
+                <nav>
+                <div className="flex gap-6...">
+                  <div>
+                  <aside className="w-96 flex ...">
+                    <AlertFeed>
+                      <div className="p-4 rounde...">
+                        <h3>
+                        <div className="space-y-2 ...">
+                          <div className="p-3 rounde...">
+                            <div className="flex justi...">
+                              <span>
+                              <span className="text-xs opacity-75">
++                               10:34:08 PM
+-                               10:34:08 pm
+                            ...
+                          ...
+                    ...
+    ...
+
+[00:05:26.779] Browser ERROR   uncaughtError: Error: Hydration failed because the server rendered text didn't match the client. As a result this tree will be regenerated on the client. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+https://react.dev/link/hydration-mismatch
+
+  ...
+    <SegmentViewNode type="page" pagePath="page.tsx">
+      <SegmentTrieNode>
+      <ClientPageRoot Component={function Dashboard} serverProvidedParams={{...}}>
+        <Dashboard params={Promise} searchParams={Promise}>
+          <div className="dashboard-...">
+            <DashboardHeader>
+            <div className="flex h-[ca...">
+              <VerticalNav>
+              <main className="flex-1 p-6...">
+                <nav>
+                <div className="flex gap-6...">
+                  <div>
+                  <aside className="w-96 flex ...">
+                    <AlertFeed>
+                      <div className="p-4 rounde...">
+                        <h3>
+                        <div className="space-y-2 ...">
+                          <div className="p-3 rounde...">
+                            <div className="flex justi...">
+                              <span>
+                              <span className="text-xs opacity-75">
++                               10:34:10 PM
+-                               10:34:09 pm
+                            ...
+                          ...
+                    ...
+    ...
+
+[00:08:48.000] Browser ERROR   uncaughtError: Error: Hydration failed because the server rendered text didn't match the client. As a result this tree will be regenerated on the client. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+https://react.dev/link/hydration-mismatch
+
+  ...
+    <SegmentViewNode type="page" pagePath="page.tsx">
+      <SegmentTrieNode>
+      <ClientPageRoot Component={function Dashboard} serverProvidedParams={{...}}>
+        <Dashboard params={Promise} searchParams={Promise}>
+          <div className="dashboard-...">
+            <DashboardHeader>
+            <div className="flex h-[ca...">
+              <VerticalNav>
+              <main className="flex-1 p-6...">
+                <nav>
+                <div className="flex gap-6...">
+                  <div>
+                  <aside className="w-96 flex ...">
+                    <AlertFeed>
+                      <div className="p-4 rounde...">
+                        <h3>
+                        <div className="space-y-2 ...">
+                          <div className="p-3 rounde...">
+                            <div className="flex justi...">
+                              <span>
+                              <span className="text-xs opacity-75">
++                               10:37:31 PM
+-                               10:37:31 pm
+                            ...
+                          ...
+                    ...
+    ...
+
+[00:08:49.598] Browser ERROR   uncaughtError: Error: Hydration failed because the server rendered text didn't match the client. As a result this tree will be regenerated on the client. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+https://react.dev/link/hydration-mismatch
+
+  ...
+    <SegmentViewNode type="page" pagePath="page.tsx">
+      <SegmentTrieNode>
+      <ClientPageRoot Component={function Dashboard} serverProvidedParams={{...}}>
+        <Dashboard params={Promise} searchParams={Promise}>
+          <div className="dashboard-...">
+            <DashboardHeader>
+            <div className="flex h-[ca...">
+              <VerticalNav>
+              <main className="flex-1 p-6...">
+                <nav>
+                <div className="flex gap-6...">
+                  <div>
+                  <aside className="w-96 flex ...">
+                    <AlertFeed>
+                      <div className="p-4 rounde...">
+                        <h3>
+                        <div className="space-y-2 ...">
+                          <div className="p-3 rounde...">
+                            <div className="flex justi...">
+                              <span>
+                              <span className="text-xs opacity-75">
++                               10:37:32 PM
+-                               10:37:32 pm
+                            ...
+                          ...
+                    ...
+    ...
+
+[00:14:51.602] Browser ERROR   uncaughtError: Error: Hydration failed because the server rendered text didn't match the client. As a result this tree will be regenerated on the client. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+https://react.dev/link/hydration-mismatch
+
+  ...
+    <SegmentViewNode type="page" pagePath="page.tsx">
+      <SegmentTrieNode>
+      <ClientPageRoot Component={function Dashboard} serverProvidedParams={{...}}>
+        <Dashboard params={Promise} searchParams={Promise}>
+          <div className="dashboard-...">
+            <DashboardHeader>
+            <div className="flex h-[ca...">
+              <VerticalNav>
+              <main className="flex-1 p-6...">
+                <nav>
+                <div className="flex gap-6...">
+                  <div>
+                  <aside className="w-96 flex ...">
+                    <AlertFeed>
+                      <div className="p-4 rounde...">
+                        <h3>
+                        <div className="space-y-2 ...">
+                          <div className="p-3 rounde...">
+                            <div className="flex justi...">
+                              <span>
+                              <span className="text-xs opacity-75">
++                               10:43:34 PM
+-                               10:43:34 pm
+                            ...
+                          ...
+                    ...
+    ...
+
+[00:15:30.240] Browser ERROR   uncaughtError: Error: Hydration failed because the server rendered text didn't match the client. As a result this tree will be regenerated on the client. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+https://react.dev/link/hydration-mismatch
+
+  ...
+    <SegmentViewNode type="page" pagePath="page.tsx">
+      <SegmentTrieNode>
+      <ClientPageRoot Component={function Dashboard} serverProvidedParams={{...}}>
+        <Dashboard params={Promise} searchParams={Promise}>
+          <div className="dashboard-...">
+            <DashboardHeader>
+            <div className="flex h-[ca...">
+              <VerticalNav>
+              <main className="flex-1 p-6...">
+                <nav>
+                <div className="flex gap-6...">
+                  <div>
+                  <aside className="w-96 flex ...">
+                    <AlertFeed>
+                      <div className="p-4 rounde...">
+                        <h3>
+                        <div className="space-y-2 ...">
+                          <div className="p-3 rounde...">
+                            <div className="flex justi...">
+                              <span>
+                              <span className="text-xs opacity-75">
++                               10:44:13 PM
+-                               10:44:13 pm
+                            ...
+                          ...
+                    ...
+    ...
+
+[00:15:31.459] Browser ERROR   uncaughtError: Error: Hydration failed because the server rendered text didn't match the client. As a result this tree will be regenerated on the client. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+https://react.dev/link/hydration-mismatch
+
+  ...
+    <SegmentViewNode type="page" pagePath="page.tsx">
+      <SegmentTrieNode>
+      <ClientPageRoot Component={function Dashboard} serverProvidedParams={{...}}>
+        <Dashboard params={Promise} searchParams={Promise}>
+          <div className="dashboard-...">
+            <DashboardHeader>
+            <div className="flex h-[ca...">
+              <VerticalNav>
+              <main className="flex-1 p-6...">
+                <nav>
+                <div className="flex gap-6...">
+                  <div>
+                  <aside className="w-96 flex ...">
+                    <AlertFeed>
+                      <div className="p-4 rounde...">
+                        <h3>
+                        <div className="space-y-2 ...">
+                          <div className="p-3 rounde...">
+                            <div className="flex justi...">
+                              <span>
+                              <span className="text-xs opacity-75">
++                               10:44:14 PM
+-                               10:44:14 pm
+                            ...
+                          ...
+                    ...
+    ...
+
+[00:15:31.788] Browser ERROR   uncaughtError: Error: Hydration failed because the server rendered text didn't match the client. As a result this tree will be regenerated on the client. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+https://react.dev/link/hydration-mismatch
+
+  ...
+    <SegmentViewNode type="page" pagePath="page.tsx">
+      <SegmentTrieNode>
+      <ClientPageRoot Component={function Dashboard} serverProvidedParams={{...}}>
+        <Dashboard params={Promise} searchParams={Promise}>
+          <div className="dashboard-...">
+            <DashboardHeader>
+            <div className="flex h-[ca...">
+              <VerticalNav>
+              <main className="flex-1 p-6...">
+                <nav>
+                <div className="flex gap-6...">
+                  <div>
+                  <aside className="w-96 flex ...">
+                    <AlertFeed>
+                      <div className="p-4 rounde...">
+                        <h3>
+                        <div className="space-y-2 ...">
+                          <div className="p-3 rounde...">
+                            <div className="flex justi...">
+                              <span>
+                              <span className="text-xs opacity-75">
++                               10:44:15 PM
+-                               10:44:14 pm
+                            ...
+                          ...
+                    ...
+    ...
+
+[00:18:10.217] Server  LOG      ✓ Compiled in 158.5s
+[00:19:08.659] Server  LOG      ✓ Compiled in 58.5s
+[00:19:08.764] Browser ERROR   ./app/components/dashboard/DashboardHeader.tsx:57:11
+Parsing ecmascript source code failed
+  55 |               </span>
+  56 |             )}
+> 57 |           </div>
+     |           ^
+  58 |         </div>
+  59 |       </div>
+  60 |     </header>
+
+Expression expected
+
+Import traces:
+  Client Component Browser:
+    ./app/components/dashboard/DashboardHeader.tsx [Client Component Browser]
+    ./app/dashboard/page.tsx [Client Component Browser]
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/components/dashboard/DashboardHeader.tsx [Client Component SSR]
+    ./app/dashboard/page.tsx [Client Component SSR]
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+[00:19:08.764] Browser ERROR   ./app/components/dashboard/DashboardHeader.tsx:57:12
+Parsing ecmascript source code failed
+  55 |               </span>
+  56 |             )}
+> 57 |           </div>
+     |            ^^^^^
+  58 |         </div>
+  59 |       </div>
+  60 |     </header>
+
+Unterminated regexp literal
+
+Import traces:
+  Client Component Browser:
+    ./app/components/dashboard/DashboardHeader.tsx [Client Component Browser]
+    ./app/dashboard/page.tsx [Client Component Browser]
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/components/dashboard/DashboardHeader.tsx [Client Component SSR]
+    ./app/dashboard/page.tsx [Client Component SSR]
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+[00:19:12.379] Server  ERROR    ⨯ ./app/components/dashboard/DashboardHeader.tsx:52:1
+Parsing ecmascript source code failed
+  50 |   );
+  51 | };
+> 52 | };
+     | ^
+  53 |
+
+Expression expected
+
+Import traces:
+  Client Component Browser:
+    ./app/components/dashboard/DashboardHeader.tsx [Client Component Browser]
+    ./app/dashboard/page.tsx [Client Component Browser]
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/components/dashboard/DashboardHeader.tsx [Client Component SSR]
+    ./app/dashboard/page.tsx [Client Component SSR]
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+
+[00:19:12.714] Browser ERROR   uncaughtError: Error: ./app/components/dashboard/DashboardHeader.tsx:52:1
+Parsing ecmascript source code failed
+  50 |   );
+  51 | };
+> 52 | };
+     | ^
+  53 |
+
+Expression expected
+
+Import traces:
+  Client Component Browser:
+    ./app/components/dashboard/DashboardHeader.tsx [Client Component Browser]
+    ./app/dashboard/page.tsx [Client Component Browser]
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/components/dashboard/DashboardHeader.tsx [Client Component SSR]
+    ./app/dashboard/page.tsx [Client Component SSR]
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+
+[00:19:12.896] Browser ERROR   ./app/components/dashboard/DashboardHeader.tsx:52:1
+Parsing ecmascript source code failed
+  50 |   );
+  51 | };
+> 52 | };
+     | ^
+  53 |
+
+Expression expected
+
+Import traces:
+  Client Component Browser:
+    ./app/components/dashboard/DashboardHeader.tsx [Client Component Browser]
+    ./app/dashboard/page.tsx [Client Component Browser]
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/components/dashboard/DashboardHeader.tsx [Client Component SSR]
+    ./app/dashboard/page.tsx [Client Component SSR]
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+[00:19:12.896] Browser ERROR   ./app/components/dashboard/DashboardHeader.tsx:52:1
+Parsing ecmascript source code failed
+  50 |   );
+  51 | };
+> 52 | };
+     | ^
+  53 |
+
+Expression expected
+
+Import traces:
+  Client Component Browser:
+    ./app/components/dashboard/DashboardHeader.tsx [Client Component Browser]
+    ./app/dashboard/page.tsx [Client Component Browser]
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/components/dashboard/DashboardHeader.tsx [Client Component SSR]
+    ./app/dashboard/page.tsx [Client Component SSR]
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+[00:19:22.922] Browser WARN    {}
+[00:20:12.126] Server  ERROR    ⨯ ./app/components/dashboard/DashboardHeader.tsx:52:1
+Parsing ecmascript source code failed
+  50 |   );
+  51 | };
+> 52 | };
+     | ^
+  53 |
+
+Expression expected
+
+Import traces:
+  Client Component Browser:
+    ./app/components/dashboard/DashboardHeader.tsx [Client Component Browser]
+    ./app/dashboard/page.tsx [Client Component Browser]
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/components/dashboard/DashboardHeader.tsx [Client Component SSR]
+    ./app/dashboard/page.tsx [Client Component SSR]
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+
+[00:20:12.226] Browser ERROR   uncaughtError: Error: ./app/components/dashboard/DashboardHeader.tsx:52:1
+Parsing ecmascript source code failed
+  50 |   );
+  51 | };
+> 52 | };
+     | ^
+  53 |
+
+Expression expected
+
+Import traces:
+  Client Component Browser:
+    ./app/components/dashboard/DashboardHeader.tsx [Client Component Browser]
+    ./app/dashboard/page.tsx [Client Component Browser]
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/components/dashboard/DashboardHeader.tsx [Client Component SSR]
+    ./app/dashboard/page.tsx [Client Component SSR]
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+
+[00:20:12.378] Browser ERROR   ./app/components/dashboard/DashboardHeader.tsx:52:1
+Parsing ecmascript source code failed
+  50 |   );
+  51 | };
+> 52 | };
+     | ^
+  53 |
+
+Expression expected
+
+Import traces:
+  Client Component Browser:
+    ./app/components/dashboard/DashboardHeader.tsx [Client Component Browser]
+    ./app/dashboard/page.tsx [Client Component Browser]
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/components/dashboard/DashboardHeader.tsx [Client Component SSR]
+    ./app/dashboard/page.tsx [Client Component SSR]
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+[00:20:12.378] Browser ERROR   ./app/components/dashboard/DashboardHeader.tsx:52:1
+Parsing ecmascript source code failed
+  50 |   );
+  51 | };
+> 52 | };
+     | ^
+  53 |
+
+Expression expected
+
+Import traces:
+  Client Component Browser:
+    ./app/components/dashboard/DashboardHeader.tsx [Client Component Browser]
+    ./app/dashboard/page.tsx [Client Component Browser]
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/components/dashboard/DashboardHeader.tsx [Client Component SSR]
+    ./app/dashboard/page.tsx [Client Component SSR]
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+[00:20:18.769] Browser WARN    {}
+[00:20:23.551] Server  ERROR    ⨯ ./app/components/dashboard/DashboardHeader.tsx:52:1
+Parsing ecmascript source code failed
+  50 |   );
+  51 | };
+> 52 | };
+     | ^
+  53 |
+
+Expression expected
+
+Import traces:
+  Client Component Browser:
+    ./app/components/dashboard/DashboardHeader.tsx [Client Component Browser]
+    ./app/dashboard/page.tsx [Client Component Browser]
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/components/dashboard/DashboardHeader.tsx [Client Component SSR]
+    ./app/dashboard/page.tsx [Client Component SSR]
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+
+[00:20:23.654] Browser ERROR   uncaughtError: Error: ./app/components/dashboard/DashboardHeader.tsx:52:1
+Parsing ecmascript source code failed
+  50 |   );
+  51 | };
+> 52 | };
+     | ^
+  53 |
+
+Expression expected
+
+Import traces:
+  Client Component Browser:
+    ./app/components/dashboard/DashboardHeader.tsx [Client Component Browser]
+    ./app/dashboard/page.tsx [Client Component Browser]
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/components/dashboard/DashboardHeader.tsx [Client Component SSR]
+    ./app/dashboard/page.tsx [Client Component SSR]
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+
+[00:20:23.810] Browser ERROR   ./app/components/dashboard/DashboardHeader.tsx:52:1
+Parsing ecmascript source code failed
+  50 |   );
+  51 | };
+> 52 | };
+     | ^
+  53 |
+
+Expression expected
+
+Import traces:
+  Client Component Browser:
+    ./app/components/dashboard/DashboardHeader.tsx [Client Component Browser]
+    ./app/dashboard/page.tsx [Client Component Browser]
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/components/dashboard/DashboardHeader.tsx [Client Component SSR]
+    ./app/dashboard/page.tsx [Client Component SSR]
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+[00:20:23.810] Browser ERROR   ./app/components/dashboard/DashboardHeader.tsx:52:1
+Parsing ecmascript source code failed
+  50 |   );
+  51 | };
+> 52 | };
+     | ^
+  53 |
+
+Expression expected
+
+Import traces:
+  Client Component Browser:
+    ./app/components/dashboard/DashboardHeader.tsx [Client Component Browser]
+    ./app/dashboard/page.tsx [Client Component Browser]
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/components/dashboard/DashboardHeader.tsx [Client Component SSR]
+    ./app/dashboard/page.tsx [Client Component SSR]
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+[00:20:24.362] Server  ERROR    ⨯ ./app/components/dashboard/DashboardHeader.tsx:52:1
+Parsing ecmascript source code failed
+  50 |   );
+  51 | };
+> 52 | };
+     | ^
+  53 |
+
+Expression expected
+
+Import traces:
+  Client Component Browser:
+    ./app/components/dashboard/DashboardHeader.tsx [Client Component Browser]
+    ./app/dashboard/page.tsx [Client Component Browser]
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/components/dashboard/DashboardHeader.tsx [Client Component SSR]
+    ./app/dashboard/page.tsx [Client Component SSR]
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+
+[00:20:24.470] Browser ERROR   uncaughtError: Error: ./app/components/dashboard/DashboardHeader.tsx:52:1
+Parsing ecmascript source code failed
+  50 |   );
+  51 | };
+> 52 | };
+     | ^
+  53 |
+
+Expression expected
+
+Import traces:
+  Client Component Browser:
+    ./app/components/dashboard/DashboardHeader.tsx [Client Component Browser]
+    ./app/dashboard/page.tsx [Client Component Browser]
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/components/dashboard/DashboardHeader.tsx [Client Component SSR]
+    ./app/dashboard/page.tsx [Client Component SSR]
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+
+[00:20:24.614] Browser ERROR   ./app/components/dashboard/DashboardHeader.tsx:52:1
+Parsing ecmascript source code failed
+  50 |   );
+  51 | };
+> 52 | };
+     | ^
+  53 |
+
+Expression expected
+
+Import traces:
+  Client Component Browser:
+    ./app/components/dashboard/DashboardHeader.tsx [Client Component Browser]
+    ./app/dashboard/page.tsx [Client Component Browser]
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/components/dashboard/DashboardHeader.tsx [Client Component SSR]
+    ./app/dashboard/page.tsx [Client Component SSR]
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+[00:20:24.614] Browser ERROR   ./app/components/dashboard/DashboardHeader.tsx:52:1
+Parsing ecmascript source code failed
+  50 |   );
+  51 | };
+> 52 | };
+     | ^
+  53 |
+
+Expression expected
+
+Import traces:
+  Client Component Browser:
+    ./app/components/dashboard/DashboardHeader.tsx [Client Component Browser]
+    ./app/dashboard/page.tsx [Client Component Browser]
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/components/dashboard/DashboardHeader.tsx [Client Component SSR]
+    ./app/dashboard/page.tsx [Client Component SSR]
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+[00:20:25.183] Server  ERROR    ⨯ ./app/components/dashboard/DashboardHeader.tsx:52:1
+Parsing ecmascript source code failed
+  50 |   );
+  51 | };
+> 52 | };
+     | ^
+  53 |
+
+Expression expected
+
+Import traces:
+  Client Component Browser:
+    ./app/components/dashboard/DashboardHeader.tsx [Client Component Browser]
+    ./app/dashboard/page.tsx [Client Component Browser]
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/components/dashboard/DashboardHeader.tsx [Client Component SSR]
+    ./app/dashboard/page.tsx [Client Component SSR]
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+
+[00:20:25.214] Server  ERROR    ⨯ ./app/components/dashboard/DashboardHeader.tsx:52:1
+Parsing ecmascript source code failed
+  50 |   );
+  51 | };
+> 52 | };
+     | ^
+  53 |
+
+Expression expected
+
+Import traces:
+  Client Component Browser:
+    ./app/components/dashboard/DashboardHeader.tsx [Client Component Browser]
+    ./app/dashboard/page.tsx [Client Component Browser]
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/components/dashboard/DashboardHeader.tsx [Client Component SSR]
+    ./app/dashboard/page.tsx [Client Component SSR]
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+
+[00:20:25.234] Server  ERROR    ⨯ ./app/components/dashboard/DashboardHeader.tsx:52:1
+Parsing ecmascript source code failed
+  50 |   );
+  51 | };
+> 52 | };
+     | ^
+  53 |
+
+Expression expected
+
+Import traces:
+  Client Component Browser:
+    ./app/components/dashboard/DashboardHeader.tsx [Client Component Browser]
+    ./app/dashboard/page.tsx [Client Component Browser]
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/components/dashboard/DashboardHeader.tsx [Client Component SSR]
+    ./app/dashboard/page.tsx [Client Component SSR]
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+
+[00:20:25.254] Server  ERROR    ⨯ ./app/components/dashboard/DashboardHeader.tsx:52:1
+Parsing ecmascript source code failed
+  50 |   );
+  51 | };
+> 52 | };
+     | ^
+  53 |
+
+Expression expected
+
+Import traces:
+  Client Component Browser:
+    ./app/components/dashboard/DashboardHeader.tsx [Client Component Browser]
+    ./app/dashboard/page.tsx [Client Component Browser]
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/components/dashboard/DashboardHeader.tsx [Client Component SSR]
+    ./app/dashboard/page.tsx [Client Component SSR]
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+
+[00:20:25.357] Browser ERROR   uncaughtError: Error: ./app/components/dashboard/DashboardHeader.tsx:52:1
+Parsing ecmascript source code failed
+  50 |   );
+  51 | };
+> 52 | };
+     | ^
+  53 |
+
+Expression expected
+
+Import traces:
+  Client Component Browser:
+    ./app/components/dashboard/DashboardHeader.tsx [Client Component Browser]
+    ./app/dashboard/page.tsx [Client Component Browser]
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/components/dashboard/DashboardHeader.tsx [Client Component SSR]
+    ./app/dashboard/page.tsx [Client Component SSR]
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+
+[00:20:25.513] Browser ERROR   ./app/components/dashboard/DashboardHeader.tsx:52:1
+Parsing ecmascript source code failed
+  50 |   );
+  51 | };
+> 52 | };
+     | ^
+  53 |
+
+Expression expected
+
+Import traces:
+  Client Component Browser:
+    ./app/components/dashboard/DashboardHeader.tsx [Client Component Browser]
+    ./app/dashboard/page.tsx [Client Component Browser]
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/components/dashboard/DashboardHeader.tsx [Client Component SSR]
+    ./app/dashboard/page.tsx [Client Component SSR]
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+[00:20:25.513] Browser ERROR   ./app/components/dashboard/DashboardHeader.tsx:52:1
+Parsing ecmascript source code failed
+  50 |   );
+  51 | };
+> 52 | };
+     | ^
+  53 |
+
+Expression expected
+
+Import traces:
+  Client Component Browser:
+    ./app/components/dashboard/DashboardHeader.tsx [Client Component Browser]
+    ./app/dashboard/page.tsx [Client Component Browser]
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/components/dashboard/DashboardHeader.tsx [Client Component SSR]
+    ./app/dashboard/page.tsx [Client Component SSR]
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+[00:20:27.183] Server  ERROR    ⨯ ./app/components/dashboard/DashboardHeader.tsx:52:1
+Parsing ecmascript source code failed
+  50 |   );
+  51 | };
+> 52 | };
+     | ^
+  53 |
+
+Expression expected
+
+Import traces:
+  Client Component Browser:
+    ./app/components/dashboard/DashboardHeader.tsx [Client Component Browser]
+    ./app/dashboard/page.tsx [Client Component Browser]
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/components/dashboard/DashboardHeader.tsx [Client Component SSR]
+    ./app/dashboard/page.tsx [Client Component SSR]
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+
+[00:20:27.307] Browser ERROR   uncaughtError: Error: ./app/components/dashboard/DashboardHeader.tsx:52:1
+Parsing ecmascript source code failed
+  50 |   );
+  51 | };
+> 52 | };
+     | ^
+  53 |
+
+Expression expected
+
+Import traces:
+  Client Component Browser:
+    ./app/components/dashboard/DashboardHeader.tsx [Client Component Browser]
+    ./app/dashboard/page.tsx [Client Component Browser]
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/components/dashboard/DashboardHeader.tsx [Client Component SSR]
+    ./app/dashboard/page.tsx [Client Component SSR]
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+
+[00:20:27.454] Browser ERROR   ./app/components/dashboard/DashboardHeader.tsx:52:1
+Parsing ecmascript source code failed
+  50 |   );
+  51 | };
+> 52 | };
+     | ^
+  53 |
+
+Expression expected
+
+Import traces:
+  Client Component Browser:
+    ./app/components/dashboard/DashboardHeader.tsx [Client Component Browser]
+    ./app/dashboard/page.tsx [Client Component Browser]
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/components/dashboard/DashboardHeader.tsx [Client Component SSR]
+    ./app/dashboard/page.tsx [Client Component SSR]
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+[00:20:27.454] Browser ERROR   ./app/components/dashboard/DashboardHeader.tsx:52:1
+Parsing ecmascript source code failed
+  50 |   );
+  51 | };
+> 52 | };
+     | ^
+  53 |
+
+Expression expected
+
+Import traces:
+  Client Component Browser:
+    ./app/components/dashboard/DashboardHeader.tsx [Client Component Browser]
+    ./app/dashboard/page.tsx [Client Component Browser]
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/components/dashboard/DashboardHeader.tsx [Client Component SSR]
+    ./app/dashboard/page.tsx [Client Component SSR]
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+[00:22:57.302] Browser ERROR   ./app/components/dashboard/DashboardHeader.tsx:52:1
+Parsing ecmascript source code failed
+  50 |   );
+  51 | };
+> 52 | };
+     | ^
+  53 |
+
+Expression expected
+
+Import traces:
+  Client Component Browser:
+    ./app/components/dashboard/DashboardHeader.tsx [Client Component Browser]
+    ./app/dashboard/page.tsx [Client Component Browser]
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/components/dashboard/DashboardHeader.tsx [Client Component SSR]
+    ./app/dashboard/page.tsx [Client Component SSR]
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+[00:22:57.302] Browser ERROR   ./app/components/dashboard/DashboardHeader.tsx:52:1
+Parsing ecmascript source code failed
+  50 |   );
+  51 | };
+> 52 | };
+     | ^
+  53 |
+
+Expression expected
+
+Import traces:
+  Client Component Browser:
+    ./app/components/dashboard/DashboardHeader.tsx [Client Component Browser]
+    ./app/dashboard/page.tsx [Client Component Browser]
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/components/dashboard/DashboardHeader.tsx [Client Component SSR]
+    ./app/dashboard/page.tsx [Client Component SSR]
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+[00:22:57.519] Browser ERROR   ./app/components/dashboard/DashboardHeader.tsx:52:1
+Parsing ecmascript source code failed
+  50 |   );
+  51 | };
+> 52 | };
+     | ^
+  53 |
+
+Expression expected
+
+Import traces:
+  Client Component Browser:
+    ./app/components/dashboard/DashboardHeader.tsx [Client Component Browser]
+    ./app/dashboard/page.tsx [Client Component Browser]
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/components/dashboard/DashboardHeader.tsx [Client Component SSR]
+    ./app/dashboard/page.tsx [Client Component SSR]
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+[00:22:57.519] Browser ERROR   ./app/components/dashboard/DashboardHeader.tsx:52:1
+Parsing ecmascript source code failed
+  50 |   );
+  51 | };
+> 52 | };
+     | ^
+  53 |
+
+Expression expected
+
+Import traces:
+  Client Component Browser:
+    ./app/components/dashboard/DashboardHeader.tsx [Client Component Browser]
+    ./app/dashboard/page.tsx [Client Component Browser]
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/components/dashboard/DashboardHeader.tsx [Client Component SSR]
+    ./app/dashboard/page.tsx [Client Component SSR]
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+[00:22:57.767] Browser ERROR   ./app/dashboard/page.tsx:5:1
+Export DashboardHeader doesn't exist in target module
+  3 | import { useState, useEffect } from 'react';
+  4 | import { MissionState } from '../types/dashboard';
+> 5 | import { DashboardHeader } from '../components/dashboard/DashboardHeader';
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  6 | import { MissionPanel } from '../components/mission/MissionPanel';
+  7 | import dashboardData from '../mocks/dashboard.json';
+  8 |
+
+The export DashboardHeader was not found in module [project]/app/components/dashboard/DashboardHeader.tsx [app-client] (ecmascript).
+The module has no exports at all.
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./app/dashboard/page.tsx [Client Component Browser]
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/dashboard/page.tsx [Client Component SSR]
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+[00:22:57.767] Browser ERROR   ./app/dashboard/page.tsx:5:1
+Export DashboardHeader doesn't exist in target module
+  3 | import { useState, useEffect } from 'react';
+  4 | import { MissionState } from '../types/dashboard';
+> 5 | import { DashboardHeader } from '../components/dashboard/DashboardHeader';
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  6 | import { MissionPanel } from '../components/mission/MissionPanel';
+  7 | import dashboardData from '../mocks/dashboard.json';
+  8 |
+
+The export DashboardHeader was not found in module [project]/app/components/dashboard/DashboardHeader.tsx [app-ssr] (ecmascript).
+The module has no exports at all.
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./app/dashboard/page.tsx [Client Component Browser]
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/dashboard/page.tsx [Client Component SSR]
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+[00:22:57.938] Browser ERROR   ./app/components/dashboard/DashboardHeader.tsx:52:1
+Parsing ecmascript source code failed
+  50 |   );
+  51 | };
+> 52 | };
+     | ^
+  53 |
+
+Expression expected
+
+Import traces:
+  Client Component Browser:
+    ./app/components/dashboard/DashboardHeader.tsx [Client Component Browser]
+    ./app/dashboard/page.tsx [Client Component Browser]
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/components/dashboard/DashboardHeader.tsx [Client Component SSR]
+    ./app/dashboard/page.tsx [Client Component SSR]
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+[00:22:57.938] Browser ERROR   ./app/dashboard/page.tsx:5:1
+Export DashboardHeader doesn't exist in target module
+  3 | import { useState, useEffect } from 'react';
+  4 | import { MissionState } from '../types/dashboard';
+> 5 | import { DashboardHeader } from '../components/dashboard/DashboardHeader';
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  6 | import { MissionPanel } from '../components/mission/MissionPanel';
+  7 | import dashboardData from '../mocks/dashboard.json';
+  8 |
+
+The export DashboardHeader was not found in module [project]/app/components/dashboard/DashboardHeader.tsx [app-client] (ecmascript).
+The module has no exports at all.
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./app/dashboard/page.tsx [Client Component Browser]
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/dashboard/page.tsx [Client Component SSR]
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+[00:22:57.938] Browser ERROR   ./app/dashboard/page.tsx:5:1
+Export DashboardHeader doesn't exist in target module
+  3 | import { useState, useEffect } from 'react';
+  4 | import { MissionState } from '../types/dashboard';
+> 5 | import { DashboardHeader } from '../components/dashboard/DashboardHeader';
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  6 | import { MissionPanel } from '../components/mission/MissionPanel';
+  7 | import dashboardData from '../mocks/dashboard.json';
+  8 |
+
+The export DashboardHeader was not found in module [project]/app/components/dashboard/DashboardHeader.tsx [app-ssr] (ecmascript).
+The module has no exports at all.
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./app/dashboard/page.tsx [Client Component Browser]
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/dashboard/page.tsx [Client Component SSR]
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+[00:23:00.504] Server  ERROR    ⨯ ./app/components/dashboard/DashboardHeader.tsx:52:1
+Parsing ecmascript source code failed
+  50 |   );
+  51 | };
+> 52 | };
+     | ^
+  53 |
+
+Expression expected
+
+Import traces:
+  Client Component Browser:
+    ./app/components/dashboard/DashboardHeader.tsx [Client Component Browser]
+    ./app/dashboard/page.tsx [Client Component Browser]
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/components/dashboard/DashboardHeader.tsx [Client Component SSR]
+    ./app/dashboard/page.tsx [Client Component SSR]
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+
+
+./app/dashboard/page.tsx:5:1
+Export DashboardHeader doesn't exist in target module
+  3 | import { useState, useEffect } from 'react';
+  4 | import { MissionState } from '../types/dashboard';
+> 5 | import { DashboardHeader } from '../components/dashboard/DashboardHeader';
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  6 | import { MissionPanel } from '../components/mission/MissionPanel';
+  7 | import dashboardData from '../mocks/dashboard.json';
+  8 |
+
+The export DashboardHeader was not found in module [project]/app/components/dashboard/DashboardHeader.tsx [app-client] (ecmascript).
+The module has no exports at all.
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./app/dashboard/page.tsx [Client Component Browser]
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/dashboard/page.tsx [Client Component SSR]
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+
+
+./app/dashboard/page.tsx:5:1
+Export DashboardHeader doesn't exist in target module
+  3 | import { useState, useEffect } from 'react';
+  4 | import { MissionState } from '../types/dashboard';
+> 5 | import { DashboardHeader } from '../components/dashboard/DashboardHeader';
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  6 | import { MissionPanel } from '../components/mission/MissionPanel';
+  7 | import dashboardData from '../mocks/dashboard.json';
+  8 |
+
+The export DashboardHeader was not found in module [project]/app/components/dashboard/DashboardHeader.tsx [app-ssr] (ecmascript).
+The module has no exports at all.
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./app/dashboard/page.tsx [Client Component Browser]
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/dashboard/page.tsx [Client Component SSR]
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+
+[00:23:00.668] Browser ERROR   ./app/components/dashboard/DashboardHeader.tsx:52:1
+Parsing ecmascript source code failed
+  50 |   );
+  51 | };
+> 52 | };
+     | ^
+  53 |
+
+Expression expected
+
+Import traces:
+  Client Component Browser:
+    ./app/components/dashboard/DashboardHeader.tsx [Client Component Browser]
+    ./app/dashboard/page.tsx [Client Component Browser]
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/components/dashboard/DashboardHeader.tsx [Client Component SSR]
+    ./app/dashboard/page.tsx [Client Component SSR]
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+[00:23:00.668] Browser ERROR   ./app/dashboard/page.tsx:5:1
+Export DashboardHeader doesn't exist in target module
+  3 | import { useState, useEffect } from 'react';
+  4 | import { MissionState } from '../types/dashboard';
+> 5 | import { DashboardHeader } from '../components/dashboard/DashboardHeader';
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  6 | import { MissionPanel } from '../components/mission/MissionPanel';
+  7 | import dashboardData from '../mocks/dashboard.json';
+  8 |
+
+The export DashboardHeader was not found in module [project]/app/components/dashboard/DashboardHeader.tsx [app-client] (ecmascript).
+The module has no exports at all.
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./app/dashboard/page.tsx [Client Component Browser]
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/dashboard/page.tsx [Client Component SSR]
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+[00:23:00.668] Browser ERROR   ./app/dashboard/page.tsx:5:1
+Export DashboardHeader doesn't exist in target module
+  3 | import { useState, useEffect } from 'react';
+  4 | import { MissionState } from '../types/dashboard';
+> 5 | import { DashboardHeader } from '../components/dashboard/DashboardHeader';
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  6 | import { MissionPanel } from '../components/mission/MissionPanel';
+  7 | import dashboardData from '../mocks/dashboard.json';
+  8 |
+
+The export DashboardHeader was not found in module [project]/app/components/dashboard/DashboardHeader.tsx [app-ssr] (ecmascript).
+The module has no exports at all.
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./app/dashboard/page.tsx [Client Component Browser]
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/dashboard/page.tsx [Client Component SSR]
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+[00:23:00.673] Browser ERROR   uncaughtError: Error: ./app/components/dashboard/DashboardHeader.tsx:52:1
+Parsing ecmascript source code failed
+  50 |   );
+  51 | };
+> 52 | };
+     | ^
+  53 |
+
+Expression expected
+
+Import traces:
+  Client Component Browser:
+    ./app/components/dashboard/DashboardHeader.tsx [Client Component Browser]
+    ./app/dashboard/page.tsx [Client Component Browser]
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/components/dashboard/DashboardHeader.tsx [Client Component SSR]
+    ./app/dashboard/page.tsx [Client Component SSR]
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+
+[00:23:00.820] Browser ERROR   ./app/components/dashboard/DashboardHeader.tsx:52:1
+Parsing ecmascript source code failed
+  50 |   );
+  51 | };
+> 52 | };
+     | ^
+  53 |
+
+Expression expected
+
+Import traces:
+  Client Component Browser:
+    ./app/components/dashboard/DashboardHeader.tsx [Client Component Browser]
+    ./app/dashboard/page.tsx [Client Component Browser]
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/components/dashboard/DashboardHeader.tsx [Client Component SSR]
+    ./app/dashboard/page.tsx [Client Component SSR]
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+[00:23:00.820] Browser ERROR   ./app/dashboard/page.tsx:5:1
+Export DashboardHeader doesn't exist in target module
+  3 | import { useState, useEffect } from 'react';
+  4 | import { MissionState } from '../types/dashboard';
+> 5 | import { DashboardHeader } from '../components/dashboard/DashboardHeader';
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  6 | import { MissionPanel } from '../components/mission/MissionPanel';
+  7 | import dashboardData from '../mocks/dashboard.json';
+  8 |
+
+The export DashboardHeader was not found in module [project]/app/components/dashboard/DashboardHeader.tsx [app-client] (ecmascript).
+The module has no exports at all.
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./app/dashboard/page.tsx [Client Component Browser]
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/dashboard/page.tsx [Client Component SSR]
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+[00:23:00.820] Browser ERROR   ./app/dashboard/page.tsx:5:1
+Export DashboardHeader doesn't exist in target module
+  3 | import { useState, useEffect } from 'react';
+  4 | import { MissionState } from '../types/dashboard';
+> 5 | import { DashboardHeader } from '../components/dashboard/DashboardHeader';
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  6 | import { MissionPanel } from '../components/mission/MissionPanel';
+  7 | import dashboardData from '../mocks/dashboard.json';
+  8 |
+
+The export DashboardHeader was not found in module [project]/app/components/dashboard/DashboardHeader.tsx [app-ssr] (ecmascript).
+The module has no exports at all.
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./app/dashboard/page.tsx [Client Component Browser]
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/dashboard/page.tsx [Client Component SSR]
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+[00:23:00.820] Browser ERROR   ./app/components/dashboard/DashboardHeader.tsx:52:1
+Parsing ecmascript source code failed
+  50 |   );
+  51 | };
+> 52 | };
+     | ^
+  53 |
+
+Expression expected
+
+Import traces:
+  Client Component Browser:
+    ./app/components/dashboard/DashboardHeader.tsx [Client Component Browser]
+    ./app/dashboard/page.tsx [Client Component Browser]
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/components/dashboard/DashboardHeader.tsx [Client Component SSR]
+    ./app/dashboard/page.tsx [Client Component SSR]
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+[00:23:00.820] Browser ERROR   ./app/dashboard/page.tsx:5:1
+Export DashboardHeader doesn't exist in target module
+  3 | import { useState, useEffect } from 'react';
+  4 | import { MissionState } from '../types/dashboard';
+> 5 | import { DashboardHeader } from '../components/dashboard/DashboardHeader';
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  6 | import { MissionPanel } from '../components/mission/MissionPanel';
+  7 | import dashboardData from '../mocks/dashboard.json';
+  8 |
+
+The export DashboardHeader was not found in module [project]/app/components/dashboard/DashboardHeader.tsx [app-client] (ecmascript).
+The module has no exports at all.
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./app/dashboard/page.tsx [Client Component Browser]
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/dashboard/page.tsx [Client Component SSR]
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+[00:23:00.820] Browser ERROR   ./app/dashboard/page.tsx:5:1
+Export DashboardHeader doesn't exist in target module
+  3 | import { useState, useEffect } from 'react';
+  4 | import { MissionState } from '../types/dashboard';
+> 5 | import { DashboardHeader } from '../components/dashboard/DashboardHeader';
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  6 | import { MissionPanel } from '../components/mission/MissionPanel';
+  7 | import dashboardData from '../mocks/dashboard.json';
+  8 |
+
+The export DashboardHeader was not found in module [project]/app/components/dashboard/DashboardHeader.tsx [app-ssr] (ecmascript).
+The module has no exports at all.
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./app/dashboard/page.tsx [Client Component Browser]
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/dashboard/page.tsx [Client Component SSR]
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+[00:24:34.231] Browser ERROR   ./app/components/dashboard/DashboardHeader.tsx:52:1
+Parsing ecmascript source code failed
+  50 |   );
+  51 | };
+> 52 | };
+     | ^
+  53 |
+
+Expression expected
+
+Import traces:
+  Client Component Browser:
+    ./app/components/dashboard/DashboardHeader.tsx [Client Component Browser]
+    ./app/dashboard/page.tsx [Client Component Browser]
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/components/dashboard/DashboardHeader.tsx [Client Component SSR]
+    ./app/dashboard/page.tsx [Client Component SSR]
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+[00:24:34.231] Browser ERROR   ./app/dashboard/page.tsx:5:1
+Export DashboardHeader doesn't exist in target module
+  3 | import { useState, useEffect } from 'react';
+  4 | import { MissionState } from '../types/dashboard';
+> 5 | import { DashboardHeader } from '../components/dashboard/DashboardHeader';
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  6 | import { MissionPanel } from '../components/mission/MissionPanel';
+  7 | import dashboardData from '../mocks/dashboard.json';
+  8 |
+
+The export DashboardHeader was not found in module [project]/app/components/dashboard/DashboardHeader.tsx [app-client] (ecmascript).
+The module has no exports at all.
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./app/dashboard/page.tsx [Client Component Browser]
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/dashboard/page.tsx [Client Component SSR]
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+[00:24:34.231] Browser ERROR   ./app/dashboard/page.tsx:5:1
+Export DashboardHeader doesn't exist in target module
+  3 | import { useState, useEffect } from 'react';
+  4 | import { MissionState } from '../types/dashboard';
+> 5 | import { DashboardHeader } from '../components/dashboard/DashboardHeader';
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  6 | import { MissionPanel } from '../components/mission/MissionPanel';
+  7 | import dashboardData from '../mocks/dashboard.json';
+  8 |
+
+The export DashboardHeader was not found in module [project]/app/components/dashboard/DashboardHeader.tsx [app-ssr] (ecmascript).
+The module has no exports at all.
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./app/dashboard/page.tsx [Client Component Browser]
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/dashboard/page.tsx [Client Component SSR]
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+[00:24:36.135] Server  ERROR    ⨯ ./app/components/dashboard/DashboardHeader.tsx:52:1
+Parsing ecmascript source code failed
+  50 |   );
+  51 | };
+> 52 | };
+     | ^
+  53 |
+
+Expression expected
+
+Import traces:
+  Client Component Browser:
+    ./app/components/dashboard/DashboardHeader.tsx [Client Component Browser]
+    ./app/dashboard/page.tsx [Client Component Browser]
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/components/dashboard/DashboardHeader.tsx [Client Component SSR]
+    ./app/dashboard/page.tsx [Client Component SSR]
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+
+
+./app/dashboard/page.tsx:5:1
+Export DashboardHeader doesn't exist in target module
+  3 | import { useState, useEffect } from 'react';
+  4 | import { MissionState } from '../types/dashboard';
+> 5 | import { DashboardHeader } from '../components/dashboard/DashboardHeader';
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  6 | import { MissionPanel } from '../components/mission/MissionPanel';
+  7 | import dashboardData from '../mocks/dashboard.json';
+  8 |
+
+The export DashboardHeader was not found in module [project]/app/components/dashboard/DashboardHeader.tsx [app-client] (ecmascript).
+The module has no exports at all.
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./app/dashboard/page.tsx [Client Component Browser]
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/dashboard/page.tsx [Client Component SSR]
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+
+
+./app/dashboard/page.tsx:5:1
+Export DashboardHeader doesn't exist in target module
+  3 | import { useState, useEffect } from 'react';
+  4 | import { MissionState } from '../types/dashboard';
+> 5 | import { DashboardHeader } from '../components/dashboard/DashboardHeader';
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  6 | import { MissionPanel } from '../components/mission/MissionPanel';
+  7 | import dashboardData from '../mocks/dashboard.json';
+  8 |
+
+The export DashboardHeader was not found in module [project]/app/components/dashboard/DashboardHeader.tsx [app-ssr] (ecmascript).
+The module has no exports at all.
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./app/dashboard/page.tsx [Client Component Browser]
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/dashboard/page.tsx [Client Component SSR]
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+
+[00:24:36.308] Browser ERROR   uncaughtError: Error: ./app/components/dashboard/DashboardHeader.tsx:52:1
+Parsing ecmascript source code failed
+  50 |   );
+  51 | };
+> 52 | };
+     | ^
+  53 |
+
+Expression expected
+
+Import traces:
+  Client Component Browser:
+    ./app/components/dashboard/DashboardHeader.tsx [Client Component Browser]
+    ./app/dashboard/page.tsx [Client Component Browser]
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/components/dashboard/DashboardHeader.tsx [Client Component SSR]
+    ./app/dashboard/page.tsx [Client Component SSR]
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+
+[00:24:36.455] Browser ERROR   ./app/components/dashboard/DashboardHeader.tsx:52:1
+Parsing ecmascript source code failed
+  50 |   );
+  51 | };
+> 52 | };
+     | ^
+  53 |
+
+Expression expected
+
+Import traces:
+  Client Component Browser:
+    ./app/components/dashboard/DashboardHeader.tsx [Client Component Browser]
+    ./app/dashboard/page.tsx [Client Component Browser]
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/components/dashboard/DashboardHeader.tsx [Client Component SSR]
+    ./app/dashboard/page.tsx [Client Component SSR]
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+[00:24:36.455] Browser ERROR   ./app/dashboard/page.tsx:5:1
+Export DashboardHeader doesn't exist in target module
+  3 | import { useState, useEffect } from 'react';
+  4 | import { MissionState } from '../types/dashboard';
+> 5 | import { DashboardHeader } from '../components/dashboard/DashboardHeader';
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  6 | import { MissionPanel } from '../components/mission/MissionPanel';
+  7 | import dashboardData from '../mocks/dashboard.json';
+  8 |
+
+The export DashboardHeader was not found in module [project]/app/components/dashboard/DashboardHeader.tsx [app-client] (ecmascript).
+The module has no exports at all.
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./app/dashboard/page.tsx [Client Component Browser]
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/dashboard/page.tsx [Client Component SSR]
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+[00:24:36.455] Browser ERROR   ./app/dashboard/page.tsx:5:1
+Export DashboardHeader doesn't exist in target module
+  3 | import { useState, useEffect } from 'react';
+  4 | import { MissionState } from '../types/dashboard';
+> 5 | import { DashboardHeader } from '../components/dashboard/DashboardHeader';
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  6 | import { MissionPanel } from '../components/mission/MissionPanel';
+  7 | import dashboardData from '../mocks/dashboard.json';
+  8 |
+
+The export DashboardHeader was not found in module [project]/app/components/dashboard/DashboardHeader.tsx [app-ssr] (ecmascript).
+The module has no exports at all.
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./app/dashboard/page.tsx [Client Component Browser]
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/dashboard/page.tsx [Client Component SSR]
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+[00:24:36.455] Browser ERROR   ./app/components/dashboard/DashboardHeader.tsx:52:1
+Parsing ecmascript source code failed
+  50 |   );
+  51 | };
+> 52 | };
+     | ^
+  53 |
+
+Expression expected
+
+Import traces:
+  Client Component Browser:
+    ./app/components/dashboard/DashboardHeader.tsx [Client Component Browser]
+    ./app/dashboard/page.tsx [Client Component Browser]
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/components/dashboard/DashboardHeader.tsx [Client Component SSR]
+    ./app/dashboard/page.tsx [Client Component SSR]
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+[00:24:36.455] Browser ERROR   ./app/dashboard/page.tsx:5:1
+Export DashboardHeader doesn't exist in target module
+  3 | import { useState, useEffect } from 'react';
+  4 | import { MissionState } from '../types/dashboard';
+> 5 | import { DashboardHeader } from '../components/dashboard/DashboardHeader';
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  6 | import { MissionPanel } from '../components/mission/MissionPanel';
+  7 | import dashboardData from '../mocks/dashboard.json';
+  8 |
+
+The export DashboardHeader was not found in module [project]/app/components/dashboard/DashboardHeader.tsx [app-client] (ecmascript).
+The module has no exports at all.
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./app/dashboard/page.tsx [Client Component Browser]
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/dashboard/page.tsx [Client Component SSR]
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+[00:24:36.455] Browser ERROR   ./app/dashboard/page.tsx:5:1
+Export DashboardHeader doesn't exist in target module
+  3 | import { useState, useEffect } from 'react';
+  4 | import { MissionState } from '../types/dashboard';
+> 5 | import { DashboardHeader } from '../components/dashboard/DashboardHeader';
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  6 | import { MissionPanel } from '../components/mission/MissionPanel';
+  7 | import dashboardData from '../mocks/dashboard.json';
+  8 |
+
+The export DashboardHeader was not found in module [project]/app/components/dashboard/DashboardHeader.tsx [app-ssr] (ecmascript).
+The module has no exports at all.
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./app/dashboard/page.tsx [Client Component Browser]
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/dashboard/page.tsx [Client Component SSR]
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+[00:25:58.825] Browser ERROR   ./app/components/dashboard/DashboardHeader.tsx:52:1
+Parsing ecmascript source code failed
+  50 |   );
+  51 | };
+> 52 | };
+     | ^
+  53 |
+
+Expression expected
+
+Import traces:
+  Client Component Browser:
+    ./app/components/dashboard/DashboardHeader.tsx [Client Component Browser]
+    ./app/dashboard/page.tsx [Client Component Browser]
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/components/dashboard/DashboardHeader.tsx [Client Component SSR]
+    ./app/dashboard/page.tsx [Client Component SSR]
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+[00:25:58.825] Browser ERROR   ./app/dashboard/page.tsx:5:1
+Export DashboardHeader doesn't exist in target module
+  3 | import { useState, useEffect } from 'react';
+  4 | import { MissionState } from '../types/dashboard';
+> 5 | import { DashboardHeader } from '../components/dashboard/DashboardHeader';
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  6 | import { MissionPanel } from '../components/mission/MissionPanel';
+  7 | import dashboardData from '../mocks/dashboard.json';
+  8 |
+
+The export DashboardHeader was not found in module [project]/app/components/dashboard/DashboardHeader.tsx [app-client] (ecmascript).
+The module has no exports at all.
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./app/dashboard/page.tsx [Client Component Browser]
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/dashboard/page.tsx [Client Component SSR]
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+[00:25:58.825] Browser ERROR   ./app/dashboard/page.tsx:5:1
+Export DashboardHeader doesn't exist in target module
+  3 | import { useState, useEffect } from 'react';
+  4 | import { MissionState } from '../types/dashboard';
+> 5 | import { DashboardHeader } from '../components/dashboard/DashboardHeader';
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  6 | import { MissionPanel } from '../components/mission/MissionPanel';
+  7 | import dashboardData from '../mocks/dashboard.json';
+  8 |
+
+The export DashboardHeader was not found in module [project]/app/components/dashboard/DashboardHeader.tsx [app-ssr] (ecmascript).
+The module has no exports at all.
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./app/dashboard/page.tsx [Client Component Browser]
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/dashboard/page.tsx [Client Component SSR]
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+[00:25:58.994] Server  ERROR   D:\Elite_Coders\AstraGuard-AI\frontend\mission-components\.next\dev\server\chunks\ssr\[root-of-the-server]__1876aad5._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:25:58.997] Server  ERROR    ⨯ ReferenceError: setSelectedSat is not defined
+[00:25:59.300] Browser ERROR   uncaughtError: ReferenceError: setSelectedSat is not defined
+[00:26:19.363] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[00:26:19.657] Server  LOG      ✓ Compiled in 20.4s
+[00:27:18.300] Server  LOG      ✓ Compiled in 58.5s
+[00:27:18.512] Browser ERROR   ./app/dashboard/page.tsx:90:16
+Parsing ecmascript source code failed
+  88 |             </section>
+  89 |           )}
+> 90 |         </main>
+     |                ^
+> 91 |       </div>
+     | ^^^^^^^
+  92 |     </div>
+  93 |   );
+  94 | };
+
+Expected '</', got 'jsx text (
+      )'
+
+Import traces:
+  Client Component Browser:
+    ./app/dashboard/page.tsx [Client Component Browser]
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/dashboard/page.tsx [Client Component SSR]
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+[00:28:13.892] Server  LOG      ✓ Compiled in 55.6s
+[00:29:25.931] Server  LOG      ✓ Compiled in 72s

@@ -15,12 +15,10 @@ body {
 }
 
 :root {
-  --bg-space: #0a0a0a;
+  --font-geist-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
   --bg-gradient: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
-  --neon-cyan: #00f5ff;
-  --neon-magenta: #ff00ff;
-  --glow-cyan: 0 0 8px #00f5ff, 0 0 16px #00f5ff, 0 0 24px #00f5ff;
-  --glow-magenta: 0 0 8px #ff00ff, 0 0 16px #ff00ff, 0 0 24px #ff00ff;
+  --glow-teal: 0 0 8px #00f5ff, 0 0 16px #00f5ff, 0 0 24px #00f5ff;
 }
 
 .dashboard-container {
@@ -33,6 +31,11 @@ body {
   background-size: 100px 100px;
   background-attachment: fixed;
 }
+
+.glow-teal { box-shadow: var(--glow-teal); }
+.glow-cyan { box-shadow: 0 0 8px #00f5ff, 0 0 16px #00f5ff, 0 0 24px #00f5ff; }
+.glow-amber { box-shadow: 0 0 8px #fbbf24, 0 0 16px #fbbf24, 0 0 24px #fbbf24; }
+.glow-red { box-shadow: 0 0 8px #ef4444, 0 0 16px #ef4444, 0 0 24px #ef4444; }
 
 @keyframes fadeIn {
   from {

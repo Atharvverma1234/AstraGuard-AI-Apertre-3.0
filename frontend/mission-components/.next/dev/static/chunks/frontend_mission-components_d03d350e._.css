@@ -1,0 +1,44 @@
+/* [project]/frontend/mission-components/node_modules/geist/dist/geistsans_d5a4f12f.module.css [app-client] (css) */
+@font-face {
+  font-family: GeistSans;
+  src: url("../media/Geist_Variable-s.p.f19e4721.woff2") format("woff2");
+  font-display: swap;
+  font-weight: 100 900;
+}
+
+@font-face {
+  font-family: GeistSans Fallback;
+  src: local(Arial);
+  ascent-override: 85.83%;
+  descent-override: 20.53%;
+  line-gap-override: 9.33%;
+  size-adjust: 107.19%;
+}
+
+.geistsans_d5a4f12f-module__rgd88q__className {
+  font-family: GeistSans, GeistSans Fallback;
+}
+
+.geistsans_d5a4f12f-module__rgd88q__variable {
+  --font-geist-sans: "GeistSans", "GeistSans Fallback";
+}
+
+/* [project]/frontend/mission-components/node_modules/geist/dist/geistmono_157ca88a.module.css [app-client] (css) */
+@font-face {
+  font-family: GeistMono;
+  src: url("../media/GeistMono_Variable.p.73882635.woff2") format("woff2");
+  font-display: swap;
+  font-weight: 100 900;
+}
+
+.geistmono_157ca88a-module__1oVt9G__className {
+  font-family: GeistMono, ui-monospace, SFMono-Regular, Roboto Mono, Menlo, Monaco, Liberation Mono, DejaVu Sans Mono, Courier New, monospace;
+}
+
+.geistmono_157ca88a-module__1oVt9G__variable {
+  --font-geist-mono: "GeistMono", ui-monospace, SFMono-Regular, Roboto Mono, Menlo, Monaco, Liberation Mono, DejaVu Sans Mono, Courier New, monospace;
+}
+
+/* [project]/frontend/mission-components/app/globals.css [app-client] (css) */
+/* unparsable [project]/frontend/mission-components/app/globals.css [app-client] (css) */
+/*# sourceMappingURL=frontend_mission-components_d03d350e._.css.map*/
