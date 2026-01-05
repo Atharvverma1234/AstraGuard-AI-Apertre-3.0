@@ -1,4 +1,3 @@
-# Vercel configuration for the AstraGuard AI project
 {
   "version": 2,
   "framework": "fastapi",
