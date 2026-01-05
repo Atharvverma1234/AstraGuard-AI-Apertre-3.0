@@ -6,6 +6,8 @@ import { DashboardHeader } from '../components/dashboard/DashboardHeader';
 import { MissionPanel } from '../components/mission/MissionPanel';
 import dashboardData from '../mocks/dashboard.json';
 
+import { SystemsPanel } from '../components/systems/SystemsPanel';
+
 const Dashboard: React.FC = () => {
   const [activeTab, setActiveTab] = useState<'mission' | 'systems'>('mission');
   const mission = dashboardData.mission as MissionState;
@@ -20,38 +22,36 @@ const Dashboard: React.FC = () => {
           role="tablist"
           aria-label="Mission Control Tabs"
         >
-            <div className="flex gap-2">
-              <button
-                role="tab"
-                aria-selected={activeTab === 'mission'}
-                aria-controls="mission-panel"
-                id="mission-tab"
-                className={`px-6 py-3 rounded-t-lg font-mono text-lg font-semibold transition-all duration-300 ${
-                  activeTab === 'mission'
-                    ? 'bg-teal-500/10 border-b-2 border-teal-400 text-teal-300 glow-teal'
-                    : 'text-gray-400 hover:text-teal-300 hover:bg-teal-500/5'
+          <div className="flex gap-2">
+            <button
+              role="tab"
+              aria-selected={activeTab === 'mission'}
+              aria-controls="mission-panel"
+              id="mission-tab"
+              className={`px-6 py-3 rounded-t-lg font-mono text-lg font-semibold transition-all duration-300 ${activeTab === 'mission'
+                  ? 'bg-teal-500/10 border-b-2 border-teal-400 text-teal-300 glow-teal'
+                  : 'text-gray-400 hover:text-teal-300 hover:bg-teal-500/5'
                 }`}
-                onClick={() => setActiveTab('mission')}
-              >
-                Mission
-              </button>
+              onClick={() => setActiveTab('mission')}
+            >
+              Mission
+            </button>
 
-              <button
-                role="tab"
-                aria-selected={activeTab === 'systems'}
-                aria-controls="systems-panel"
-                id="systems-tab"
-                className={`ml-2 px-6 py-3 rounded-t-lg font-mono text-lg font-semibold transition-all duration-300 ${
-                  activeTab === 'systems'
-                    ? 'bg-cyan-500/10 border-b-2 border-cyan-400 text-cyan-300 glow-cyan'
-                    : 'text-gray-400 hover:text-cyan-300 hover:bg-cyan-500/5'
+            <button
+              role="tab"
+              aria-selected={activeTab === 'systems'}
+              aria-controls="systems-panel"
+              id="systems-tab"
+              className={`ml-2 px-6 py-3 rounded-t-lg font-mono text-lg font-semibold transition-all duration-300 ${activeTab === 'systems'
+                  ? 'bg-cyan-500/10 border-b-2 border-cyan-400 text-cyan-300 glow-cyan'
+                  : 'text-gray-400 hover:text-cyan-300 hover:bg-cyan-500/5'
                 }`}
-                onClick={() => setActiveTab('systems')}
-              >
-                Systems
-              </button>
-            </div>
-          </nav>
+              onClick={() => setActiveTab('systems')}
+            >
+              Systems
+            </button>
+          </div>
+        </nav>
 
         <main className="flex-1 overflow-auto p-6 pt-4">
           <section
@@ -69,14 +69,9 @@ const Dashboard: React.FC = () => {
             role="tabpanel"
             aria-labelledby="systems-tab"
             aria-hidden={activeTab !== 'systems'}
-            className={`p-8 rounded-2xl border-2 border-cyan-500/50 bg-cyan-500/5 transition-all duration-500 ${
-              activeTab === 'systems' ? 'block' : 'hidden'
-            }`}
+            className={`transition-all duration-500 ${activeTab === 'systems' ? 'block' : 'hidden'}`}
           >
-            <div className="text-center py-20">
-              <h2 className="text-4xl font-bold mb-4 text-cyan-400 glow-cyan">Systems Health</h2>
-              <p className="text-xl text-gray-400">Ready for KPIs, breakers, and telemetry charts (#89)</p>
-            </div>
+            <SystemsPanel />
           </section>
         </main>
       </div>

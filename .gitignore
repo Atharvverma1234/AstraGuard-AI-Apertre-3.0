@@ -40,3 +40,8 @@ ENV/
 htmlcov/
 coverage.xml
 coverage*.xml
+
+# Node
+node_modules/
+.next/
+.turbo/

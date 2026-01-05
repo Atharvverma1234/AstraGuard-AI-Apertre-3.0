@@ -1,0 +1,76 @@
+{
+    "kpis": [
+        {
+            "id": "uptime",
+            "label": "Uptime",
+            "value": "99.87%",
+            "trend": 0.02,
+            "progress": 99.87,
+            "unit": "%"
+        },
+        {
+            "id": "latency",
+            "label": "Avg Latency",
+            "value": "142ms",
+            "trend": -3.2,
+            "progress": 71,
+            "unit": "ms"
+        },
+        {
+            "id": "errors",
+            "label": "Error Rate",
+            "value": "0.23%",
+            "trend": 0.01,
+            "progress": 23,
+            "unit": "%"
+        },
+        {
+            "id": "cpu",
+            "label": "CPU Load",
+            "value": "47%",
+            "trend": 2.1,
+            "progress": 47,
+            "unit": "%"
+        },
+        {
+            "id": "queue",
+            "label": "Queue Depth",
+            "value": "3/50",
+            "trend": -1,
+            "progress": 6,
+            "unit": ""
+        },
+        {
+            "id": "breakers",
+            "label": "Active Breakers",
+            "value": "2/12",
+            "trend": 0,
+            "progress": 17,
+            "unit": ""
+        }
+    ],
+    "services": [
+        "DB",
+        "Telemetry",
+        "Ingestion",
+        "Cache",
+        "API",
+        "Worker"
+    ],
+    "breakers": [
+        {
+            "from": "DB",
+            "to": "Telemetry",
+            "state": "Tripped",
+            "duration": "14m32s",
+            "reason": "Timeout"
+        },
+        {
+            "from": "Cache",
+            "to": "API",
+            "state": "Half",
+            "duration": "2m15s",
+            "reason": "High Latency"
+        }
+    ]
+}
