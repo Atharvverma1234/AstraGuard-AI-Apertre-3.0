@@ -7,11 +7,19 @@ interface CommandResponse {
     timestamp: string;
 }
 
+import { useSoundEffects } from '../../hooks/useSoundEffects';
+
 export const CommandTerminal: React.FC = () => {
+    const { playKeystroke, playSuccess } = useSoundEffects();
     const [history, setHistory] = useState<string[]>(['> ASTRAGUARD LINK ESTABLISHED', '> TYPE "HELP" FOR COMMANDS']);
     const [input, setInput] = useState('');
     const [isProcessing, setIsProcessing] = useState(false);
     const scrollRef = useRef<HTMLDivElement>(null);
+
+    const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setInput(e.target.value);
+        playKeystroke();
+    };
 
     useEffect(() => {
         if (scrollRef.current) {
@@ -72,6 +80,7 @@ export const CommandTerminal: React.FC = () => {
 
                 addToHistory(`[${data.timestamp}] ACK:${data.ack_id} STATUS:${data.status.toUpperCase()}`);
                 addToHistory(`> ${data.message}`);
+                playSuccess();
             } catch (err) {
                 addToHistory(`ERROR: Uplink failed - ${err}`);
             } finally {
@@ -118,7 +127,7 @@ export const CommandTerminal: React.FC = () => {
                 <input
                     type="text"
                     value={input}
-                    onChange={(e) => setInput(e.target.value)}
+                    onChange={handleInput}
                     onKeyDown={handleKeyDown}
                     className="flex-1 bg-transparent border-none outline-none text-green-400 placeholder-green-900/50 font-bold caret-green-500"
                     autoFocus
