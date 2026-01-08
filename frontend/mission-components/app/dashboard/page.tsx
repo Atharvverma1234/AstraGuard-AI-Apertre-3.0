@@ -30,6 +30,8 @@ import { RemediationDrawer } from '../components/mission/RemediationDrawer';
 import { AchievementToast } from '../components/ui/AchievementToast';
 import { AchievementPanel } from '../components/dashboard/AchievementPanel';
 import { DiagnosticsPanel } from '../components/dashboard/DiagnosticsPanel';
+import { TimelineScrubber } from '../components/replay/TimelineScrubber';
+import { ReplayOverlay } from '../components/replay/ReplayOverlay';
 
 const DashboardContent: React.FC = () => {
   const [activeTab, setActiveTab] = useState<'mission' | 'systems' | 'chaos' | 'uplink' | 'vault' | 'diagnostics'>('mission');
@@ -114,6 +116,7 @@ const DashboardContent: React.FC = () => {
     <div className="dashboard-container min-h-screen text-white font-mono antialiased">
       <CommandHUD />
       <AchievementToast />
+      <ReplayOverlay />
       <CommandPalette
         isOpen={showPalette}
         onClose={() => setShowPalette(false)}
@@ -236,6 +239,7 @@ const DashboardContent: React.FC = () => {
           <span>AstraGuard Defense Systems v1.0</span>
           <span>Authorized Personnel Only • Class 1 Clearance</span>
         </footer>
+        <TimelineScrubber />
         <CopilotChat />
       </div>
     </div>

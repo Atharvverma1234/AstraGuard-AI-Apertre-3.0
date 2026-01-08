@@ -3,6 +3,7 @@
 import { createContext, useContext, ReactNode, useState, useEffect } from 'react';
 import { TelemetryState, WSMessage } from '../types/websocket';
 import { useDashboardWebSocket } from '../hooks/useDashboardWebSocket';
+import { useStateBuffer } from '../hooks/useStateBuffer';
 import { GroundStation, RemediationScript, RemediationStep, AICognitiveState, HistoricalAnomaly, Achievement } from '../types/dashboard';
 
 export interface Annotation {
@@ -33,6 +34,15 @@ interface ContextValue {
     togglePlay: () => void;
     isBattleMode: boolean;
     setBattleMode: (active: boolean) => void;
+    // Temporal Replay (DVR)
+    isReplaying: boolean;
+    replayTimestamp: number | null;
+    enterReplayMode: () => void;
+    exitReplayMode: () => void;
+    seekToTimestamp: (timestamp: number) => void;
+    getReplayTimeRange: () => { start: number; end: number } | null;
+    replayPlaybackSpeed: number;
+    setReplayPlaybackSpeed: (speed: number) => void;
     // Collaboration
     annotations: Annotation[];
     addAnnotation: (note: Omit<Annotation, 'id' | 'timestamp'>) => void;
@@ -60,6 +70,7 @@ const DashboardContext = createContext<ContextValue | undefined>(undefined);
 
 export const DashboardProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
     const ws = useDashboardWebSocket();
+    const stateBuffer = useStateBuffer();
     const [isBattleMode, setBattleMode] = useState(false);
     const [annotations, setAnnotations] = useState<Annotation[]>([]);
     const [presence] = useState<Operator[]>([
@@ -103,6 +114,12 @@ export const DashboardProvider: React.FC<{ children: ReactNode }> = ({ children 
 
     const [chaosCount, setChaosCount] = useState(0);
 
+    // Temporal Replay State
+    const [isReplaying, setIsReplaying] = useState(false);
+    const [replayTimestamp, setReplayTimestamp] = useState<number | null>(null);
+    const [replayPlaybackSpeed, setReplayPlaybackSpeed] = useState(1);
+    const [replayState, setReplayState] = useState<TelemetryState | null>(null);
+
     const unlockAchievement = (id: string) => {
         setAchievements(prev => {
             const ach = prev.find(a => a.id === id);
@@ -127,6 +144,41 @@ export const DashboardProvider: React.FC<{ children: ReactNode }> = ({ children 
             if (newCount >= 3) unlockAchievement('chaos-king');
             return newCount;
         });
+    };
+
+    // Capture live telemetry into state buffer
+    useEffect(() => {
+        if (!isReplaying && ws.state) {
+            stateBuffer.addSnapshot(ws.state);
+        }
+    }, [ws.state, isReplaying, stateBuffer]);
+
+    // Temporal Replay Controls
+    const enterReplayMode = () => {
+        const timeRange = stateBuffer.getTimeRange();
+        if (timeRange) {
+            setIsReplaying(true);
+            setReplayTimestamp(timeRange.end); // Start at most recent
+            const snapshot = stateBuffer.getSnapshotAtTime(timeRange.end);
+            if (snapshot) setReplayState(snapshot);
+        }
+    };
+
+    const exitReplayMode = () => {
+        setIsReplaying(false);
+        setReplayTimestamp(null);
+        setReplayState(null);
+    };
+
+    const seekToTimestamp = (timestamp: number) => {
+        if (!isReplaying) return;
+        setReplayTimestamp(timestamp);
+        const snapshot = stateBuffer.getSnapshotAtTime(timestamp);
+        if (snapshot) setReplayState(snapshot);
+    };
+
+    const getReplayTimeRange = () => {
+        return stateBuffer.getTimeRange();
     };
 
     // Simulate AI Cognitive Fluctuations
@@ -225,10 +277,23 @@ export const DashboardProvider: React.FC<{ children: ReactNode }> = ({ children 
         }
     }, [ws.state.mission?.anomalies, isBattleMode]);
 
+    // Use replay state if in replay mode, otherwise use live state
+    const effectiveState = isReplaying && replayState ? replayState : ws.state;
+
     const value = {
         ...ws,
+        state: effectiveState,
         isBattleMode,
         setBattleMode,
+        // Temporal Replay
+        isReplaying,
+        replayTimestamp,
+        enterReplayMode,
+        exitReplayMode,
+        seekToTimestamp,
+        getReplayTimeRange,
+        replayPlaybackSpeed,
+        setReplayPlaybackSpeed,
         annotations,
         addAnnotation,
         removeAnnotation,

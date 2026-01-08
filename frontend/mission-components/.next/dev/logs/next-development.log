@@ -5740,3 +5740,276 @@ It can also happen if the client has a browser extension installed which messes 
 [00:05:59.529] Browser WARN    [Polling] Failed - using mockup
 [00:06:01.535] Browser WARN    [Polling] Failed - using mockup
 [00:06:03.519] Browser WARN    [Polling] Failed - using mockup
+[00:07:04.530] Browser WARN    [Polling] Failed - using mockup
+[00:08:04.529] Browser WARN    [Polling] Failed - using mockup
+[00:08:04.529] Browser WARN    [Polling] Failed - using mockup
+[00:08:06.528] Browser WARN    [Polling] Failed - using mockup
+[00:08:08.517] Browser WARN    [Polling] Failed - using mockup
+[00:08:10.519] Browser WARN    [Polling] Failed - using mockup
+[00:08:11.519] Browser WARN    [Polling] Failed - using mockup
+[00:08:13.526] Browser WARN    [Polling] Failed - using mockup
+[00:08:15.522] Browser WARN    [Polling] Failed - using mockup
+[00:08:17.531] Browser WARN    [Polling] Failed - using mockup
+[00:08:19.528] Browser WARN    [Polling] Failed - using mockup
+[00:08:21.520] Browser WARN    [Polling] Failed - using mockup
+[00:08:23.528] Browser WARN    [Polling] Failed - using mockup
+[00:08:25.523] Browser WARN    [Polling] Failed - using mockup
+[00:08:27.516] Browser WARN    [Polling] Failed - using mockup
+[00:08:29.527] Browser WARN    [Polling] Failed - using mockup
+[00:08:31.521] Browser WARN    [Polling] Failed - using mockup
+[00:08:33.530] Browser WARN    [Polling] Failed - using mockup
+[00:08:35.528] Browser WARN    [Polling] Failed - using mockup
+[00:08:37.527] Browser WARN    [Polling] Failed - using mockup
+[00:08:39.528] Browser WARN    [Polling] Failed - using mockup
+[00:08:41.527] Browser WARN    [Polling] Failed - using mockup
+[00:08:43.527] Browser WARN    [Polling] Failed - using mockup
+[00:08:45.523] Browser WARN    [Polling] Failed - using mockup
+[00:08:47.531] Browser WARN    [Polling] Failed - using mockup
+[00:08:49.521] Browser WARN    [Polling] Failed - using mockup
+[00:08:51.528] Browser WARN    [Polling] Failed - using mockup
+[00:08:53.522] Browser WARN    [Polling] Failed - using mockup
+[00:08:55.523] Browser WARN    [Polling] Failed - using mockup
+[00:08:57.526] Browser WARN    [Polling] Failed - using mockup
+[00:08:59.530] Browser WARN    [Polling] Failed - using mockup
+[00:09:01.548] Browser WARN    [Polling] Failed - using mockup
+[00:09:03.526] Browser WARN    [Polling] Failed - using mockup
+[00:10:04.532] Browser WARN    [Polling] Failed - using mockup
+[00:11:04.522] Browser WARN    [Polling] Failed - using mockup
+[00:12:04.518] Browser WARN    [Polling] Failed - using mockup
+[00:13:04.527] Browser WARN    [Polling] Failed - using mockup
+[00:13:14.837] Server  LOG      ✓ Compiled in 69ms
+[00:13:17.529] Browser LOG     THREE.WebGLRenderer: Context Lost.
+[00:13:18.616] Browser WARN    [Polling] Failed - using mockup
+[00:13:18.616] Browser WARN    [Polling] Failed - using mockup
+[00:13:20.670] Browser WARN    [Polling] Failed - using mockup
+[00:13:22.685] Browser WARN    [Polling] Failed - using mockup
+[00:13:25.643] Browser WARN    [Polling] Failed - using mockup
+[00:13:27.614] Browser WARN    [Polling] Failed - using mockup
+[00:13:29.949] Browser WARN    [Polling] Failed - using mockup
+[00:14:04.587] Browser WARN    [Polling] Failed - using mockup
+[00:14:24.238] Server  LOG      ✓ Compiled in 176ms
+[00:14:25.116] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:14:26.526] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[00:14:26.526] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/dashboard","route":"/dashboard"}
+[00:14:26.526] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/dashboard color: rgb(120, 120, 120) color: inherit {"dp":"/dashboard","o":"http://localhost:3000/dashboard","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1767892915411}
+[00:14:28.532] Browser WARN    [Polling] Failed - using mockup
+[00:14:31.379] Browser WARN    [Polling] Failed - using mockup
+[00:14:31.662] Browser WARN    [Polling] Failed - using mockup
+[00:14:33.758] Browser WARN    [Polling] Failed - using mockup
+[00:14:34.814] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:14:35.246] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[00:14:35.246] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/dashboard","route":"/dashboard"}
+[00:14:35.246] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/dashboard color: rgb(120, 120, 120) color: inherit {"dp":"/dashboard","o":"http://localhost:3000/dashboard","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1767892924525}
+[00:14:36.095] Browser WARN    [Polling] Failed - using mockup
+[00:14:37.580] Browser WARN    [Polling] Failed - using mockup
+[00:14:39.601] Browser WARN    [Polling] Failed - using mockup
+[00:14:41.554] Browser WARN    [Polling] Failed - using mockup
+[00:14:42.920] Browser LOG     THREE.WebGLRenderer: Context Lost.
+[00:14:43.641] Browser WARN    [Polling] Failed - using mockup
+[00:14:45.565] Browser ERROR   Failed to fetch chaos status {}
+[00:14:46.232] Browser WARN    The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+[00:14:46.232] Browser WARN    The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+[00:14:46.232] Browser WARN    The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+[00:14:46.232] Browser WARN    The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+[00:14:46.232] Browser WARN    The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+[00:14:46.232] Browser WARN    The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+[00:14:46.232] Browser WARN    The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+[00:14:46.232] Browser WARN    The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+[00:14:46.232] Browser WARN    The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+[00:14:46.232] Browser WARN    The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+[00:14:46.232] Browser WARN    The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+[00:14:46.232] Browser WARN    The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+[00:14:46.232] Browser WARN    [Polling] Failed - using mockup
+[00:14:47.565] Browser ERROR   Failed to fetch chaos status {}
+[00:14:47.947] Browser WARN    [Polling] Failed - using mockup
+[00:14:49.706] Browser WARN    [Polling] Failed - using mockup
+[00:14:51.673] Browser WARN    [Polling] Failed - using mockup
+[00:14:53.659] Browser WARN    [Polling] Failed - using mockup
+[00:14:55.751] Browser WARN    [Polling] Failed - using mockup
+[00:14:57.781] Browser WARN    [Polling] Failed - using mockup
+[00:14:59.752] Browser WARN    [Polling] Failed - using mockup
+[00:15:01.804] Browser WARN    [Polling] Failed - using mockup
+[00:15:03.696] Browser WARN    [Polling] Failed - using mockup
+[00:15:05.563] Browser WARN    [Polling] Failed - using mockup
+[00:15:07.571] Browser WARN    [Polling] Failed - using mockup
+[00:15:09.579] Browser WARN    [Polling] Failed - using mockup
+[00:15:11.563] Browser WARN    [Polling] Failed - using mockup
+[00:15:13.578] Browser WARN    [Polling] Failed - using mockup
+[00:15:15.579] Browser WARN    [Polling] Failed - using mockup
+[00:15:17.573] Browser WARN    [Polling] Failed - using mockup
+[00:15:19.566] Browser WARN    [Polling] Failed - using mockup
+[00:15:21.573] Browser WARN    [Polling] Failed - using mockup
+[00:15:23.563] Browser WARN    [Polling] Failed - using mockup
+[00:15:25.555] Browser WARN    [Polling] Failed - using mockup
+[00:15:27.607] Browser WARN    [Polling] Failed - using mockup
+[00:15:27.607] Browser LOG     THREE.WebGLRenderer: Context Lost.
+[00:15:29.808] Browser WARN    [Polling] Failed - using mockup
+[00:15:31.620] Browser WARN    [Polling] Failed - using mockup
+[00:15:33.626] Browser WARN    [Polling] Failed - using mockup
+[00:15:35.805] Browser WARN    [Polling] Failed - using mockup
+[00:15:37.929] Browser WARN    [Polling] Failed - using mockup
+[00:15:39.749] Browser WARN    [Polling] Failed - using mockup
+[00:15:42.581] Browser WARN    [Polling] Failed - using mockup
+[00:15:44.588] Browser WARN    [Polling] Failed - using mockup
+[00:15:46.617] Browser WARN    [Polling] Failed - using mockup
+[00:15:48.588] Browser WARN    [Polling] Failed - using mockup
+[00:15:50.573] Browser WARN    [Polling] Failed - using mockup
+[00:15:53.184] Server  LOG      ✓ Compiled in 877ms
+[00:15:53.393] Browser WARN    [Polling] Failed - using mockup
+[00:15:54.794] Browser WARN    [Polling] Failed - using mockup
+[00:15:56.562] Browser WARN    [Polling] Failed - using mockup
+[00:15:58.622] Browser WARN    [Polling] Failed - using mockup
+[00:16:00.576] Browser WARN    [Polling] Failed - using mockup
+[00:16:02.584] Browser WARN    [Polling] Failed - using mockup
+[00:16:04.595] Browser WARN    [Polling] Failed - using mockup
+[00:16:06.605] Browser WARN    [Polling] Failed - using mockup
+[00:16:14.483] Browser WARN    [Polling] Failed - using mockup
+[00:16:14.736] Browser WARN    [Polling] Failed - using mockup
+[00:16:16.824] Browser WARN    [Polling] Failed - using mockup
+[00:16:17.723] Browser LOG     THREE.WebGLRenderer: Context Lost.
+[00:16:19.188] Browser WARN    [Polling] Failed - using mockup
+[00:16:21.585] Browser WARN    [Polling] Failed - using mockup
+[00:16:23.340] Browser WARN    [Polling] Failed - using mockup
+[00:16:24.279] Browser WARN    [Polling] Failed - using mockup
+[00:16:24.755] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:16:25.167] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[00:16:25.168] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/dashboard","route":"/dashboard"}
+[00:16:25.168] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/dashboard color: rgb(120, 120, 120) color: inherit {"dp":"/dashboard","o":"http://localhost:3000/dashboard","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1767893034445}
+[00:16:25.571] Browser WARN    [Polling] Failed - using mockup
+[00:16:27.500] Browser WARN    [Polling] Failed - using mockup
+[00:16:28.898] Browser WARN    The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+[00:16:28.898] Browser WARN    The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+[00:16:28.898] Browser WARN    The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+[00:16:28.898] Browser WARN    The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+[00:16:28.898] Browser WARN    The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+[00:16:28.898] Browser WARN    The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+[00:16:28.898] Browser WARN    The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+[00:16:28.898] Browser WARN    The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+[00:16:28.898] Browser WARN    The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+[00:16:28.898] Browser WARN    The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+[00:16:28.898] Browser WARN    The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+[00:16:28.898] Browser WARN    The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+[00:16:29.589] Browser WARN    [Polling] Failed - using mockup
+[00:16:31.513] Browser WARN    [Polling] Failed - using mockup
+[00:16:33.579] Browser WARN    [Polling] Failed - using mockup
+[00:16:35.488] Browser ERROR   Failed to fetch chaos status {}
+[00:16:35.488] Browser WARN    [Polling] Failed - using mockup
+[00:16:37.500] Browser ERROR   Failed to fetch chaos status {}
+[00:16:37.500] Browser WARN    [Polling] Failed - using mockup
+[00:16:39.486] Browser WARN    [Polling] Failed - using mockup
+[00:16:41.497] Browser WARN    [Polling] Failed - using mockup
+[00:16:43.502] Browser WARN    [Polling] Failed - using mockup
+[00:16:45.511] Browser WARN    [Polling] Failed - using mockup
+[00:16:47.504] Browser WARN    [Polling] Failed - using mockup
+[00:16:49.482] Browser WARN    [Polling] Failed - using mockup
+[00:16:51.483] Browser WARN    [Polling] Failed - using mockup
+[00:16:53.503] Browser WARN    [Polling] Failed - using mockup
+[00:16:55.517] Browser WARN    [Polling] Failed - using mockup
+[00:16:57.504] Browser WARN    [Polling] Failed - using mockup
+[00:16:59.510] Browser WARN    [Polling] Failed - using mockup
+[00:17:01.493] Browser WARN    [Polling] Failed - using mockup
+[00:17:03.487] Browser WARN    [Polling] Failed - using mockup
+[00:17:05.499] Browser WARN    [Polling] Failed - using mockup
+[00:17:07.496] Browser WARN    [Polling] Failed - using mockup
+[00:17:09.512] Browser WARN    [Polling] Failed - using mockup
+[00:17:10.298] Server  LOG      ✓ Compiled in 313ms
+[00:17:10.702] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:17:11.518] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[00:17:11.518] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/dashboard","route":"/dashboard"}
+[00:17:11.518] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/dashboard color: rgb(120, 120, 120) color: inherit {"dp":"/dashboard","o":"http://localhost:3000/dashboard","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1767893080687}
+[00:17:11.518] Browser WARN    [Polling] Failed - using mockup
+[00:17:14.733] Browser WARN    [Polling] Failed - using mockup
+[00:17:16.677] Browser WARN    [Polling] Failed - using mockup
+[00:17:18.721] Browser WARN    [Polling] Failed - using mockup
+[00:17:20.595] Browser WARN    [Polling] Failed - using mockup
+[00:17:22.658] Browser WARN    [Polling] Failed - using mockup
+[00:17:24.717] Browser WARN    [Polling] Failed - using mockup
+[00:17:26.083] Browser WARN    [Polling] Failed - using mockup
+[00:17:27.717] Browser WARN    [Polling] Failed - using mockup
+[00:17:29.755] Browser ERROR   Failed to load replay session {}
+[00:17:29.755] Browser WARN    [Polling] Failed - using mockup
+[00:18:01.567] Browser WARN    [Polling] Failed - using mockup
+[00:18:01.567] Browser WARN    [Polling] Failed - using mockup
+[00:18:03.607] Browser WARN    [Polling] Failed - using mockup
+[00:18:06.652] Browser WARN    [Polling] Failed - using mockup
+[00:18:08.563] Browser WARN    [Polling] Failed - using mockup
+[00:18:10.566] Browser WARN    [Polling] Failed - using mockup
+[00:18:12.571] Browser WARN    [Polling] Failed - using mockup
+[00:18:14.574] Browser WARN    [Polling] Failed - using mockup
+[00:18:16.592] Browser WARN    [Polling] Failed - using mockup
+[00:18:18.587] Browser WARN    [Polling] Failed - using mockup
+[00:18:20.717] Browser WARN    [Polling] Failed - using mockup
+[00:18:22.587] Browser WARN    [Polling] Failed - using mockup
+[00:18:24.581] Browser WARN    [Polling] Failed - using mockup
