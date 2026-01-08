@@ -100,6 +100,44 @@
         "isActive": false
       }
     ],
-    "anomalies": []
+    "anomalies": [],
+    "groundStations": [
+      {
+        "id": "gs-1",
+        "name": "Svalbard-A",
+        "lat": 78.22,
+        "lng": 15.65,
+        "weather": "Clear",
+        "signalQuality": 0.98,
+        "connectedSatelliteId": "sat-1"
+      },
+      {
+        "id": "gs-2",
+        "name": "Kourou-Prime",
+        "lat": 5.16,
+        "lng": -52.64,
+        "weather": "Rain",
+        "signalQuality": 0.65,
+        "connectedSatelliteId": "sat-2"
+      },
+      {
+        "id": "gs-3",
+        "name": "Canberra-Deep",
+        "lat": -35.28,
+        "lng": 149.13,
+        "weather": "Clear",
+        "signalQuality": 0.95,
+        "connectedSatelliteId": "sat-3"
+      },
+      {
+        "id": "gs-4",
+        "name": "Haruna-Station",
+        "lat": 36.47,
+        "lng": 138.92,
+        "weather": "Storm",
+        "signalQuality": 0.42,
+        "connectedSatelliteId": "sat-1"
+      }
+    ]
   }
 }

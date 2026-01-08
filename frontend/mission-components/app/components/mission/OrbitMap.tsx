@@ -2,6 +2,7 @@ import React, { useEffect, useState, useRef, useMemo } from 'react';
 import dynamic from 'next/dynamic';
 import { Satellite, AnomalyEvent } from '../../types/dashboard';
 import { getSatellitePosition } from '../../utils/orbital';
+import { useDashboard } from '../../context/DashboardContext';
 
 // Dynamically import Globe to avoid SSR issues with WebGL
 const Globe = dynamic(() => import('react-globe.gl'), { ssr: false });
@@ -13,17 +14,9 @@ interface Props {
   anomalies: AnomalyEvent[];
 }
 
-
-// Ground Station Coordinates
-const GROUND_STATIONS = [
-  { id: 'GS-HOU', name: 'HOUSTON', lat: 29.7604, lng: -95.3698, color: '#06b6d4' },
-  { id: 'GS-LON', name: 'LONDON', lat: 51.5074, lng: -0.1278, color: '#06b6d4' },
-  { id: 'GS-TOK', name: 'TOKYO', lat: 35.6762, lng: 139.6503, color: '#06b6d4' },
-  { id: 'GS-CAN', name: 'CANBERRA', lat: -35.2809, lng: 149.1300, color: '#06b6d4' },
-];
-
 export const OrbitMap: React.FC<Props> = ({ satellites, selectedSat, onSatClick, anomalies }) => {
   const globeEl = useRef<any>(null);
+  const { groundStations } = useDashboard();
   const [points, setPoints] = useState<any[]>([]);
   const [arcs, setArcs] = useState<any[]>([]);
 
@@ -32,43 +25,41 @@ export const OrbitMap: React.FC<Props> = ({ satellites, selectedSat, onSatClick,
     const updatePositions = () => {
       const satPoints = satellites.map(getSatellitePosition);
 
-      // Merge satellites with static ground stations for point rendering
-      const stationPoints = GROUND_STATIONS.map(gs => ({
+      // Merge satellites with dynamic ground stations for point rendering
+      const stationPoints = groundStations.map(gs => ({
         ...gs,
         alt: 0.01,
         type: 'STATION',
-        status: 'ONLINE'
+        status: gs.weather === 'Storm' ? 'INTERFERENCE' : 'ONLINE',
+        color: gs.weather === 'Storm' ? '#f59e0b' : gs.weather === 'Rain' ? '#60a5fa' : '#06b6d4'
       }));
 
-      // Calculate Links (Arcs)
-      const newArcs = satPoints.map(sat => {
-        // Find nearest ground station (simple euclidean approx for visual speed)
-        let nearest = GROUND_STATIONS[0];
-        let minDist = 9999;
+      // Calculate Links (Arcs) based on ground station connections
+      const newArcs = groundStations.map(gs => {
+        if (!gs.connectedSatelliteId) return null;
 
-        GROUND_STATIONS.forEach(gs => {
-          const dist = Math.sqrt(Math.pow(sat.lat - gs.lat, 2) + Math.pow(sat.lng - gs.lng, 2));
-          if (dist < minDist) {
-            minDist = dist;
-            nearest = gs;
-          }
-        });
+        const sat = satellites.find(s => s.id === gs.connectedSatelliteId);
+        if (!sat) return null;
 
-        // Determine signal quality based on distance (mock horizon)
-        const isConnected = minDist < 60; // Approximate approx
+        const satPos = getSatellitePosition(sat);
+
+        // Style based on weather
+        const isBadWeather = gs.weather === 'Rain' || gs.weather === 'Storm';
+        const beamColor = gs.weather === 'Storm' ? '#f59e0b' : gs.weather === 'Rain' ? '#3b82f6' : '#22c55e';
 
         return {
-          startLat: sat.lat,
-          startLng: sat.lng,
-          endLat: nearest.lat,
-          endLng: nearest.lng,
-          color: isConnected ? ['#22c55e', '#22c55e'] : ['#ef444400', '#ef444400'], // Green or Transparent
-          dashLength: 0.4,
-          dashGap: 0.2,
-          dashAnimateTime: 2000,
-          stroke: isConnected ? 0.3 : 0
+          startLat: satPos.lat,
+          startLng: satPos.lng,
+          endLat: gs.lat,
+          endLng: gs.lng,
+          color: [beamColor, beamColor],
+          dashLength: isBadWeather ? 0.2 : 0.4,
+          dashGap: isBadWeather ? 0.4 : 0.2,
+          dashAnimateTime: isBadWeather ? 1000 : 2000,
+          stroke: isBadWeather ? 0.2 : 0.4,
+          weather: gs.weather
         };
-      });
+      }).filter((a): a is NonNullable<typeof a> => a !== null);
 
       setPoints([...satPoints, ...stationPoints]);
       setArcs(newArcs);
@@ -76,13 +67,13 @@ export const OrbitMap: React.FC<Props> = ({ satellites, selectedSat, onSatClick,
 
     const interval = setInterval(updatePositions, 50);
     return () => clearInterval(interval);
-  }, [satellites]);
+  }, [satellites, groundStations]);
 
   // Initial focus
   useEffect(() => {
     if (selectedSat && globeEl.current) {
-      // getSatellitePosition(selectedSat);
-      // globeEl.current.pointOfView({ lat: satPoint.lat, lng: satPoint.lng, altitude: satPoint.alt + 0.5 }, 1000);
+      const pos = getSatellitePosition(selectedSat);
+      globeEl.current.pointOfView({ lat: pos.lat, lng: pos.lng, altitude: 2 }, 1000);
     }
   }, [selectedSat]);
 
@@ -112,18 +103,27 @@ export const OrbitMap: React.FC<Props> = ({ satellites, selectedSat, onSatClick,
     }).filter((r): r is NonNullable<typeof r> => r !== null);
 
     // Ground Station Coverage Zones
-    const stationRings = GROUND_STATIONS.map(gs => ({
+    const stationRings = groundStations.map(gs => ({
       lat: gs.lat,
       lng: gs.lng,
       alt: 0,
-      maxR: 15, // Coverage radius
-      propagationSpeed: 0.5,
-      repeatPeriod: 2000,
-      color: () => '#06b6d4'
+      maxR: 8,
+      propagationSpeed: gs.weather === 'Storm' ? 2 : 0.5,
+      repeatPeriod: gs.weather === 'Storm' ? 500 : 2000,
+      color: () => gs.weather === 'Storm' ? '#f59e0b' : '#06b6d4'
     }));
 
     return [...anomalyRings, ...stationRings];
-  }, [anomalies, satellites]);
+  }, [anomalies, satellites, groundStations]);
+
+  const weatherEmoji = (status: string) => {
+    switch (status) {
+      case 'Rain': return '🌧️';
+      case 'Storm': return '⚡';
+      case 'Clouds': return '☁️';
+      default: return '☀️';
+    }
+  };
 
   return (
     <div className="relative w-full h-full bg-slate-950 rounded-sm border border-slate-900 overflow-hidden flex items-center justify-center">
@@ -143,14 +143,16 @@ export const OrbitMap: React.FC<Props> = ({ satellites, selectedSat, onSatClick,
         pointColor="color"
         pointRadius={(d: any) => d.type === 'STATION' ? 0.8 : 0.5}
         pointLabel={(d: any) => `
-            <div style="background: rgba(15, 23, 42, 0.9); padding: 12px; border: 1px solid #334155; border-radius: 8px; color: white; backdrop-filter: blur(8px); box-shadow: 0 4px 20px rgba(0,0,0,0.5);">
-                <div style="font-weight: bold; color: ${d.color}; font-size: 14px; margin-bottom: 4px;">${d.name}</div>
-                <div style="font-size: 11px; opacity: 0.8;">${d.type === 'STATION' ? 'GROUND UPLINK' : 'SAT_CORE_v2.4'}</div>
+            <div style="background: rgba(15, 23, 42, 0.9); padding: 12px; border: 1px solid ${d.type === 'STATION' ? d.color : '#334155'}; border-radius: 8px; color: white; backdrop-filter: blur(8px); box-shadow: 0 4px 20px rgba(0,0,0,0.5);">
+                <div style="font-weight: bold; color: ${d.color}; font-size: 14px; margin-bottom: 4px;">
+                    ${d.type === 'STATION' ? weatherEmoji(d.weather) : ''} ${d.name}
+                </div>
+                <div style="font-size: 11px; opacity: 0.8;">${d.type === 'STATION' ? 'GROUND_UPLINK' : 'AS_CORE_v2.4'}</div>
                 <div style="display: flex; align-items: center; gap: 8px; margin-top: 8px;">
                   <span style="width: 8px; height: 8px; border-radius: 50%; background: ${d.color}; display: inline-block;"></span>
-                  <span style="font-size: 12px; font-weight: bold;">STATUS: ${d.status}</span>
+                  <span style="font-size: 12px; font-weight: bold;">${d.status}</span>
                 </div>
-                ${d.type !== 'STATION' ? `<div style="font-size: 10px; margin-top: 4px; color: #94a3b8;">ORBIT: ${d.alt.toFixed(2)} AU</div>` : ''}
+                ${d.type === 'STATION' ? `<div style="font-size: 10px; margin-top: 4px; color: #94a3b8;">WEATHER: ${d.weather.toUpperCase()}</div>` : ''}
             </div>
         `}
         onPointClick={(point: any) => {
@@ -162,11 +164,11 @@ export const OrbitMap: React.FC<Props> = ({ satellites, selectedSat, onSatClick,
 
         arcsData={arcs}
         arcColor={(d: any) => d.color}
-        arcDashLength={0.4}
-        arcDashGap={0.2}
-        arcDashAnimateTime={2000}
+        arcDashLength={(d: any) => d.dashLength}
+        arcDashGap={(d: any) => d.dashGap}
+        arcDashAnimateTime={(d: any) => d.dashAnimateTime}
         arcStroke={(d: any) => d.stroke}
-        arcAltitudeAutoScale={0.1}
+        arcAltitudeAutoScale={0.2}
 
         ringsData={ringsData}
         ringColor={(d: any) => d.color}
@@ -174,21 +176,29 @@ export const OrbitMap: React.FC<Props> = ({ satellites, selectedSat, onSatClick,
         ringPropagationSpeed="propagationSpeed"
         ringRepeatPeriod="repeatPeriod"
 
-        labelsData={GROUND_STATIONS}
+        labelsData={groundStations}
         labelLat="lat"
         labelLng="lng"
         labelText="name"
-        labelSize={1.5}
-        labelDotRadius={0.5}
-        labelColor={() => '#06b6d4'}
+        labelSize={1}
+        labelDotRadius={0.4}
+        labelColor={(d: any) => d.weather === 'Storm' ? '#f59e0b' : '#06b6d4'}
         labelResolution={2}
       />
 
       {/* Overlay UI */}
-      <div className="absolute top-4 right-4 bg-slate-900/80 backdrop-blur border border-slate-700 p-2 rounded text-xs text-slate-300">
-        <div>Total Satellites: {satellites.length}</div>
-        <div>Active Anomalies: {anomalies.length}</div>
-        <div>Ground Stations: {GROUND_STATIONS.length}</div>
+      <div className="absolute bottom-4 left-4 bg-slate-900/80 backdrop-blur border border-slate-700 p-3 rounded text-[10px] text-slate-400 font-mono space-y-2 uppercase tracking-tight">
+        <div className="flex items-center gap-2">
+          <div className="w-2 h-2 rounded-full bg-green-500" />
+          <span>Signal Clear</span>
+        </div>
+        <div className="flex items-center gap-2 text-amber-500">
+          <div className="w-2 h-2 rounded-full bg-amber-500 animate-pulse" />
+          <span>Weather Interference</span>
+        </div>
+        <div className="pt-2 border-t border-slate-800">
+          Stations: {groundStations.length} // Online
+        </div>
       </div>
     </div>
   );

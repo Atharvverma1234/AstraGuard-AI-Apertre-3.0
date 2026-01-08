@@ -11,6 +11,21 @@ export interface Satellite {
   signalStrength: number;
 }
 
+export interface RemediationStep {
+  id: string;
+  command: string;
+  description: string;
+  status: 'pending' | 'executing' | 'completed' | 'failed';
+}
+
+export interface RemediationScript {
+  id: string;
+  anomalyId: string;
+  steps: RemediationStep[];
+  status: 'proposed' | 'authorized' | 'executing' | 'completed';
+  createdAt: string;
+}
+
 export interface MissionPhase {
   name: string;
   status: 'complete' | 'active' | 'pending';
@@ -32,6 +47,16 @@ export interface AnomalyEvent {
   analysisStatus?: 'pending' | 'completed' | 'failed';
 }
 
+export interface GroundStation {
+  id: string;
+  name: string;
+  lat: number;
+  lng: number;
+  weather: 'Clear' | 'Rain' | 'Storm' | 'Clouds';
+  signalQuality: number; // 0 to 1
+  connectedSatelliteId?: string;
+}
+
 export interface MissionState {
   name: string;
   phase: string;
@@ -41,4 +66,5 @@ export interface MissionState {
   satellites: Satellite[];
   phases: MissionPhase[];
   anomalies: AnomalyEvent[];
+  groundStations: GroundStation[];
 }

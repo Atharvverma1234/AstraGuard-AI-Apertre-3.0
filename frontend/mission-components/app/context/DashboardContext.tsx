@@ -3,6 +3,7 @@
 import { createContext, useContext, ReactNode, useState, useEffect } from 'react';
 import { TelemetryState, WSMessage } from '../types/websocket';
 import { useDashboardWebSocket } from '../hooks/useDashboardWebSocket';
+import { GroundStation, RemediationScript, RemediationStep } from '../types/dashboard';
 
 export interface Annotation {
     id: string;
@@ -17,21 +18,6 @@ export interface Operator {
     name: string;
     avatar: string;
     activePanel: string;
-}
-
-export interface RemediationStep {
-    id: string;
-    command: string;
-    description: string;
-    status: 'pending' | 'executing' | 'completed' | 'failed';
-}
-
-export interface RemediationScript {
-    id: string;
-    anomalyId: string;
-    steps: RemediationStep[];
-    status: 'proposed' | 'authorized' | 'executing' | 'completed';
-    createdAt: string;
 }
 
 interface ContextValue {
@@ -57,6 +43,8 @@ interface ContextValue {
     proposeRemediation: (anomalyId: string) => void;
     authorizeRemediation: (id: string) => void;
     cancelRemediation: () => void;
+    // Ground Stations
+    groundStations: GroundStation[];
 }
 
 const DashboardContext = createContext<ContextValue | undefined>(undefined);
@@ -71,6 +59,12 @@ export const DashboardProvider: React.FC<{ children: ReactNode }> = ({ children 
         { id: '3', name: 'KAPPA', avatar: 'K', activePanel: 'Chaos Engine' },
     ]);
     const [activeRemediation, setActiveRemediation] = useState<RemediationScript | null>(null);
+    const [groundStations] = useState<GroundStation[]>([
+        { id: 'gs-1', name: 'Svalbard-A', lat: 78.22, lng: 15.65, weather: 'Clear', signalQuality: 0.98, connectedSatelliteId: 'SAT-01' },
+        { id: 'gs-2', name: 'Kourou-Prime', lat: 5.16, lng: -52.64, weather: 'Rain', signalQuality: 0.65, connectedSatelliteId: 'SAT-02' },
+        { id: 'gs-3', name: 'Canberra-Deep', lat: -35.28, lng: 149.13, weather: 'Clear', signalQuality: 0.95, connectedSatelliteId: 'SAT-03' },
+        { id: 'gs-4', name: 'Haruna-Station', lat: 36.47, lng: 138.92, weather: 'Storm', signalQuality: 0.42, connectedSatelliteId: 'SAT-01' },
+    ]);
 
     // Add Annotation
     const addAnnotation = (note: Omit<Annotation, 'id' | 'timestamp'>) => {
@@ -166,7 +160,8 @@ export const DashboardProvider: React.FC<{ children: ReactNode }> = ({ children 
         activeRemediation,
         proposeRemediation,
         authorizeRemediation,
-        cancelRemediation
+        cancelRemediation,
+        groundStations
     };
 
     return (
