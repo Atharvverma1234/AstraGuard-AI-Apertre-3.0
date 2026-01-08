@@ -22,6 +22,7 @@ import { CommandPalette } from '../components/ui/CommandPalette';
 import { BattleModeOverlay } from '../components/ui/BattleModeOverlay';
 import { useKeyboardShortcuts } from '../hooks/useKeyboardShortcuts';
 import { useSoundEffects } from '../hooks/useSoundEffects';
+import { useSoundscape } from '../hooks/useSoundscape';
 import { CopilotChat } from '../components/dashboard/CopilotChat';
 import { ThemeSwitcher } from '../components/ui/ThemeSwitcher';
 import { CommandHUD } from '../components/ui/CommandHUD';
@@ -37,6 +38,7 @@ const DashboardContent: React.FC = () => {
   // Audio Engine Integration
   const [activeAudio, setActiveAudio] = useState(false);
   const { startDrone, stopDrone, updateDrone, playClick } = useSoundEffects();
+  const { startHum, startWhoosh, playGeigerClick, stopAll: stopSoundscape } = useSoundscape();
 
   // Update drone based on system state
   useEffect(() => {
@@ -58,15 +60,36 @@ const DashboardContent: React.FC = () => {
 
   // Clean up on unmount
   useEffect(() => {
-    return () => stopDrone();
-  }, [stopDrone]);
+    return () => {
+      stopDrone();
+      stopSoundscape();
+    };
+  }, [stopDrone, stopSoundscape]);
+
+  // Geiger Counter Logic (Background Clicks based on Anomaly count)
+  useEffect(() => {
+    if (!activeAudio || !mission?.anomalies?.length) return;
+
+    const interval = setInterval(() => {
+      // Probability of click increases with anomaly count
+      const threshold = 0.95 - (mission.anomalies.length * 0.05);
+      if (Math.random() > Math.max(0.1, threshold)) {
+        playGeigerClick();
+      }
+    }, 100);
+
+    return () => clearInterval(interval);
+  }, [activeAudio, mission?.anomalies, playGeigerClick]);
 
   const toggleAudio = () => {
     if (activeAudio) {
       stopDrone();
+      stopSoundscape();
       setActiveAudio(false);
     } else {
       startDrone();
+      startHum();
+      startWhoosh();
       setActiveAudio(true);
       playClick();
     }

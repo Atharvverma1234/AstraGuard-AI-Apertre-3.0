@@ -3,6 +3,7 @@ import dynamic from 'next/dynamic';
 import { Satellite, AnomalyEvent } from '../../types/dashboard';
 import { getSatellitePosition } from '../../utils/orbital';
 import { useDashboard } from '../../context/DashboardContext';
+import { useSoundscape } from '../../hooks/useSoundscape';
 
 // Dynamically import Globe to avoid SSR issues with WebGL
 const Globe = dynamic(() => import('react-globe.gl'), { ssr: false });
@@ -17,6 +18,7 @@ interface Props {
 export const OrbitMap: React.FC<Props> = ({ satellites, selectedSat, onSatClick, anomalies }) => {
   const globeEl = useRef<any>(null);
   const { groundStations, historicalAnomalies } = useDashboard();
+  const { setWhooshIntensity } = useSoundscape();
   const [points, setPoints] = useState<any[]>([]);
   const [arcs, setArcs] = useState<any[]>([]);
   const [showHeatmap, setShowHeatmap] = useState(false);
@@ -78,13 +80,32 @@ export const OrbitMap: React.FC<Props> = ({ satellites, selectedSat, onSatClick,
     }
   }, [selectedSat]);
 
-  // Auto-rotate
+  // Auto-rotate and Audio Motion
   useEffect(() => {
     if (globeEl.current) {
-      globeEl.current.controls().autoRotate = !showHeatmap; // Pause rotate during heatmap analysis
-      globeEl.current.controls().autoRotateSpeed = 0.5;
+      const controls = globeEl.current.controls();
+      controls.autoRotate = !showHeatmap;
+      controls.autoRotateSpeed = 0.5;
+
+      // Detect user interaction speed for audio whoosh
+      let lastAzimuth = controls.getAzimuthalAngle();
+      const updateMotion = () => {
+        const currentAzimuth = controls.getAzimuthalAngle();
+        const delta = Math.abs(currentAzimuth - lastAzimuth);
+
+        // If delta is high, it's user rotation
+        if (delta > 0.001) {
+          setWhooshIntensity(Math.min(delta * 10, 1));
+        } else {
+          setWhooshIntensity(0);
+        }
+        lastAzimuth = currentAzimuth;
+      };
+
+      const motionInterval = setInterval(updateMotion, 100);
+      return () => clearInterval(motionInterval);
     }
-  }, [showHeatmap]);
+  }, [showHeatmap, setWhooshIntensity]);
 
   const ringsData = useMemo(() => {
     // Anomaly Rings
@@ -211,8 +232,8 @@ export const OrbitMap: React.FC<Props> = ({ satellites, selectedSat, onSatClick,
         <button
           onClick={() => setShowHeatmap(!showHeatmap)}
           className={`px-4 py-2 rounded border text-[10px] font-bold uppercase tracking-widest transition-all ${showHeatmap
-              ? 'bg-red-600 border-red-500 text-white shadow-[0_0_15px_rgba(239,68,68,0.4)]'
-              : 'bg-slate-900/80 border-slate-700 text-slate-400 hover:border-slate-500'
+            ? 'bg-red-600 border-red-500 text-white shadow-[0_0_15px_rgba(239,68,68,0.4)]'
+            : 'bg-slate-900/80 border-slate-700 text-slate-400 hover:border-slate-500'
             }`}
         >
           {showHeatmap ? '⚠️ Heatmap Active' : '🗺️ View Heatmap'}
