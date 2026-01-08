@@ -2059,6 +2059,9 @@ DEFAULT_MISSION_PHASE=NOMINAL_OPS
 # Logging
 LOG_LEVEL=INFO
 LOG_FILE=logs/astraguard.log
+
+# Frontend Logging (React/Next.js)
+NEXT_PUBLIC_LOG_LEVEL=INFO
 ```
 
 #### Step 5: Install Ollama (for Local AI)

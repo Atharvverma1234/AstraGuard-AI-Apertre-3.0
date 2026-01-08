@@ -42,8 +42,9 @@ from core.circuit_breaker import get_all_circuit_breakers
 import anomaly.anomaly_detector  # noqa: F401
 
 # Configure logging
+log_level = os.getenv("LOG_LEVEL", "INFO").upper()
 logging.basicConfig(
-    level=logging.INFO,
+    level=getattr(logging, log_level),
     format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
 )
 logger = logging.getLogger(__name__)

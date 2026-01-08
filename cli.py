@@ -105,7 +105,6 @@ def run_status(args: argparse.Namespace) -> None:
     """Display comprehensive system status and health information."""
     try:
         from core.component_health import get_health_monitor, HealthStatus
-        from state_machine.state_engine import StateMachine
         import platform
 
         print("\n" + "=" * 70)
@@ -119,8 +118,12 @@ def run_status(args: argparse.Namespace) -> None:
         print("\n📊 COMPONENT HEALTH STATUS")
         print("-" * 70)
 
-        health_monitor = get_health_monitor()
-        components = health_monitor.get_all_health()
+        try:
+            health_monitor = get_health_monitor()
+            components = health_monitor.get_all_health()
+        except Exception as e:
+            print(f"  ⚠️  Unable to get health status: {e}")
+            components = {}
 
         degraded_count = 0
         failed_count = 0
@@ -154,12 +157,19 @@ def run_status(args: argparse.Namespace) -> None:
         print("\n🚀 MISSION PHASE")
         print("-" * 70)
         try:
+            from state_machine.state_engine import StateMachine
             sm = StateMachine()
             phase = sm.current_phase.value
             print(f"  Current Phase: {phase}")
             print(f"  Description:   {_get_phase_description(phase)}")
-        except Exception:
-            print("  ⚠️  Unable to determine mission phase.")
+        except ImportError as e:
+            if "prometheus" in str(e):
+                print("  ⚠️  Mission phase unavailable (missing prometheus dependencies)")
+                print("     Install prometheus-client to see mission phase information")
+            else:
+                print(f"  ⚠️  Unable to determine mission phase: {e}")
+        except Exception as e:
+            print(f"  ⚠️  Unable to determine mission phase: {e}")
 
         print("\n💡 RECOMMENDATIONS")
         print("-" * 70)
@@ -176,8 +186,9 @@ def run_status(args: argparse.Namespace) -> None:
             sys.exit(2)
         sys.exit(0)
 
-    except ImportError:
-        print("❌ Missing dependencies. Try installing from requirements.txt.")
+    except ImportError as e:
+        print(f"❌ Missing core dependencies: {e}")
+        print("Try installing from requirements.txt.")
         sys.exit(3)
 
 
