@@ -5,12 +5,7 @@
 @layer base {
   :root {
     --background: #020617;
-    /* Default Dashboard Background (Slate 950) */
     --foreground: #f8fafc;
-    /* Default Dashboard Foreground (Slate 50) */
-
-    /* Variables for Landing Page (from as_lp) */
-    /* Using darker values compatible with Slate 950 */
     --card: 222.2 84% 4.9%;
     --card-foreground: 210 40% 98%;
     --popover: 222.2 84% 4.9%;
@@ -30,17 +25,52 @@
     --ring: 212.7 26.8% 83.9%;
     --radius: 0.5rem;
 
-    /* Semantic Status Colors (Legacy Dashboard) */
+    /* Semantic Status Colors */
     --color-nominal: #22c55e;
     --color-degraded: #eab308;
     --color-critical: #ef4444;
+    --color-ui-accent: #3b82f6;
   }
 
-  /* Dark mode override matching root because dashboard is dark-only */
+  /* Stealth Theme (Extra Dark) */
+  [data-theme='stealth'] {
+    --background: #000000;
+    --foreground: #64748b;
+    --card: 0 0% 2%;
+    --border: 0 0% 10%;
+    --color-ui-accent: #1e293b;
+    --color-nominal: #064e3b;
+    --color-degraded: #422006;
+    --color-critical: #450a0a;
+  }
+
+  /* Clean Theme (Minimalist) */
+  [data-theme='clean'] {
+    --background: #0f172a;
+    --foreground: #cbd5e1;
+    --card: 222.2 47.4% 11.2%;
+    --border: 215 25% 27%;
+    --color-ui-accent: #64748b;
+    --color-nominal: #10b981;
+    --color-degraded: #f59e0b;
+    --color-critical: #f43f5e;
+  }
+
+  /* High-Visibility Theme */
+  [data-theme='high-visibility'] {
+    --background: #000000;
+    --foreground: #ffffff;
+    --card: 0 0% 5%;
+    --border: 0 0% 30%;
+    --color-ui-accent: #00ff00;
+    --color-nominal: #00ff00;
+    --color-degraded: #ffff00;
+    --color-critical: #ff0000;
+  }
+
   .dark {
     --background: #020617;
     --foreground: #f8fafc;
-    /* (Repeat variables if needed, but root covers it since we are dark-default) */
   }
 
   * {

@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { MissionState } from '../../types/dashboard';
 import { useDashboard } from '../../context/DashboardContext';
+import { NotificationCenter } from '../ui/NotificationCenter';
 
 interface Props {
   data: MissionState;
@@ -57,6 +58,7 @@ export const DashboardHeader: React.FC<Props> = ({ data }) => {
 
         {/* Right: Metrics Strip */}
         <div className="flex items-center gap-6">
+          <NotificationCenter />
           <div className="flex items-center gap-4 text-right">
             <div>
               <div className="text-xs text-slate-500 uppercase">Phase</div>

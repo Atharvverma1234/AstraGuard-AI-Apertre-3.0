@@ -1,0 +1,2022 @@
+
+======================================================================
+E
+======================================================================
+E
+======================================================================
+E
+======================================================================
+E
+======================================================================
+E
+======================================================================
+E
+======================================================================
+E
+======================================================================
+E
+======================================================================
+E
+======================================================================
+E
+======================================================================
+E
+======================================================================
+E
+======================================================================
+E
+======================================================================
+E
+======================================================================
+E
+======================================================================
+E
+======================================================================
+E
+======================================================================
+E
+======================================================================
+E
+======================================================================
+E
+======================================================================
+E
+======================================================================
+E
+======================================================================
+E
+======================================================================
+E
+======================================================================
+E
+=================================== ERRORS ====================================
+__________ ERROR at setup of TestHealthEndpoints.test_root_endpoint ___________
+
+    @pytest.fixture
+    def client():
+        """Create test client with auth override."""
+        # Mock valid API key
+        async def mock_get_api_key():
+            return APIKey(
+                key="test-key",
+                name="Test Key",
+                created_at=datetime.now(),
+                permissions={"read", "write", "admin"},
+                rate_limit=10000
+            )
+    
+        app.dependency_overrides[get_api_key] = mock_get_api_key
+>       with TestClient(app) as c:
+
+tests\test_api.py:45: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\testclient.py:688: in __enter__
+    portal.call(self.wait_startup)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\anyio\from_thread.py:326: in call
+    return cast(T_Retval, self.start_task_soon(func, *args).result())
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Lib\concurrent\futures\_base.py:456: in result
+    return self.__get_result()
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Lib\concurrent\futures\_base.py:401: in __get_result
+    raise self._exception
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\anyio\from_thread.py:257: in _call_func
+    retval = await retval_or_awaitable
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\testclient.py:723: in wait_startup
+    await receive()
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\testclient.py:714: in receive
+    self.task.result()
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Lib\concurrent\futures\_base.py:449: in result
+    return self.__get_result()
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Lib\concurrent\futures\_base.py:401: in __get_result
+    raise self._exception
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\anyio\from_thread.py:257: in _call_func
+    retval = await retval_or_awaitable
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\testclient.py:704: in lifespan
+    await self.app(scope, self.stream_receive.receive, self.stream_send.send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\fastapi\applications.py:1135: in __call__
+    await super().__call__(scope, receive, send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\applications.py:107: in __call__
+    await self.middleware_stack(scope, receive, send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\middleware\errors.py:151: in __call__
+    await self.app(scope, receive, send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\middleware\cors.py:77: in __call__
+    await self.app(scope, receive, send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\middleware\exceptions.py:49: in __call__
+    await self.app(scope, receive, send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\fastapi\middleware\asyncexitstack.py:18: in __call__
+    await self.app(scope, receive, send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\routing.py:716: in __call__
+    await self.middleware_stack(scope, receive, send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\routing.py:725: in app
+    await self.lifespan(scope, receive, send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\routing.py:694: in lifespan
+    async with self.lifespan_context(app) as maybe_state:
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Lib\contextlib.py:214: in __aenter__
+    return await anext(self.gen)
+api\service.py:186: in lifespan
+    _check_credential_security()
+api\service.py:122: in _check_credential_security
+    print("\u26a0\ufe0f  SECURITY WARNING: Metrics authentication not configured!")
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <encodings.cp1252.IncrementalEncoder object at 0x0000024577BC4AD0>
+input = '\u26a0\ufe0f  SECURITY WARNING: Metrics authentication not configured!'
+final = False
+
+    def encode(self, input, final=False):
+>       return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+E       UnicodeEncodeError: 'charmap' codec can't encode characters in position 0-1: character maps to <undefined>
+
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Lib\encodings\cp1252.py:19: UnicodeEncodeError
+___________ ERROR at setup of TestHealthEndpoints.test_health_check ___________
+
+    @pytest.fixture
+    def client():
+        """Create test client with auth override."""
+        # Mock valid API key
+        async def mock_get_api_key():
+            return APIKey(
+                key="test-key",
+                name="Test Key",
+                created_at=datetime.now(),
+                permissions={"read", "write", "admin"},
+                rate_limit=10000
+            )
+    
+        app.dependency_overrides[get_api_key] = mock_get_api_key
+>       with TestClient(app) as c:
+
+tests\test_api.py:45: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\testclient.py:688: in __enter__
+    portal.call(self.wait_startup)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\anyio\from_thread.py:326: in call
+    return cast(T_Retval, self.start_task_soon(func, *args).result())
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Lib\concurrent\futures\_base.py:456: in result
+    return self.__get_result()
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Lib\concurrent\futures\_base.py:401: in __get_result
+    raise self._exception
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\anyio\from_thread.py:257: in _call_func
+    retval = await retval_or_awaitable
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\testclient.py:723: in wait_startup
+    await receive()
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\testclient.py:714: in receive
+    self.task.result()
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Lib\concurrent\futures\_base.py:449: in result
+    return self.__get_result()
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Lib\concurrent\futures\_base.py:401: in __get_result
+    raise self._exception
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\anyio\from_thread.py:257: in _call_func
+    retval = await retval_or_awaitable
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\testclient.py:704: in lifespan
+    await self.app(scope, self.stream_receive.receive, self.stream_send.send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\fastapi\applications.py:1135: in __call__
+    await super().__call__(scope, receive, send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\applications.py:107: in __call__
+    await self.middleware_stack(scope, receive, send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\middleware\errors.py:151: in __call__
+    await self.app(scope, receive, send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\middleware\cors.py:77: in __call__
+    await self.app(scope, receive, send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\middleware\exceptions.py:49: in __call__
+    await self.app(scope, receive, send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\fastapi\middleware\asyncexitstack.py:18: in __call__
+    await self.app(scope, receive, send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\routing.py:716: in __call__
+    await self.middleware_stack(scope, receive, send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\routing.py:725: in app
+    await self.lifespan(scope, receive, send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\routing.py:694: in lifespan
+    async with self.lifespan_context(app) as maybe_state:
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Lib\contextlib.py:214: in __aenter__
+    return await anext(self.gen)
+api\service.py:186: in lifespan
+    _check_credential_security()
+api\service.py:122: in _check_credential_security
+    print("\u26a0\ufe0f  SECURITY WARNING: Metrics authentication not configured!")
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <encodings.cp1252.IncrementalEncoder object at 0x0000024577BC4AD0>
+input = '\u26a0\ufe0f  SECURITY WARNING: Metrics authentication not configured!'
+final = False
+
+    def encode(self, input, final=False):
+>       return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+E       UnicodeEncodeError: 'charmap' codec can't encode characters in position 0-1: character maps to <undefined>
+
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Lib\encodings\cp1252.py:19: UnicodeEncodeError
+____ ERROR at setup of TestTelemetryEndpoints.test_submit_normal_telemetry ____
+
+    @pytest.fixture
+    def client():
+        """Create test client with auth override."""
+        # Mock valid API key
+        async def mock_get_api_key():
+            return APIKey(
+                key="test-key",
+                name="Test Key",
+                created_at=datetime.now(),
+                permissions={"read", "write", "admin"},
+                rate_limit=10000
+            )
+    
+        app.dependency_overrides[get_api_key] = mock_get_api_key
+>       with TestClient(app) as c:
+
+tests\test_api.py:45: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\testclient.py:688: in __enter__
+    portal.call(self.wait_startup)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\anyio\from_thread.py:326: in call
+    return cast(T_Retval, self.start_task_soon(func, *args).result())
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Lib\concurrent\futures\_base.py:456: in result
+    return self.__get_result()
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Lib\concurrent\futures\_base.py:401: in __get_result
+    raise self._exception
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\anyio\from_thread.py:257: in _call_func
+    retval = await retval_or_awaitable
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\testclient.py:723: in wait_startup
+    await receive()
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\testclient.py:714: in receive
+    self.task.result()
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Lib\concurrent\futures\_base.py:449: in result
+    return self.__get_result()
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Lib\concurrent\futures\_base.py:401: in __get_result
+    raise self._exception
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\anyio\from_thread.py:257: in _call_func
+    retval = await retval_or_awaitable
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\testclient.py:704: in lifespan
+    await self.app(scope, self.stream_receive.receive, self.stream_send.send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\fastapi\applications.py:1135: in __call__
+    await super().__call__(scope, receive, send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\applications.py:107: in __call__
+    await self.middleware_stack(scope, receive, send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\middleware\errors.py:151: in __call__
+    await self.app(scope, receive, send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\middleware\cors.py:77: in __call__
+    await self.app(scope, receive, send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\middleware\exceptions.py:49: in __call__
+    await self.app(scope, receive, send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\fastapi\middleware\asyncexitstack.py:18: in __call__
+    await self.app(scope, receive, send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\routing.py:716: in __call__
+    await self.middleware_stack(scope, receive, send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\routing.py:725: in app
+    await self.lifespan(scope, receive, send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\routing.py:694: in lifespan
+    async with self.lifespan_context(app) as maybe_state:
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Lib\contextlib.py:214: in __aenter__
+    return await anext(self.gen)
+api\service.py:186: in lifespan
+    _check_credential_security()
+api\service.py:122: in _check_credential_security
+    print("\u26a0\ufe0f  SECURITY WARNING: Metrics authentication not configured!")
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <encodings.cp1252.IncrementalEncoder object at 0x0000024577BC4AD0>
+input = '\u26a0\ufe0f  SECURITY WARNING: Metrics authentication not configured!'
+final = False
+
+    def encode(self, input, final=False):
+>       return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+E       UnicodeEncodeError: 'charmap' codec can't encode characters in position 0-1: character maps to <undefined>
+
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Lib\encodings\cp1252.py:19: UnicodeEncodeError
+__ ERROR at setup of TestTelemetryEndpoints.test_submit_anomalous_telemetry ___
+
+    @pytest.fixture
+    def client():
+        """Create test client with auth override."""
+        # Mock valid API key
+        async def mock_get_api_key():
+            return APIKey(
+                key="test-key",
+                name="Test Key",
+                created_at=datetime.now(),
+                permissions={"read", "write", "admin"},
+                rate_limit=10000
+            )
+    
+        app.dependency_overrides[get_api_key] = mock_get_api_key
+>       with TestClient(app) as c:
+
+tests\test_api.py:45: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\testclient.py:688: in __enter__
+    portal.call(self.wait_startup)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\anyio\from_thread.py:326: in call
+    return cast(T_Retval, self.start_task_soon(func, *args).result())
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Lib\concurrent\futures\_base.py:456: in result
+    return self.__get_result()
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Lib\concurrent\futures\_base.py:401: in __get_result
+    raise self._exception
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\anyio\from_thread.py:257: in _call_func
+    retval = await retval_or_awaitable
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\testclient.py:723: in wait_startup
+    await receive()
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\testclient.py:714: in receive
+    self.task.result()
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Lib\concurrent\futures\_base.py:449: in result
+    return self.__get_result()
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Lib\concurrent\futures\_base.py:401: in __get_result
+    raise self._exception
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\anyio\from_thread.py:257: in _call_func
+    retval = await retval_or_awaitable
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\testclient.py:704: in lifespan
+    await self.app(scope, self.stream_receive.receive, self.stream_send.send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\fastapi\applications.py:1135: in __call__
+    await super().__call__(scope, receive, send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\applications.py:107: in __call__
+    await self.middleware_stack(scope, receive, send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\middleware\errors.py:151: in __call__
+    await self.app(scope, receive, send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\middleware\cors.py:77: in __call__
+    await self.app(scope, receive, send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\middleware\exceptions.py:49: in __call__
+    await self.app(scope, receive, send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\fastapi\middleware\asyncexitstack.py:18: in __call__
+    await self.app(scope, receive, send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\routing.py:716: in __call__
+    await self.middleware_stack(scope, receive, send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\routing.py:725: in app
+    await self.lifespan(scope, receive, send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\routing.py:694: in lifespan
+    async with self.lifespan_context(app) as maybe_state:
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Lib\contextlib.py:214: in __aenter__
+    return await anext(self.gen)
+api\service.py:186: in lifespan
+    _check_credential_security()
+api\service.py:122: in _check_credential_security
+    print("\u26a0\ufe0f  SECURITY WARNING: Metrics authentication not configured!")
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <encodings.cp1252.IncrementalEncoder object at 0x0000024577BC4AD0>
+input = '\u26a0\ufe0f  SECURITY WARNING: Metrics authentication not configured!'
+final = False
+
+    def encode(self, input, final=False):
+>       return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+E       UnicodeEncodeError: 'charmap' codec can't encode characters in position 0-1: character maps to <undefined>
+
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Lib\encodings\cp1252.py:19: UnicodeEncodeError
+_ ERROR at setup of TestTelemetryEndpoints.test_telemetry_validation_voltage_range _
+
+    @pytest.fixture
+    def client():
+        """Create test client with auth override."""
+        # Mock valid API key
+        async def mock_get_api_key():
+            return APIKey(
+                key="test-key",
+                name="Test Key",
+                created_at=datetime.now(),
+                permissions={"read", "write", "admin"},
+                rate_limit=10000
+            )
+    
+        app.dependency_overrides[get_api_key] = mock_get_api_key
+>       with TestClient(app) as c:
+
+tests\test_api.py:45: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\testclient.py:688: in __enter__
+    portal.call(self.wait_startup)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\anyio\from_thread.py:326: in call
+    return cast(T_Retval, self.start_task_soon(func, *args).result())
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Lib\concurrent\futures\_base.py:456: in result
+    return self.__get_result()
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Lib\concurrent\futures\_base.py:401: in __get_result
+    raise self._exception
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\anyio\from_thread.py:257: in _call_func
+    retval = await retval_or_awaitable
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\testclient.py:723: in wait_startup
+    await receive()
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\testclient.py:714: in receive
+    self.task.result()
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Lib\concurrent\futures\_base.py:449: in result
+    return self.__get_result()
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Lib\concurrent\futures\_base.py:401: in __get_result
+    raise self._exception
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\anyio\from_thread.py:257: in _call_func
+    retval = await retval_or_awaitable
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\testclient.py:704: in lifespan
+    await self.app(scope, self.stream_receive.receive, self.stream_send.send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\fastapi\applications.py:1135: in __call__
+    await super().__call__(scope, receive, send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\applications.py:107: in __call__
+    await self.middleware_stack(scope, receive, send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\middleware\errors.py:151: in __call__
+    await self.app(scope, receive, send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\middleware\cors.py:77: in __call__
+    await self.app(scope, receive, send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\middleware\exceptions.py:49: in __call__
+    await self.app(scope, receive, send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\fastapi\middleware\asyncexitstack.py:18: in __call__
+    await self.app(scope, receive, send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\routing.py:716: in __call__
+    await self.middleware_stack(scope, receive, send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\routing.py:725: in app
+    await self.lifespan(scope, receive, send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\routing.py:694: in lifespan
+    async with self.lifespan_context(app) as maybe_state:
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Lib\contextlib.py:214: in __aenter__
+    return await anext(self.gen)
+api\service.py:186: in lifespan
+    _check_credential_security()
+api\service.py:122: in _check_credential_security
+    print("\u26a0\ufe0f  SECURITY WARNING: Metrics authentication not configured!")
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <encodings.cp1252.IncrementalEncoder object at 0x0000024577BC4AD0>
+input = '\u26a0\ufe0f  SECURITY WARNING: Metrics authentication not configured!'
+final = False
+
+    def encode(self, input, final=False):
+>       return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+E       UnicodeEncodeError: 'charmap' codec can't encode characters in position 0-1: character maps to <undefined>
+
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Lib\encodings\cp1252.py:19: UnicodeEncodeError
+_ ERROR at setup of TestTelemetryEndpoints.test_telemetry_validation_missing_fields _
+
+    @pytest.fixture
+    def client():
+        """Create test client with auth override."""
+        # Mock valid API key
+        async def mock_get_api_key():
+            return APIKey(
+                key="test-key",
+                name="Test Key",
+                created_at=datetime.now(),
+                permissions={"read", "write", "admin"},
+                rate_limit=10000
+            )
+    
+        app.dependency_overrides[get_api_key] = mock_get_api_key
+>       with TestClient(app) as c:
+
+tests\test_api.py:45: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\testclient.py:688: in __enter__
+    portal.call(self.wait_startup)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\anyio\from_thread.py:326: in call
+    return cast(T_Retval, self.start_task_soon(func, *args).result())
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Lib\concurrent\futures\_base.py:456: in result
+    return self.__get_result()
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Lib\concurrent\futures\_base.py:401: in __get_result
+    raise self._exception
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\anyio\from_thread.py:257: in _call_func
+    retval = await retval_or_awaitable
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\testclient.py:723: in wait_startup
+    await receive()
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\testclient.py:714: in receive
+    self.task.result()
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Lib\concurrent\futures\_base.py:449: in result
+    return self.__get_result()
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Lib\concurrent\futures\_base.py:401: in __get_result
+    raise self._exception
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\anyio\from_thread.py:257: in _call_func
+    retval = await retval_or_awaitable
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\testclient.py:704: in lifespan
+    await self.app(scope, self.stream_receive.receive, self.stream_send.send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\fastapi\applications.py:1135: in __call__
+    await super().__call__(scope, receive, send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\applications.py:107: in __call__
+    await self.middleware_stack(scope, receive, send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\middleware\errors.py:151: in __call__
+    await self.app(scope, receive, send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\middleware\cors.py:77: in __call__
+    await self.app(scope, receive, send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\middleware\exceptions.py:49: in __call__
+    await self.app(scope, receive, send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\fastapi\middleware\asyncexitstack.py:18: in __call__
+    await self.app(scope, receive, send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\routing.py:716: in __call__
+    await self.middleware_stack(scope, receive, send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\routing.py:725: in app
+    await self.lifespan(scope, receive, send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\routing.py:694: in lifespan
+    async with self.lifespan_context(app) as maybe_state:
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Lib\contextlib.py:214: in __aenter__
+    return await anext(self.gen)
+api\service.py:186: in lifespan
+    _check_credential_security()
+api\service.py:122: in _check_credential_security
+    print("\u26a0\ufe0f  SECURITY WARNING: Metrics authentication not configured!")
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <encodings.cp1252.IncrementalEncoder object at 0x0000024577BC4AD0>
+input = '\u26a0\ufe0f  SECURITY WARNING: Metrics authentication not configured!'
+final = False
+
+    def encode(self, input, final=False):
+>       return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+E       UnicodeEncodeError: 'charmap' codec can't encode characters in position 0-1: character maps to <undefined>
+
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Lib\encodings\cp1252.py:19: UnicodeEncodeError
+___ ERROR at setup of TestTelemetryEndpoints.test_telemetry_optional_fields ___
+
+    @pytest.fixture
+    def client():
+        """Create test client with auth override."""
+        # Mock valid API key
+        async def mock_get_api_key():
+            return APIKey(
+                key="test-key",
+                name="Test Key",
+                created_at=datetime.now(),
+                permissions={"read", "write", "admin"},
+                rate_limit=10000
+            )
+    
+        app.dependency_overrides[get_api_key] = mock_get_api_key
+>       with TestClient(app) as c:
+
+tests\test_api.py:45: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\testclient.py:688: in __enter__
+    portal.call(self.wait_startup)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\anyio\from_thread.py:326: in call
+    return cast(T_Retval, self.start_task_soon(func, *args).result())
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Lib\concurrent\futures\_base.py:456: in result
+    return self.__get_result()
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Lib\concurrent\futures\_base.py:401: in __get_result
+    raise self._exception
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\anyio\from_thread.py:257: in _call_func
+    retval = await retval_or_awaitable
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\testclient.py:723: in wait_startup
+    await receive()
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\testclient.py:714: in receive
+    self.task.result()
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Lib\concurrent\futures\_base.py:449: in result
+    return self.__get_result()
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Lib\concurrent\futures\_base.py:401: in __get_result
+    raise self._exception
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\anyio\from_thread.py:257: in _call_func
+    retval = await retval_or_awaitable
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\testclient.py:704: in lifespan
+    await self.app(scope, self.stream_receive.receive, self.stream_send.send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\fastapi\applications.py:1135: in __call__
+    await super().__call__(scope, receive, send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\applications.py:107: in __call__
+    await self.middleware_stack(scope, receive, send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\middleware\errors.py:151: in __call__
+    await self.app(scope, receive, send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\middleware\cors.py:77: in __call__
+    await self.app(scope, receive, send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\middleware\exceptions.py:49: in __call__
+    await self.app(scope, receive, send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\fastapi\middleware\asyncexitstack.py:18: in __call__
+    await self.app(scope, receive, send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\routing.py:716: in __call__
+    await self.middleware_stack(scope, receive, send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\routing.py:725: in app
+    await self.lifespan(scope, receive, send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\routing.py:694: in lifespan
+    async with self.lifespan_context(app) as maybe_state:
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Lib\contextlib.py:214: in __aenter__
+    return await anext(self.gen)
+api\service.py:186: in lifespan
+    _check_credential_security()
+api\service.py:122: in _check_credential_security
+    print("\u26a0\ufe0f  SECURITY WARNING: Metrics authentication not configured!")
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <encodings.cp1252.IncrementalEncoder object at 0x0000024577BC4AD0>
+input = '\u26a0\ufe0f  SECURITY WARNING: Metrics authentication not configured!'
+final = False
+
+    def encode(self, input, final=False):
+>       return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+E       UnicodeEncodeError: 'charmap' codec can't encode characters in position 0-1: character maps to <undefined>
+
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Lib\encodings\cp1252.py:19: UnicodeEncodeError
+______ ERROR at setup of TestBatchEndpoints.test_submit_batch_telemetry _______
+
+    @pytest.fixture
+    def client():
+        """Create test client with auth override."""
+        # Mock valid API key
+        async def mock_get_api_key():
+            return APIKey(
+                key="test-key",
+                name="Test Key",
+                created_at=datetime.now(),
+                permissions={"read", "write", "admin"},
+                rate_limit=10000
+            )
+    
+        app.dependency_overrides[get_api_key] = mock_get_api_key
+>       with TestClient(app) as c:
+
+tests\test_api.py:45: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\testclient.py:688: in __enter__
+    portal.call(self.wait_startup)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\anyio\from_thread.py:326: in call
+    return cast(T_Retval, self.start_task_soon(func, *args).result())
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Lib\concurrent\futures\_base.py:456: in result
+    return self.__get_result()
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Lib\concurrent\futures\_base.py:401: in __get_result
+    raise self._exception
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\anyio\from_thread.py:257: in _call_func
+    retval = await retval_or_awaitable
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\testclient.py:723: in wait_startup
+    await receive()
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\testclient.py:714: in receive
+    self.task.result()
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Lib\concurrent\futures\_base.py:449: in result
+    return self.__get_result()
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Lib\concurrent\futures\_base.py:401: in __get_result
+    raise self._exception
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\anyio\from_thread.py:257: in _call_func
+    retval = await retval_or_awaitable
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\testclient.py:704: in lifespan
+    await self.app(scope, self.stream_receive.receive, self.stream_send.send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\fastapi\applications.py:1135: in __call__
+    await super().__call__(scope, receive, send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\applications.py:107: in __call__
+    await self.middleware_stack(scope, receive, send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\middleware\errors.py:151: in __call__
+    await self.app(scope, receive, send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\middleware\cors.py:77: in __call__
+    await self.app(scope, receive, send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\middleware\exceptions.py:49: in __call__
+    await self.app(scope, receive, send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\fastapi\middleware\asyncexitstack.py:18: in __call__
+    await self.app(scope, receive, send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\routing.py:716: in __call__
+    await self.middleware_stack(scope, receive, send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\routing.py:725: in app
+    await self.lifespan(scope, receive, send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\routing.py:694: in lifespan
+    async with self.lifespan_context(app) as maybe_state:
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Lib\contextlib.py:214: in __aenter__
+    return await anext(self.gen)
+api\service.py:186: in lifespan
+    _check_credential_security()
+api\service.py:122: in _check_credential_security
+    print("\u26a0\ufe0f  SECURITY WARNING: Metrics authentication not configured!")
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <encodings.cp1252.IncrementalEncoder object at 0x0000024577BC4AD0>
+input = '\u26a0\ufe0f  SECURITY WARNING: Metrics authentication not configured!'
+final = False
+
+    def encode(self, input, final=False):
+>       return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+E       UnicodeEncodeError: 'charmap' codec can't encode characters in position 0-1: character maps to <undefined>
+
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Lib\encodings\cp1252.py:19: UnicodeEncodeError
+______ ERROR at setup of TestBatchEndpoints.test_batch_empty_validation _______
+
+    @pytest.fixture
+    def client():
+        """Create test client with auth override."""
+        # Mock valid API key
+        async def mock_get_api_key():
+            return APIKey(
+                key="test-key",
+                name="Test Key",
+                created_at=datetime.now(),
+                permissions={"read", "write", "admin"},
+                rate_limit=10000
+            )
+    
+        app.dependency_overrides[get_api_key] = mock_get_api_key
+>       with TestClient(app) as c:
+
+tests\test_api.py:45: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\testclient.py:688: in __enter__
+    portal.call(self.wait_startup)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\anyio\from_thread.py:326: in call
+    return cast(T_Retval, self.start_task_soon(func, *args).result())
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Lib\concurrent\futures\_base.py:456: in result
+    return self.__get_result()
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Lib\concurrent\futures\_base.py:401: in __get_result
+    raise self._exception
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\anyio\from_thread.py:257: in _call_func
+    retval = await retval_or_awaitable
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\testclient.py:723: in wait_startup
+    await receive()
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\testclient.py:714: in receive
+    self.task.result()
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Lib\concurrent\futures\_base.py:449: in result
+    return self.__get_result()
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Lib\concurrent\futures\_base.py:401: in __get_result
+    raise self._exception
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\anyio\from_thread.py:257: in _call_func
+    retval = await retval_or_awaitable
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\testclient.py:704: in lifespan
+    await self.app(scope, self.stream_receive.receive, self.stream_send.send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\fastapi\applications.py:1135: in __call__
+    await super().__call__(scope, receive, send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\applications.py:107: in __call__
+    await self.middleware_stack(scope, receive, send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\middleware\errors.py:151: in __call__
+    await self.app(scope, receive, send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\middleware\cors.py:77: in __call__
+    await self.app(scope, receive, send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\middleware\exceptions.py:49: in __call__
+    await self.app(scope, receive, send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\fastapi\middleware\asyncexitstack.py:18: in __call__
+    await self.app(scope, receive, send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\routing.py:716: in __call__
+    await self.middleware_stack(scope, receive, send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\routing.py:725: in app
+    await self.lifespan(scope, receive, send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\routing.py:694: in lifespan
+    async with self.lifespan_context(app) as maybe_state:
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Lib\contextlib.py:214: in __aenter__
+    return await anext(self.gen)
+api\service.py:186: in lifespan
+    _check_credential_security()
+api\service.py:122: in _check_credential_security
+    print("\u26a0\ufe0f  SECURITY WARNING: Metrics authentication not configured!")
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <encodings.cp1252.IncrementalEncoder object at 0x0000024577BC4AD0>
+input = '\u26a0\ufe0f  SECURITY WARNING: Metrics authentication not configured!'
+final = False
+
+    def encode(self, input, final=False):
+>       return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+E       UnicodeEncodeError: 'charmap' codec can't encode characters in position 0-1: character maps to <undefined>
+
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Lib\encodings\cp1252.py:19: UnicodeEncodeError
+_________ ERROR at setup of TestBatchEndpoints.test_batch_size_limit __________
+
+    @pytest.fixture
+    def client():
+        """Create test client with auth override."""
+        # Mock valid API key
+        async def mock_get_api_key():
+            return APIKey(
+                key="test-key",
+                name="Test Key",
+                created_at=datetime.now(),
+                permissions={"read", "write", "admin"},
+                rate_limit=10000
+            )
+    
+        app.dependency_overrides[get_api_key] = mock_get_api_key
+>       with TestClient(app) as c:
+
+tests\test_api.py:45: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\testclient.py:688: in __enter__
+    portal.call(self.wait_startup)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\anyio\from_thread.py:326: in call
+    return cast(T_Retval, self.start_task_soon(func, *args).result())
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Lib\concurrent\futures\_base.py:456: in result
+    return self.__get_result()
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Lib\concurrent\futures\_base.py:401: in __get_result
+    raise self._exception
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\anyio\from_thread.py:257: in _call_func
+    retval = await retval_or_awaitable
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\testclient.py:723: in wait_startup
+    await receive()
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\testclient.py:714: in receive
+    self.task.result()
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Lib\concurrent\futures\_base.py:449: in result
+    return self.__get_result()
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Lib\concurrent\futures\_base.py:401: in __get_result
+    raise self._exception
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\anyio\from_thread.py:257: in _call_func
+    retval = await retval_or_awaitable
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\testclient.py:704: in lifespan
+    await self.app(scope, self.stream_receive.receive, self.stream_send.send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\fastapi\applications.py:1135: in __call__
+    await super().__call__(scope, receive, send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\applications.py:107: in __call__
+    await self.middleware_stack(scope, receive, send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\middleware\errors.py:151: in __call__
+    await self.app(scope, receive, send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\middleware\cors.py:77: in __call__
+    await self.app(scope, receive, send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\middleware\exceptions.py:49: in __call__
+    await self.app(scope, receive, send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\fastapi\middleware\asyncexitstack.py:18: in __call__
+    await self.app(scope, receive, send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\routing.py:716: in __call__
+    await self.middleware_stack(scope, receive, send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\routing.py:725: in app
+    await self.lifespan(scope, receive, send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\routing.py:694: in lifespan
+    async with self.lifespan_context(app) as maybe_state:
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Lib\contextlib.py:214: in __aenter__
+    return await anext(self.gen)
+api\service.py:186: in lifespan
+    _check_credential_security()
+api\service.py:122: in _check_credential_security
+    print("\u26a0\ufe0f  SECURITY WARNING: Metrics authentication not configured!")
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <encodings.cp1252.IncrementalEncoder object at 0x0000024577BC4AD0>
+input = '\u26a0\ufe0f  SECURITY WARNING: Metrics authentication not configured!'
+final = False
+
+    def encode(self, input, final=False):
+>       return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+E       UnicodeEncodeError: 'charmap' codec can't encode characters in position 0-1: character maps to <undefined>
+
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Lib\encodings\cp1252.py:19: UnicodeEncodeError
+________ ERROR at setup of TestStatusEndpoints.test_get_system_status _________
+
+    @pytest.fixture
+    def client():
+        """Create test client with auth override."""
+        # Mock valid API key
+        async def mock_get_api_key():
+            return APIKey(
+                key="test-key",
+                name="Test Key",
+                created_at=datetime.now(),
+                permissions={"read", "write", "admin"},
+                rate_limit=10000
+            )
+    
+        app.dependency_overrides[get_api_key] = mock_get_api_key
+>       with TestClient(app) as c:
+
+tests\test_api.py:45: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\testclient.py:688: in __enter__
+    portal.call(self.wait_startup)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\anyio\from_thread.py:326: in call
+    return cast(T_Retval, self.start_task_soon(func, *args).result())
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Lib\concurrent\futures\_base.py:456: in result
+    return self.__get_result()
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Lib\concurrent\futures\_base.py:401: in __get_result
+    raise self._exception
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\anyio\from_thread.py:257: in _call_func
+    retval = await retval_or_awaitable
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\testclient.py:723: in wait_startup
+    await receive()
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\testclient.py:714: in receive
+    self.task.result()
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Lib\concurrent\futures\_base.py:449: in result
+    return self.__get_result()
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Lib\concurrent\futures\_base.py:401: in __get_result
+    raise self._exception
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\anyio\from_thread.py:257: in _call_func
+    retval = await retval_or_awaitable
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\testclient.py:704: in lifespan
+    await self.app(scope, self.stream_receive.receive, self.stream_send.send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\fastapi\applications.py:1135: in __call__
+    await super().__call__(scope, receive, send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\applications.py:107: in __call__
+    await self.middleware_stack(scope, receive, send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\middleware\errors.py:151: in __call__
+    await self.app(scope, receive, send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\middleware\cors.py:77: in __call__
+    await self.app(scope, receive, send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\middleware\exceptions.py:49: in __call__
+    await self.app(scope, receive, send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\fastapi\middleware\asyncexitstack.py:18: in __call__
+    await self.app(scope, receive, send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\routing.py:716: in __call__
+    await self.middleware_stack(scope, receive, send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\routing.py:725: in app
+    await self.lifespan(scope, receive, send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\routing.py:694: in lifespan
+    async with self.lifespan_context(app) as maybe_state:
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Lib\contextlib.py:214: in __aenter__
+    return await anext(self.gen)
+api\service.py:186: in lifespan
+    _check_credential_security()
+api\service.py:122: in _check_credential_security
+    print("\u26a0\ufe0f  SECURITY WARNING: Metrics authentication not configured!")
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <encodings.cp1252.IncrementalEncoder object at 0x0000024577BC4AD0>
+input = '\u26a0\ufe0f  SECURITY WARNING: Metrics authentication not configured!'
+final = False
+
+    def encode(self, input, final=False):
+>       return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+E       UnicodeEncodeError: 'charmap' codec can't encode characters in position 0-1: character maps to <undefined>
+
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Lib\encodings\cp1252.py:19: UnicodeEncodeError
+____ ERROR at setup of TestStatusEndpoints.test_status_contains_components ____
+
+    @pytest.fixture
+    def client():
+        """Create test client with auth override."""
+        # Mock valid API key
+        async def mock_get_api_key():
+            return APIKey(
+                key="test-key",
+                name="Test Key",
+                created_at=datetime.now(),
+                permissions={"read", "write", "admin"},
+                rate_limit=10000
+            )
+    
+        app.dependency_overrides[get_api_key] = mock_get_api_key
+>       with TestClient(app) as c:
+
+tests\test_api.py:45: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\testclient.py:688: in __enter__
+    portal.call(self.wait_startup)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\anyio\from_thread.py:326: in call
+    return cast(T_Retval, self.start_task_soon(func, *args).result())
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Lib\concurrent\futures\_base.py:456: in result
+    return self.__get_result()
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Lib\concurrent\futures\_base.py:401: in __get_result
+    raise self._exception
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\anyio\from_thread.py:257: in _call_func
+    retval = await retval_or_awaitable
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\testclient.py:723: in wait_startup
+    await receive()
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\testclient.py:714: in receive
+    self.task.result()
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Lib\concurrent\futures\_base.py:449: in result
+    return self.__get_result()
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Lib\concurrent\futures\_base.py:401: in __get_result
+    raise self._exception
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\anyio\from_thread.py:257: in _call_func
+    retval = await retval_or_awaitable
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\testclient.py:704: in lifespan
+    await self.app(scope, self.stream_receive.receive, self.stream_send.send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\fastapi\applications.py:1135: in __call__
+    await super().__call__(scope, receive, send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\applications.py:107: in __call__
+    await self.middleware_stack(scope, receive, send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\middleware\errors.py:151: in __call__
+    await self.app(scope, receive, send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\middleware\cors.py:77: in __call__
+    await self.app(scope, receive, send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\middleware\exceptions.py:49: in __call__
+    await self.app(scope, receive, send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\fastapi\middleware\asyncexitstack.py:18: in __call__
+    await self.app(scope, receive, send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\routing.py:716: in __call__
+    await self.middleware_stack(scope, receive, send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\routing.py:725: in app
+    await self.lifespan(scope, receive, send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\routing.py:694: in lifespan
+    async with self.lifespan_context(app) as maybe_state:
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Lib\contextlib.py:214: in __aenter__
+    return await anext(self.gen)
+api\service.py:186: in lifespan
+    _check_credential_security()
+api\service.py:122: in _check_credential_security
+    print("\u26a0\ufe0f  SECURITY WARNING: Metrics authentication not configured!")
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <encodings.cp1252.IncrementalEncoder object at 0x0000024577BC4AD0>
+input = '\u26a0\ufe0f  SECURITY WARNING: Metrics authentication not configured!'
+final = False
+
+    def encode(self, input, final=False):
+>       return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+E       UnicodeEncodeError: 'charmap' codec can't encode characters in position 0-1: character maps to <undefined>
+
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Lib\encodings\cp1252.py:19: UnicodeEncodeError
+_________ ERROR at setup of TestPhaseEndpoints.test_get_current_phase _________
+
+    @pytest.fixture
+    def client():
+        """Create test client with auth override."""
+        # Mock valid API key
+        async def mock_get_api_key():
+            return APIKey(
+                key="test-key",
+                name="Test Key",
+                created_at=datetime.now(),
+                permissions={"read", "write", "admin"},
+                rate_limit=10000
+            )
+    
+        app.dependency_overrides[get_api_key] = mock_get_api_key
+>       with TestClient(app) as c:
+
+tests\test_api.py:45: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\testclient.py:688: in __enter__
+    portal.call(self.wait_startup)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\anyio\from_thread.py:326: in call
+    return cast(T_Retval, self.start_task_soon(func, *args).result())
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Lib\concurrent\futures\_base.py:456: in result
+    return self.__get_result()
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Lib\concurrent\futures\_base.py:401: in __get_result
+    raise self._exception
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\anyio\from_thread.py:257: in _call_func
+    retval = await retval_or_awaitable
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\testclient.py:723: in wait_startup
+    await receive()
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\testclient.py:714: in receive
+    self.task.result()
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Lib\concurrent\futures\_base.py:449: in result
+    return self.__get_result()
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Lib\concurrent\futures\_base.py:401: in __get_result
+    raise self._exception
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\anyio\from_thread.py:257: in _call_func
+    retval = await retval_or_awaitable
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\testclient.py:704: in lifespan
+    await self.app(scope, self.stream_receive.receive, self.stream_send.send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\fastapi\applications.py:1135: in __call__
+    await super().__call__(scope, receive, send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\applications.py:107: in __call__
+    await self.middleware_stack(scope, receive, send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\middleware\errors.py:151: in __call__
+    await self.app(scope, receive, send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\middleware\cors.py:77: in __call__
+    await self.app(scope, receive, send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\middleware\exceptions.py:49: in __call__
+    await self.app(scope, receive, send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\fastapi\middleware\asyncexitstack.py:18: in __call__
+    await self.app(scope, receive, send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\routing.py:716: in __call__
+    await self.middleware_stack(scope, receive, send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\routing.py:725: in app
+    await self.lifespan(scope, receive, send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\routing.py:694: in lifespan
+    async with self.lifespan_context(app) as maybe_state:
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Lib\contextlib.py:214: in __aenter__
+    return await anext(self.gen)
+api\service.py:186: in lifespan
+    _check_credential_security()
+api\service.py:122: in _check_credential_security
+    print("\u26a0\ufe0f  SECURITY WARNING: Metrics authentication not configured!")
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <encodings.cp1252.IncrementalEncoder object at 0x0000024577BC4AD0>
+input = '\u26a0\ufe0f  SECURITY WARNING: Metrics authentication not configured!'
+final = False
+
+    def encode(self, input, final=False):
+>       return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+E       UnicodeEncodeError: 'charmap' codec can't encode characters in position 0-1: character maps to <undefined>
+
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Lib\encodings\cp1252.py:19: UnicodeEncodeError
+___ ERROR at setup of TestPhaseEndpoints.test_update_phase_valid_transition ___
+
+    @pytest.fixture
+    def client():
+        """Create test client with auth override."""
+        # Mock valid API key
+        async def mock_get_api_key():
+            return APIKey(
+                key="test-key",
+                name="Test Key",
+                created_at=datetime.now(),
+                permissions={"read", "write", "admin"},
+                rate_limit=10000
+            )
+    
+        app.dependency_overrides[get_api_key] = mock_get_api_key
+>       with TestClient(app) as c:
+
+tests\test_api.py:45: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\testclient.py:688: in __enter__
+    portal.call(self.wait_startup)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\anyio\from_thread.py:326: in call
+    return cast(T_Retval, self.start_task_soon(func, *args).result())
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Lib\concurrent\futures\_base.py:456: in result
+    return self.__get_result()
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Lib\concurrent\futures\_base.py:401: in __get_result
+    raise self._exception
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\anyio\from_thread.py:257: in _call_func
+    retval = await retval_or_awaitable
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\testclient.py:723: in wait_startup
+    await receive()
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\testclient.py:714: in receive
+    self.task.result()
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Lib\concurrent\futures\_base.py:449: in result
+    return self.__get_result()
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Lib\concurrent\futures\_base.py:401: in __get_result
+    raise self._exception
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\anyio\from_thread.py:257: in _call_func
+    retval = await retval_or_awaitable
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\testclient.py:704: in lifespan
+    await self.app(scope, self.stream_receive.receive, self.stream_send.send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\fastapi\applications.py:1135: in __call__
+    await super().__call__(scope, receive, send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\applications.py:107: in __call__
+    await self.middleware_stack(scope, receive, send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\middleware\errors.py:151: in __call__
+    await self.app(scope, receive, send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\middleware\cors.py:77: in __call__
+    await self.app(scope, receive, send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\middleware\exceptions.py:49: in __call__
+    await self.app(scope, receive, send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\fastapi\middleware\asyncexitstack.py:18: in __call__
+    await self.app(scope, receive, send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\routing.py:716: in __call__
+    await self.middleware_stack(scope, receive, send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\routing.py:725: in app
+    await self.lifespan(scope, receive, send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\routing.py:694: in lifespan
+    async with self.lifespan_context(app) as maybe_state:
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Lib\contextlib.py:214: in __aenter__
+    return await anext(self.gen)
+api\service.py:186: in lifespan
+    _check_credential_security()
+api\service.py:122: in _check_credential_security
+    print("\u26a0\ufe0f  SECURITY WARNING: Metrics authentication not configured!")
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <encodings.cp1252.IncrementalEncoder object at 0x0000024577BC4AD0>
+input = '\u26a0\ufe0f  SECURITY WARNING: Metrics authentication not configured!'
+final = False
+
+    def encode(self, input, final=False):
+>       return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+E       UnicodeEncodeError: 'charmap' codec can't encode characters in position 0-1: character maps to <undefined>
+
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Lib\encodings\cp1252.py:19: UnicodeEncodeError
+_____ ERROR at setup of TestPhaseEndpoints.test_update_phase_invalid_enum _____
+
+    @pytest.fixture
+    def client():
+        """Create test client with auth override."""
+        # Mock valid API key
+        async def mock_get_api_key():
+            return APIKey(
+                key="test-key",
+                name="Test Key",
+                created_at=datetime.now(),
+                permissions={"read", "write", "admin"},
+                rate_limit=10000
+            )
+    
+        app.dependency_overrides[get_api_key] = mock_get_api_key
+>       with TestClient(app) as c:
+
+tests\test_api.py:45: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\testclient.py:688: in __enter__
+    portal.call(self.wait_startup)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\anyio\from_thread.py:326: in call
+    return cast(T_Retval, self.start_task_soon(func, *args).result())
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Lib\concurrent\futures\_base.py:456: in result
+    return self.__get_result()
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Lib\concurrent\futures\_base.py:401: in __get_result
+    raise self._exception
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\anyio\from_thread.py:257: in _call_func
+    retval = await retval_or_awaitable
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\testclient.py:723: in wait_startup
+    await receive()
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\testclient.py:714: in receive
+    self.task.result()
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Lib\concurrent\futures\_base.py:449: in result
+    return self.__get_result()
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Lib\concurrent\futures\_base.py:401: in __get_result
+    raise self._exception
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\anyio\from_thread.py:257: in _call_func
+    retval = await retval_or_awaitable
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\testclient.py:704: in lifespan
+    await self.app(scope, self.stream_receive.receive, self.stream_send.send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\fastapi\applications.py:1135: in __call__
+    await super().__call__(scope, receive, send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\applications.py:107: in __call__
+    await self.middleware_stack(scope, receive, send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\middleware\errors.py:151: in __call__
+    await self.app(scope, receive, send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\middleware\cors.py:77: in __call__
+    await self.app(scope, receive, send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\middleware\exceptions.py:49: in __call__
+    await self.app(scope, receive, send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\fastapi\middleware\asyncexitstack.py:18: in __call__
+    await self.app(scope, receive, send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\routing.py:716: in __call__
+    await self.middleware_stack(scope, receive, send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\routing.py:725: in app
+    await self.lifespan(scope, receive, send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\routing.py:694: in lifespan
+    async with self.lifespan_context(app) as maybe_state:
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Lib\contextlib.py:214: in __aenter__
+    return await anext(self.gen)
+api\service.py:186: in lifespan
+    _check_credential_security()
+api\service.py:122: in _check_credential_security
+    print("\u26a0\ufe0f  SECURITY WARNING: Metrics authentication not configured!")
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <encodings.cp1252.IncrementalEncoder object at 0x0000024577BC4AD0>
+input = '\u26a0\ufe0f  SECURITY WARNING: Metrics authentication not configured!'
+final = False
+
+    def encode(self, input, final=False):
+>       return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+E       UnicodeEncodeError: 'charmap' codec can't encode characters in position 0-1: character maps to <undefined>
+
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Lib\encodings\cp1252.py:19: UnicodeEncodeError
+_________ ERROR at setup of TestMemoryEndpoints.test_get_memory_stats _________
+
+    @pytest.fixture
+    def client():
+        """Create test client with auth override."""
+        # Mock valid API key
+        async def mock_get_api_key():
+            return APIKey(
+                key="test-key",
+                name="Test Key",
+                created_at=datetime.now(),
+                permissions={"read", "write", "admin"},
+                rate_limit=10000
+            )
+    
+        app.dependency_overrides[get_api_key] = mock_get_api_key
+>       with TestClient(app) as c:
+
+tests\test_api.py:45: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\testclient.py:688: in __enter__
+    portal.call(self.wait_startup)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\anyio\from_thread.py:326: in call
+    return cast(T_Retval, self.start_task_soon(func, *args).result())
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Lib\concurrent\futures\_base.py:456: in result
+    return self.__get_result()
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Lib\concurrent\futures\_base.py:401: in __get_result
+    raise self._exception
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\anyio\from_thread.py:257: in _call_func
+    retval = await retval_or_awaitable
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\testclient.py:723: in wait_startup
+    await receive()
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\testclient.py:714: in receive
+    self.task.result()
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Lib\concurrent\futures\_base.py:449: in result
+    return self.__get_result()
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Lib\concurrent\futures\_base.py:401: in __get_result
+    raise self._exception
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\anyio\from_thread.py:257: in _call_func
+    retval = await retval_or_awaitable
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\testclient.py:704: in lifespan
+    await self.app(scope, self.stream_receive.receive, self.stream_send.send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\fastapi\applications.py:1135: in __call__
+    await super().__call__(scope, receive, send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\applications.py:107: in __call__
+    await self.middleware_stack(scope, receive, send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\middleware\errors.py:151: in __call__
+    await self.app(scope, receive, send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\middleware\cors.py:77: in __call__
+    await self.app(scope, receive, send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\middleware\exceptions.py:49: in __call__
+    await self.app(scope, receive, send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\fastapi\middleware\asyncexitstack.py:18: in __call__
+    await self.app(scope, receive, send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\routing.py:716: in __call__
+    await self.middleware_stack(scope, receive, send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\routing.py:725: in app
+    await self.lifespan(scope, receive, send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\routing.py:694: in lifespan
+    async with self.lifespan_context(app) as maybe_state:
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Lib\contextlib.py:214: in __aenter__
+    return await anext(self.gen)
+api\service.py:186: in lifespan
+    _check_credential_security()
+api\service.py:122: in _check_credential_security
+    print("\u26a0\ufe0f  SECURITY WARNING: Metrics authentication not configured!")
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <encodings.cp1252.IncrementalEncoder object at 0x0000024577BC4AD0>
+input = '\u26a0\ufe0f  SECURITY WARNING: Metrics authentication not configured!'
+final = False
+
+    def encode(self, input, final=False):
+>       return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+E       UnicodeEncodeError: 'charmap' codec can't encode characters in position 0-1: character maps to <undefined>
+
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Lib\encodings\cp1252.py:19: UnicodeEncodeError
+_______ ERROR at setup of TestHistoryEndpoints.test_get_anomaly_history _______
+
+    @pytest.fixture
+    def client():
+        """Create test client with auth override."""
+        # Mock valid API key
+        async def mock_get_api_key():
+            return APIKey(
+                key="test-key",
+                name="Test Key",
+                created_at=datetime.now(),
+                permissions={"read", "write", "admin"},
+                rate_limit=10000
+            )
+    
+        app.dependency_overrides[get_api_key] = mock_get_api_key
+>       with TestClient(app) as c:
+
+tests\test_api.py:45: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\testclient.py:688: in __enter__
+    portal.call(self.wait_startup)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\anyio\from_thread.py:326: in call
+    return cast(T_Retval, self.start_task_soon(func, *args).result())
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Lib\concurrent\futures\_base.py:456: in result
+    return self.__get_result()
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Lib\concurrent\futures\_base.py:401: in __get_result
+    raise self._exception
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\anyio\from_thread.py:257: in _call_func
+    retval = await retval_or_awaitable
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\testclient.py:723: in wait_startup
+    await receive()
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\testclient.py:714: in receive
+    self.task.result()
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Lib\concurrent\futures\_base.py:449: in result
+    return self.__get_result()
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Lib\concurrent\futures\_base.py:401: in __get_result
+    raise self._exception
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\anyio\from_thread.py:257: in _call_func
+    retval = await retval_or_awaitable
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\testclient.py:704: in lifespan
+    await self.app(scope, self.stream_receive.receive, self.stream_send.send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\fastapi\applications.py:1135: in __call__
+    await super().__call__(scope, receive, send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\applications.py:107: in __call__
+    await self.middleware_stack(scope, receive, send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\middleware\errors.py:151: in __call__
+    await self.app(scope, receive, send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\middleware\cors.py:77: in __call__
+    await self.app(scope, receive, send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\middleware\exceptions.py:49: in __call__
+    await self.app(scope, receive, send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\fastapi\middleware\asyncexitstack.py:18: in __call__
+    await self.app(scope, receive, send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\routing.py:716: in __call__
+    await self.middleware_stack(scope, receive, send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\routing.py:725: in app
+    await self.lifespan(scope, receive, send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\routing.py:694: in lifespan
+    async with self.lifespan_context(app) as maybe_state:
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Lib\contextlib.py:214: in __aenter__
+    return await anext(self.gen)
+api\service.py:186: in lifespan
+    _check_credential_security()
+api\service.py:122: in _check_credential_security
+    print("\u26a0\ufe0f  SECURITY WARNING: Metrics authentication not configured!")
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <encodings.cp1252.IncrementalEncoder object at 0x0000024577BC4AD0>
+input = '\u26a0\ufe0f  SECURITY WARNING: Metrics authentication not configured!'
+final = False
+
+    def encode(self, input, final=False):
+>       return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+E       UnicodeEncodeError: 'charmap' codec can't encode characters in position 0-1: character maps to <undefined>
+
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Lib\encodings\cp1252.py:19: UnicodeEncodeError
+_______ ERROR at setup of TestHistoryEndpoints.test_history_with_limit ________
+
+    @pytest.fixture
+    def client():
+        """Create test client with auth override."""
+        # Mock valid API key
+        async def mock_get_api_key():
+            return APIKey(
+                key="test-key",
+                name="Test Key",
+                created_at=datetime.now(),
+                permissions={"read", "write", "admin"},
+                rate_limit=10000
+            )
+    
+        app.dependency_overrides[get_api_key] = mock_get_api_key
+>       with TestClient(app) as c:
+
+tests\test_api.py:45: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\testclient.py:688: in __enter__
+    portal.call(self.wait_startup)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\anyio\from_thread.py:326: in call
+    return cast(T_Retval, self.start_task_soon(func, *args).result())
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Lib\concurrent\futures\_base.py:456: in result
+    return self.__get_result()
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Lib\concurrent\futures\_base.py:401: in __get_result
+    raise self._exception
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\anyio\from_thread.py:257: in _call_func
+    retval = await retval_or_awaitable
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\testclient.py:723: in wait_startup
+    await receive()
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\testclient.py:714: in receive
+    self.task.result()
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Lib\concurrent\futures\_base.py:449: in result
+    return self.__get_result()
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Lib\concurrent\futures\_base.py:401: in __get_result
+    raise self._exception
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\anyio\from_thread.py:257: in _call_func
+    retval = await retval_or_awaitable
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\testclient.py:704: in lifespan
+    await self.app(scope, self.stream_receive.receive, self.stream_send.send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\fastapi\applications.py:1135: in __call__
+    await super().__call__(scope, receive, send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\applications.py:107: in __call__
+    await self.middleware_stack(scope, receive, send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\middleware\errors.py:151: in __call__
+    await self.app(scope, receive, send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\middleware\cors.py:77: in __call__
+    await self.app(scope, receive, send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\middleware\exceptions.py:49: in __call__
+    await self.app(scope, receive, send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\fastapi\middleware\asyncexitstack.py:18: in __call__
+    await self.app(scope, receive, send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\routing.py:716: in __call__
+    await self.middleware_stack(scope, receive, send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\routing.py:725: in app
+    await self.lifespan(scope, receive, send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\routing.py:694: in lifespan
+    async with self.lifespan_context(app) as maybe_state:
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Lib\contextlib.py:214: in __aenter__
+    return await anext(self.gen)
+api\service.py:186: in lifespan
+    _check_credential_security()
+api\service.py:122: in _check_credential_security
+    print("\u26a0\ufe0f  SECURITY WARNING: Metrics authentication not configured!")
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <encodings.cp1252.IncrementalEncoder object at 0x0000024577BC4AD0>
+input = '\u26a0\ufe0f  SECURITY WARNING: Metrics authentication not configured!'
+final = False
+
+    def encode(self, input, final=False):
+>       return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+E       UnicodeEncodeError: 'charmap' codec can't encode characters in position 0-1: character maps to <undefined>
+
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Lib\encodings\cp1252.py:19: UnicodeEncodeError
+__ ERROR at setup of TestHistoryEndpoints.test_history_with_severity_filter ___
+
+    @pytest.fixture
+    def client():
+        """Create test client with auth override."""
+        # Mock valid API key
+        async def mock_get_api_key():
+            return APIKey(
+                key="test-key",
+                name="Test Key",
+                created_at=datetime.now(),
+                permissions={"read", "write", "admin"},
+                rate_limit=10000
+            )
+    
+        app.dependency_overrides[get_api_key] = mock_get_api_key
+>       with TestClient(app) as c:
+
+tests\test_api.py:45: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\testclient.py:688: in __enter__
+    portal.call(self.wait_startup)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\anyio\from_thread.py:326: in call
+    return cast(T_Retval, self.start_task_soon(func, *args).result())
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Lib\concurrent\futures\_base.py:456: in result
+    return self.__get_result()
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Lib\concurrent\futures\_base.py:401: in __get_result
+    raise self._exception
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\anyio\from_thread.py:257: in _call_func
+    retval = await retval_or_awaitable
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\testclient.py:723: in wait_startup
+    await receive()
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\testclient.py:714: in receive
+    self.task.result()
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Lib\concurrent\futures\_base.py:449: in result
+    return self.__get_result()
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Lib\concurrent\futures\_base.py:401: in __get_result
+    raise self._exception
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\anyio\from_thread.py:257: in _call_func
+    retval = await retval_or_awaitable
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\testclient.py:704: in lifespan
+    await self.app(scope, self.stream_receive.receive, self.stream_send.send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\fastapi\applications.py:1135: in __call__
+    await super().__call__(scope, receive, send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\applications.py:107: in __call__
+    await self.middleware_stack(scope, receive, send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\middleware\errors.py:151: in __call__
+    await self.app(scope, receive, send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\middleware\cors.py:77: in __call__
+    await self.app(scope, receive, send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\middleware\exceptions.py:49: in __call__
+    await self.app(scope, receive, send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\fastapi\middleware\asyncexitstack.py:18: in __call__
+    await self.app(scope, receive, send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\routing.py:716: in __call__
+    await self.middleware_stack(scope, receive, send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\routing.py:725: in app
+    await self.lifespan(scope, receive, send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\routing.py:694: in lifespan
+    async with self.lifespan_context(app) as maybe_state:
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Lib\contextlib.py:214: in __aenter__
+    return await anext(self.gen)
+api\service.py:186: in lifespan
+    _check_credential_security()
+api\service.py:122: in _check_credential_security
+    print("\u26a0\ufe0f  SECURITY WARNING: Metrics authentication not configured!")
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <encodings.cp1252.IncrementalEncoder object at 0x0000024577BC4AD0>
+input = '\u26a0\ufe0f  SECURITY WARNING: Metrics authentication not configured!'
+final = False
+
+    def encode(self, input, final=False):
+>       return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+E       UnicodeEncodeError: 'charmap' codec can't encode characters in position 0-1: character maps to <undefined>
+
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Lib\encodings\cp1252.py:19: UnicodeEncodeError
+___ ERROR at setup of TestIntegrationFlow.test_full_anomaly_detection_flow ____
+
+    @pytest.fixture
+    def client():
+        """Create test client with auth override."""
+        # Mock valid API key
+        async def mock_get_api_key():
+            return APIKey(
+                key="test-key",
+                name="Test Key",
+                created_at=datetime.now(),
+                permissions={"read", "write", "admin"},
+                rate_limit=10000
+            )
+    
+        app.dependency_overrides[get_api_key] = mock_get_api_key
+>       with TestClient(app) as c:
+
+tests\test_api.py:45: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\testclient.py:688: in __enter__
+    portal.call(self.wait_startup)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\anyio\from_thread.py:326: in call
+    return cast(T_Retval, self.start_task_soon(func, *args).result())
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Lib\concurrent\futures\_base.py:456: in result
+    return self.__get_result()
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Lib\concurrent\futures\_base.py:401: in __get_result
+    raise self._exception
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\anyio\from_thread.py:257: in _call_func
+    retval = await retval_or_awaitable
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\testclient.py:723: in wait_startup
+    await receive()
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\testclient.py:714: in receive
+    self.task.result()
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Lib\concurrent\futures\_base.py:449: in result
+    return self.__get_result()
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Lib\concurrent\futures\_base.py:401: in __get_result
+    raise self._exception
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\anyio\from_thread.py:257: in _call_func
+    retval = await retval_or_awaitable
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\testclient.py:704: in lifespan
+    await self.app(scope, self.stream_receive.receive, self.stream_send.send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\fastapi\applications.py:1135: in __call__
+    await super().__call__(scope, receive, send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\applications.py:107: in __call__
+    await self.middleware_stack(scope, receive, send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\middleware\errors.py:151: in __call__
+    await self.app(scope, receive, send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\middleware\cors.py:77: in __call__
+    await self.app(scope, receive, send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\middleware\exceptions.py:49: in __call__
+    await self.app(scope, receive, send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\fastapi\middleware\asyncexitstack.py:18: in __call__
+    await self.app(scope, receive, send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\routing.py:716: in __call__
+    await self.middleware_stack(scope, receive, send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\routing.py:725: in app
+    await self.lifespan(scope, receive, send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\routing.py:694: in lifespan
+    async with self.lifespan_context(app) as maybe_state:
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Lib\contextlib.py:214: in __aenter__
+    return await anext(self.gen)
+api\service.py:186: in lifespan
+    _check_credential_security()
+api\service.py:122: in _check_credential_security
+    print("\u26a0\ufe0f  SECURITY WARNING: Metrics authentication not configured!")
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <encodings.cp1252.IncrementalEncoder object at 0x0000024577BC4AD0>
+input = '\u26a0\ufe0f  SECURITY WARNING: Metrics authentication not configured!'
+final = False
+
+    def encode(self, input, final=False):
+>       return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+E       UnicodeEncodeError: 'charmap' codec can't encode characters in position 0-1: character maps to <undefined>
+
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Lib\encodings\cp1252.py:19: UnicodeEncodeError
+________________ ERROR at setup of TestCORS.test_cors_headers _________________
+
+    @pytest.fixture
+    def client():
+        """Create test client with auth override."""
+        # Mock valid API key
+        async def mock_get_api_key():
+            return APIKey(
+                key="test-key",
+                name="Test Key",
+                created_at=datetime.now(),
+                permissions={"read", "write", "admin"},
+                rate_limit=10000
+            )
+    
+        app.dependency_overrides[get_api_key] = mock_get_api_key
+>       with TestClient(app) as c:
+
+tests\test_api.py:45: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\testclient.py:688: in __enter__
+    portal.call(self.wait_startup)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\anyio\from_thread.py:326: in call
+    return cast(T_Retval, self.start_task_soon(func, *args).result())
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Lib\concurrent\futures\_base.py:456: in result
+    return self.__get_result()
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Lib\concurrent\futures\_base.py:401: in __get_result
+    raise self._exception
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\anyio\from_thread.py:257: in _call_func
+    retval = await retval_or_awaitable
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\testclient.py:723: in wait_startup
+    await receive()
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\testclient.py:714: in receive
+    self.task.result()
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Lib\concurrent\futures\_base.py:449: in result
+    return self.__get_result()
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Lib\concurrent\futures\_base.py:401: in __get_result
+    raise self._exception
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\anyio\from_thread.py:257: in _call_func
+    retval = await retval_or_awaitable
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\testclient.py:704: in lifespan
+    await self.app(scope, self.stream_receive.receive, self.stream_send.send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\fastapi\applications.py:1135: in __call__
+    await super().__call__(scope, receive, send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\applications.py:107: in __call__
+    await self.middleware_stack(scope, receive, send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\middleware\errors.py:151: in __call__
+    await self.app(scope, receive, send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\middleware\cors.py:77: in __call__
+    await self.app(scope, receive, send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\middleware\exceptions.py:49: in __call__
+    await self.app(scope, receive, send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\fastapi\middleware\asyncexitstack.py:18: in __call__
+    await self.app(scope, receive, send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\routing.py:716: in __call__
+    await self.middleware_stack(scope, receive, send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\routing.py:725: in app
+    await self.lifespan(scope, receive, send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\routing.py:694: in lifespan
+    async with self.lifespan_context(app) as maybe_state:
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Lib\contextlib.py:214: in __aenter__
+    return await anext(self.gen)
+api\service.py:186: in lifespan
+    _check_credential_security()
+api\service.py:122: in _check_credential_security
+    print("\u26a0\ufe0f  SECURITY WARNING: Metrics authentication not configured!")
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <encodings.cp1252.IncrementalEncoder object at 0x0000024577BC4AD0>
+input = '\u26a0\ufe0f  SECURITY WARNING: Metrics authentication not configured!'
+final = False
+
+    def encode(self, input, final=False):
+>       return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+E       UnicodeEncodeError: 'charmap' codec can't encode characters in position 0-1: character maps to <undefined>
+
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Lib\encodings\cp1252.py:19: UnicodeEncodeError
+________ ERROR at setup of TestOpenAPIDocumentation.test_docs_endpoint ________
+
+    @pytest.fixture
+    def client():
+        """Create test client with auth override."""
+        # Mock valid API key
+        async def mock_get_api_key():
+            return APIKey(
+                key="test-key",
+                name="Test Key",
+                created_at=datetime.now(),
+                permissions={"read", "write", "admin"},
+                rate_limit=10000
+            )
+    
+        app.dependency_overrides[get_api_key] = mock_get_api_key
+>       with TestClient(app) as c:
+
+tests\test_api.py:45: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\testclient.py:688: in __enter__
+    portal.call(self.wait_startup)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\anyio\from_thread.py:326: in call
+    return cast(T_Retval, self.start_task_soon(func, *args).result())
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Lib\concurrent\futures\_base.py:456: in result
+    return self.__get_result()
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Lib\concurrent\futures\_base.py:401: in __get_result
+    raise self._exception
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\anyio\from_thread.py:257: in _call_func
+    retval = await retval_or_awaitable
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\testclient.py:723: in wait_startup
+    await receive()
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\testclient.py:714: in receive
+    self.task.result()
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Lib\concurrent\futures\_base.py:449: in result
+    return self.__get_result()
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Lib\concurrent\futures\_base.py:401: in __get_result
+    raise self._exception
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\anyio\from_thread.py:257: in _call_func
+    retval = await retval_or_awaitable
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\testclient.py:704: in lifespan
+    await self.app(scope, self.stream_receive.receive, self.stream_send.send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\fastapi\applications.py:1135: in __call__
+    await super().__call__(scope, receive, send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\applications.py:107: in __call__
+    await self.middleware_stack(scope, receive, send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\middleware\errors.py:151: in __call__
+    await self.app(scope, receive, send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\middleware\cors.py:77: in __call__
+    await self.app(scope, receive, send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\middleware\exceptions.py:49: in __call__
+    await self.app(scope, receive, send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\fastapi\middleware\asyncexitstack.py:18: in __call__
+    await self.app(scope, receive, send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\routing.py:716: in __call__
+    await self.middleware_stack(scope, receive, send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\routing.py:725: in app
+    await self.lifespan(scope, receive, send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\routing.py:694: in lifespan
+    async with self.lifespan_context(app) as maybe_state:
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Lib\contextlib.py:214: in __aenter__
+    return await anext(self.gen)
+api\service.py:186: in lifespan
+    _check_credential_security()
+api\service.py:122: in _check_credential_security
+    print("\u26a0\ufe0f  SECURITY WARNING: Metrics authentication not configured!")
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <encodings.cp1252.IncrementalEncoder object at 0x0000024577BC4AD0>
+input = '\u26a0\ufe0f  SECURITY WARNING: Metrics authentication not configured!'
+final = False
+
+    def encode(self, input, final=False):
+>       return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+E       UnicodeEncodeError: 'charmap' codec can't encode characters in position 0-1: character maps to <undefined>
+
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Lib\encodings\cp1252.py:19: UnicodeEncodeError
+_______ ERROR at setup of TestOpenAPIDocumentation.test_openapi_schema ________
+
+    @pytest.fixture
+    def client():
+        """Create test client with auth override."""
+        # Mock valid API key
+        async def mock_get_api_key():
+            return APIKey(
+                key="test-key",
+                name="Test Key",
+                created_at=datetime.now(),
+                permissions={"read", "write", "admin"},
+                rate_limit=10000
+            )
+    
+        app.dependency_overrides[get_api_key] = mock_get_api_key
+>       with TestClient(app) as c:
+
+tests\test_api.py:45: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\testclient.py:688: in __enter__
+    portal.call(self.wait_startup)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\anyio\from_thread.py:326: in call
+    return cast(T_Retval, self.start_task_soon(func, *args).result())
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Lib\concurrent\futures\_base.py:456: in result
+    return self.__get_result()
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Lib\concurrent\futures\_base.py:401: in __get_result
+    raise self._exception
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\anyio\from_thread.py:257: in _call_func
+    retval = await retval_or_awaitable
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\testclient.py:723: in wait_startup
+    await receive()
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\testclient.py:714: in receive
+    self.task.result()
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Lib\concurrent\futures\_base.py:449: in result
+    return self.__get_result()
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Lib\concurrent\futures\_base.py:401: in __get_result
+    raise self._exception
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\anyio\from_thread.py:257: in _call_func
+    retval = await retval_or_awaitable
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\testclient.py:704: in lifespan
+    await self.app(scope, self.stream_receive.receive, self.stream_send.send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\fastapi\applications.py:1135: in __call__
+    await super().__call__(scope, receive, send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\applications.py:107: in __call__
+    await self.middleware_stack(scope, receive, send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\middleware\errors.py:151: in __call__
+    await self.app(scope, receive, send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\middleware\cors.py:77: in __call__
+    await self.app(scope, receive, send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\middleware\exceptions.py:49: in __call__
+    await self.app(scope, receive, send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\fastapi\middleware\asyncexitstack.py:18: in __call__
+    await self.app(scope, receive, send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\routing.py:716: in __call__
+    await self.middleware_stack(scope, receive, send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\routing.py:725: in app
+    await self.lifespan(scope, receive, send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\routing.py:694: in lifespan
+    async with self.lifespan_context(app) as maybe_state:
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Lib\contextlib.py:214: in __aenter__
+    return await anext(self.gen)
+api\service.py:186: in lifespan
+    _check_credential_security()
+api\service.py:122: in _check_credential_security
+    print("\u26a0\ufe0f  SECURITY WARNING: Metrics authentication not configured!")
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <encodings.cp1252.IncrementalEncoder object at 0x0000024577BC4AD0>
+input = '\u26a0\ufe0f  SECURITY WARNING: Metrics authentication not configured!'
+final = False
+
+    def encode(self, input, final=False):
+>       return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+E       UnicodeEncodeError: 'charmap' codec can't encode characters in position 0-1: character maps to <undefined>
+
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Lib\encodings\cp1252.py:19: UnicodeEncodeError
+_____ ERROR at setup of TestMemoryBounds.test_history_bounded_to_max_size _____
+
+    @pytest.fixture
+    def client():
+        """Create test client with auth override."""
+        # Mock valid API key
+        async def mock_get_api_key():
+            return APIKey(
+                key="test-key",
+                name="Test Key",
+                created_at=datetime.now(),
+                permissions={"read", "write", "admin"},
+                rate_limit=10000
+            )
+    
+        app.dependency_overrides[get_api_key] = mock_get_api_key
+>       with TestClient(app) as c:
+
+tests\test_api.py:45: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\testclient.py:688: in __enter__
+    portal.call(self.wait_startup)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\anyio\from_thread.py:326: in call
+    return cast(T_Retval, self.start_task_soon(func, *args).result())
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Lib\concurrent\futures\_base.py:456: in result
+    return self.__get_result()
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Lib\concurrent\futures\_base.py:401: in __get_result
+    raise self._exception
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\anyio\from_thread.py:257: in _call_func
+    retval = await retval_or_awaitable
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\testclient.py:723: in wait_startup
+    await receive()
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\testclient.py:714: in receive
+    self.task.result()
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Lib\concurrent\futures\_base.py:449: in result
+    return self.__get_result()
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Lib\concurrent\futures\_base.py:401: in __get_result
+    raise self._exception
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\anyio\from_thread.py:257: in _call_func
+    retval = await retval_or_awaitable
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\testclient.py:704: in lifespan
+    await self.app(scope, self.stream_receive.receive, self.stream_send.send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\fastapi\applications.py:1135: in __call__
+    await super().__call__(scope, receive, send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\applications.py:107: in __call__
+    await self.middleware_stack(scope, receive, send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\middleware\errors.py:151: in __call__
+    await self.app(scope, receive, send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\middleware\cors.py:77: in __call__
+    await self.app(scope, receive, send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\middleware\exceptions.py:49: in __call__
+    await self.app(scope, receive, send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\fastapi\middleware\asyncexitstack.py:18: in __call__
+    await self.app(scope, receive, send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\routing.py:716: in __call__
+    await self.middleware_stack(scope, receive, send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\routing.py:725: in app
+    await self.lifespan(scope, receive, send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\routing.py:694: in lifespan
+    async with self.lifespan_context(app) as maybe_state:
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Lib\contextlib.py:214: in __aenter__
+    return await anext(self.gen)
+api\service.py:186: in lifespan
+    _check_credential_security()
+api\service.py:122: in _check_credential_security
+    print("\u26a0\ufe0f  SECURITY WARNING: Metrics authentication not configured!")
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <encodings.cp1252.IncrementalEncoder object at 0x0000024577BC4AD0>
+input = '\u26a0\ufe0f  SECURITY WARNING: Metrics authentication not configured!'
+final = False
+
+    def encode(self, input, final=False):
+>       return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+E       UnicodeEncodeError: 'charmap' codec can't encode characters in position 0-1: character maps to <undefined>
+
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Lib\encodings\cp1252.py:19: UnicodeEncodeError
+_____ ERROR at setup of TestMemoryBounds.test_history_deque_auto_eviction _____
+
+    @pytest.fixture
+    def client():
+        """Create test client with auth override."""
+        # Mock valid API key
+        async def mock_get_api_key():
+            return APIKey(
+                key="test-key",
+                name="Test Key",
+                created_at=datetime.now(),
+                permissions={"read", "write", "admin"},
+                rate_limit=10000
+            )
+    
+        app.dependency_overrides[get_api_key] = mock_get_api_key
+>       with TestClient(app) as c:
+
+tests\test_api.py:45: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\testclient.py:688: in __enter__
+    portal.call(self.wait_startup)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\anyio\from_thread.py:326: in call
+    return cast(T_Retval, self.start_task_soon(func, *args).result())
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Lib\concurrent\futures\_base.py:456: in result
+    return self.__get_result()
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Lib\concurrent\futures\_base.py:401: in __get_result
+    raise self._exception
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\anyio\from_thread.py:257: in _call_func
+    retval = await retval_or_awaitable
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\testclient.py:723: in wait_startup
+    await receive()
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\testclient.py:714: in receive
+    self.task.result()
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Lib\concurrent\futures\_base.py:449: in result
+    return self.__get_result()
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Lib\concurrent\futures\_base.py:401: in __get_result
+    raise self._exception
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\anyio\from_thread.py:257: in _call_func
+    retval = await retval_or_awaitable
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\testclient.py:704: in lifespan
+    await self.app(scope, self.stream_receive.receive, self.stream_send.send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\fastapi\applications.py:1135: in __call__
+    await super().__call__(scope, receive, send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\applications.py:107: in __call__
+    await self.middleware_stack(scope, receive, send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\middleware\errors.py:151: in __call__
+    await self.app(scope, receive, send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\middleware\cors.py:77: in __call__
+    await self.app(scope, receive, send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\middleware\exceptions.py:49: in __call__
+    await self.app(scope, receive, send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\fastapi\middleware\asyncexitstack.py:18: in __call__
+    await self.app(scope, receive, send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\routing.py:716: in __call__
+    await self.middleware_stack(scope, receive, send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\routing.py:725: in app
+    await self.lifespan(scope, receive, send)
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\starlette\routing.py:694: in lifespan
+    async with self.lifespan_context(app) as maybe_state:
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Lib\contextlib.py:214: in __aenter__
+    return await anext(self.gen)
+api\service.py:186: in lifespan
+    _check_credential_security()
+api\service.py:122: in _check_credential_security
+    print("\u26a0\ufe0f  SECURITY WARNING: Metrics authentication not configured!")
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <encodings.cp1252.IncrementalEncoder object at 0x0000024577BC4AD0>
+input = '\u26a0\ufe0f  SECURITY WARNING: Metrics authentication not configured!'
+final = False
+
+    def encode(self, input, final=False):
+>       return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+E       UnicodeEncodeError: 'charmap' codec can't encode characters in position 0-1: character maps to <undefined>
+
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Lib\encodings\cp1252.py:19: UnicodeEncodeError
+============================== warnings summary ===============================
+C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\pydantic\_internal\_generate_schema.py:319
+  C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\pydantic\_internal\_generate_schema.py:319: PydanticDeprecatedSince20: `json_encoders` is deprecated. See https://docs.pydantic.dev/2.12/concepts/serialization/#custom-serializers for alternatives. Deprecated in Pydantic V2.0 to be removed in V3.0. See Pydantic V2 Migration Guide at https://errors.pydantic.dev/2.12/migration/
+    warnings.warn(
+
+tests/test_api.py::TestHealthEndpoints::test_root_endpoint
+  C:\Users\PURVANSH JOSHI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\pytest_asyncio\plugin.py:783: DeprecationWarning: The event_loop fixture provided by pytest-asyncio has been redefined in
+  D:\Elite_Coders\AstraGuard-AI\tests\conftest.py:24
+  Replacing the event_loop fixture with a custom implementation is deprecated
+  and will lead to errors in the future.
+  If you want to request an asyncio event loop with a scope other than function
+  scope, use the "scope" argument to the asyncio mark when marking the tests.
+  If you want to return different types of event loops, use the event_loop_policy
+  fixture.
+  
+    warnings.warn(
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ===========================
+ERROR tests/test_api.py::TestHealthEndpoints::test_root_endpoint - UnicodeEnc...
+ERROR tests/test_api.py::TestHealthEndpoints::test_health_check - UnicodeEnco...
+ERROR tests/test_api.py::TestTelemetryEndpoints::test_submit_normal_telemetry
+ERROR tests/test_api.py::TestTelemetryEndpoints::test_submit_anomalous_telemetry
+ERROR tests/test_api.py::TestTelemetryEndpoints::test_telemetry_validation_voltage_range
+ERROR tests/test_api.py::TestTelemetryEndpoints::test_telemetry_validation_missing_fields
+ERROR tests/test_api.py::TestTelemetryEndpoints::test_telemetry_optional_fields
+ERROR tests/test_api.py::TestBatchEndpoints::test_submit_batch_telemetry - Un...
+ERROR tests/test_api.py::TestBatchEndpoints::test_batch_empty_validation - Un...
+ERROR tests/test_api.py::TestBatchEndpoints::test_batch_size_limit - UnicodeE...
+ERROR tests/test_api.py::TestStatusEndpoints::test_get_system_status - Unicod...
+ERROR tests/test_api.py::TestStatusEndpoints::test_status_contains_components
+ERROR tests/test_api.py::TestPhaseEndpoints::test_get_current_phase - Unicode...
+ERROR tests/test_api.py::TestPhaseEndpoints::test_update_phase_valid_transition
+ERROR tests/test_api.py::TestPhaseEndpoints::test_update_phase_invalid_enum
+ERROR tests/test_api.py::TestMemoryEndpoints::test_get_memory_stats - Unicode...
+ERROR tests/test_api.py::TestHistoryEndpoints::test_get_anomaly_history - Uni...
+ERROR tests/test_api.py::TestHistoryEndpoints::test_history_with_limit - Unic...
+ERROR tests/test_api.py::TestHistoryEndpoints::test_history_with_severity_filter
+ERROR tests/test_api.py::TestIntegrationFlow::test_full_anomaly_detection_flow
+ERROR tests/test_api.py::TestCORS::test_cors_headers - UnicodeEncodeError: 'c...
+ERROR tests/test_api.py::TestOpenAPIDocumentation::test_docs_endpoint - Unico...
+ERROR tests/test_api.py::TestOpenAPIDocumentation::test_openapi_schema - Unic...
+ERROR tests/test_api.py::TestMemoryBounds::test_history_bounded_to_max_size
+ERROR tests/test_api.py::TestMemoryBounds::test_history_deque_auto_eviction
+2 warnings, 25 errors in 6.29s

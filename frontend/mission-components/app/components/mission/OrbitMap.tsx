@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef, useMemo } from 'react';
 import dynamic from 'next/dynamic';
 import { Satellite, AnomalyEvent } from '../../types/dashboard';
-import { getSatellitePosition, SatellitePoint } from '../../utils/orbital';
+import { getSatellitePosition } from '../../utils/orbital';
 
 // Dynamically import Globe to avoid SSR issues with WebGL
 const Globe = dynamic(() => import('react-globe.gl'), { ssr: false });
@@ -81,7 +81,7 @@ export const OrbitMap: React.FC<Props> = ({ satellites, selectedSat, onSatClick,
   // Initial focus
   useEffect(() => {
     if (selectedSat && globeEl.current) {
-      const satPoint = getSatellitePosition(selectedSat);
+      // getSatellitePosition(selectedSat);
       // globeEl.current.pointOfView({ lat: satPoint.lat, lng: satPoint.lng, altitude: satPoint.alt + 0.5 }, 1000);
     }
   }, [selectedSat]);
@@ -107,9 +107,9 @@ export const OrbitMap: React.FC<Props> = ({ satellites, selectedSat, onSatClick,
         maxR: 5,
         propagationSpeed: 5,
         repeatPeriod: 1000,
-        color: () => '#ef4444'
-      }
-    }).filter(Boolean);
+        color: '#ef4444'
+      };
+    }).filter((r): r is NonNullable<typeof r> => r !== null);
 
     // Ground Station Coverage Zones
     const stationRings = GROUND_STATIONS.map(gs => ({
@@ -130,18 +130,27 @@ export const OrbitMap: React.FC<Props> = ({ satellites, selectedSat, onSatClick,
       <Globe
         ref={globeEl}
         width={800}
-        height={400}
-        globeImageUrl="//unpkg.com/three-globe/example/img/earth-night.jpg"
+        height={500}
+        globeImageUrl="//unpkg.com/three-globe/example/img/earth-blue-marble.jpg"
+        bumpImageUrl="//unpkg.com/three-globe/example/img/earth-topology.png"
         backgroundImageUrl="//unpkg.com/three-globe/example/img/night-sky.png"
+
+        atmosphereColor="#3b82f6"
+        atmosphereAltitude={0.15}
+
         pointsData={points}
         pointAltitude="alt"
         pointColor="color"
         pointRadius={(d: any) => d.type === 'STATION' ? 0.8 : 0.5}
         pointLabel={(d: any) => `
-            <div style="background: rgba(15, 23, 42, 0.9); padding: 8px; border: 1px solid #334155; border-radius: 4px; color: white;">
-                <div style="font-weight: bold; color: ${d.color}">${d.name}</div>
-                <div style="font-size: 11px;">${d.type === 'STATION' ? 'GROUND UPLINK' : 'SAT_ID: ' + d.id}</div>
-                <div style="font-size: 11px;">Status: ${d.status}</div>
+            <div style="background: rgba(15, 23, 42, 0.9); padding: 12px; border: 1px solid #334155; border-radius: 8px; color: white; backdrop-filter: blur(8px); box-shadow: 0 4px 20px rgba(0,0,0,0.5);">
+                <div style="font-weight: bold; color: ${d.color}; font-size: 14px; margin-bottom: 4px;">${d.name}</div>
+                <div style="font-size: 11px; opacity: 0.8;">${d.type === 'STATION' ? 'GROUND UPLINK' : 'SAT_CORE_v2.4'}</div>
+                <div style="display: flex; align-items: center; gap: 8px; margin-top: 8px;">
+                  <span style="width: 8px; height: 8px; border-radius: 50%; background: ${d.color}; display: inline-block;"></span>
+                  <span style="font-size: 12px; font-weight: bold;">STATUS: ${d.status}</span>
+                </div>
+                ${d.type !== 'STATION' ? `<div style="font-size: 10px; margin-top: 4px; color: #94a3b8;">ORBIT: ${d.alt.toFixed(2)} AU</div>` : ''}
             </div>
         `}
         onPointClick={(point: any) => {
@@ -152,19 +161,18 @@ export const OrbitMap: React.FC<Props> = ({ satellites, selectedSat, onSatClick,
         }}
 
         arcsData={arcs}
-        arcColor="color"
-        arcDashLength="dashLength"
-        arcDashGap="dashGap"
-        arcDashAnimateTime="dashAnimateTime"
-        arcStroke="stroke"
+        arcColor={(d: any) => d.color}
+        arcDashLength={0.4}
+        arcDashGap={0.2}
+        arcDashAnimateTime={2000}
+        arcStroke={(d: any) => d.stroke}
+        arcAltitudeAutoScale={0.1}
 
         ringsData={ringsData}
-        ringColor="color"
+        ringColor={(d: any) => d.color}
         ringMaxRadius="maxR"
         ringPropagationSpeed="propagationSpeed"
         ringRepeatPeriod="repeatPeriod"
-        atmosphereColor="#3b82f6"
-        atmosphereAltitude={0.15}
 
         labelsData={GROUND_STATIONS}
         labelLat="lat"
@@ -173,6 +181,7 @@ export const OrbitMap: React.FC<Props> = ({ satellites, selectedSat, onSatClick,
         labelSize={1.5}
         labelDotRadius={0.5}
         labelColor={() => '#06b6d4'}
+        labelResolution={2}
       />
 
       {/* Overlay UI */}

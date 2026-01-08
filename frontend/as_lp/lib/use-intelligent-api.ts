@@ -9,9 +9,11 @@ export function useIntelligentApi(options: any = {}) {
     loading: false,
     error: null as string | null,
     rateLimited: false,
-    retryAfter: 0
+    retryAfter: 0,
+    notifications: [],
+    health: { status: 'healthy' }
   });
-  
+
   const retryCountRef = useRef(0);
 
   const get = async (endpoint: string) => {
@@ -21,11 +23,11 @@ export function useIntelligentApi(options: any = {}) {
       await new Promise(resolve => setTimeout(resolve, 500));
       return { success: true, data: {} };
     } catch (error) {
-       const msg = error instanceof Error ? error.message : 'API error';
-       setState(prev => ({ ...prev, error: msg }));
-       return { success: false, error: msg };
+      const msg = error instanceof Error ? error.message : 'API error';
+      setState(prev => ({ ...prev, error: msg }));
+      return { success: false, error: msg };
     } finally {
-       setState(prev => ({ ...prev, loading: false }));
+      setState(prev => ({ ...prev, loading: false }));
     }
   };
 
@@ -50,15 +52,40 @@ export function useIntelligentApi(options: any = {}) {
 
       return { success: true, data: { received: true } };
     } catch (error) {
-       const msg = error instanceof Error ? error.message : 'API error';
-       setState(prev => ({ ...prev, error: msg }));
-       return { success: false, error: msg };
+      const msg = error instanceof Error ? error.message : 'API error';
+      setState(prev => ({ ...prev, error: msg }));
+      return { success: false, error: msg };
     } finally {
-       setState(prev => ({ ...prev, loading: false }));
+      setState(prev => ({ ...prev, loading: false }));
     }
   };
 
-  return { get, post, ...state };
+  const removeNotification = (id: string) => {
+    setState(prev => ({
+      ...prev,
+      notifications: prev.notifications.filter((n: any) => n.id !== id)
+    }));
+  };
+
+  const getHealthStatusColor = (status: string) => {
+    switch (status) {
+      case 'healthy': return 'text-green-500';
+      case 'degraded': return 'text-yellow-500';
+      case 'critical': return 'text-red-500';
+      default: return 'text-gray-500';
+    }
+  };
+
+  const getHealthStatusIcon = (status: string) => {
+    switch (status) {
+      case 'healthy': return '✅';
+      case 'degraded': return '⚠️';
+      case 'critical': return '❌';
+      default: return '❓';
+    }
+  };
+
+  return { get, post, removeNotification, getHealthStatusColor, getHealthStatusIcon, ...state };
 }
 
 // Export compatibility hooks

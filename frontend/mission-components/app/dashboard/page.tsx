@@ -23,6 +23,8 @@ import { BattleModeOverlay } from '../components/ui/BattleModeOverlay';
 import { useKeyboardShortcuts } from '../hooks/useKeyboardShortcuts';
 import { useSoundEffects } from '../hooks/useSoundEffects';
 import { CopilotChat } from '../components/dashboard/CopilotChat';
+import { ThemeSwitcher } from '../components/ui/ThemeSwitcher';
+import { CommandHUD } from '../components/ui/CommandHUD';
 
 const DashboardContent: React.FC = () => {
   const [activeTab, setActiveTab] = useState<'mission' | 'systems' | 'chaos' | 'uplink'>('mission');
@@ -83,6 +85,7 @@ const DashboardContent: React.FC = () => {
 
   return (
     <div className="dashboard-container min-h-screen text-white font-mono antialiased">
+      <CommandHUD />
       <CommandPalette
         isOpen={showPalette}
         onClose={() => setShowPalette(false)}
@@ -99,7 +102,9 @@ const DashboardContent: React.FC = () => {
           {/* Desktop: Horizontal (hidden on mobile) */}
           <DesktopTabNav activeTab={activeTab} onTabChange={setActiveTab} />
 
-          <div className="hidden md:block ml-auto flex items-center gap-4">
+          <div className="hidden md:flex ml-auto items-center gap-4">
+            <ThemeSwitcher />
+            <div className="h-6 w-[1px] bg-slate-800 mx-2" />
             <button
               onClick={toggleAudio}
               className={`flex items-center gap-2 px-3 py-1 rounded border transition-all text-xs uppercase tracking-wider ${activeAudio

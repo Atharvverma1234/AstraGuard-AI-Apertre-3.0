@@ -96,6 +96,11 @@ export function MultiCloudAnomalyDashboard({ className }: MultiCloudAnomalyDashb
   const [anomalies, setAnomalies] = useState<Anomaly[]>(mockAnomalies);
   const [isRefreshing, setIsRefreshing] = useState(false);
   const [showAddProvider, setShowAddProvider] = useState(false);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const handleRefresh = async () => {
     setIsRefreshing(true);
@@ -186,11 +191,10 @@ export function MultiCloudAnomalyDashboard({ className }: MultiCloudAnomalyDashb
             <motion.div
               key={provider.id}
               whileHover={{ scale: 1.02 }}
-              className={`flex items-center space-x-3 p-3 rounded-lg border-2 transition-all cursor-pointer ${
-                selectedProviders.includes(provider.id)
+              className={`flex items-center space-x-3 p-3 rounded-lg border-2 transition-all cursor-pointer ${selectedProviders.includes(provider.id)
                   ? 'border-blue-500 bg-blue-50 dark:bg-blue-900/20'
                   : 'border-gray-200 dark:border-gray-700 hover:border-gray-300'
-              }`}
+                }`}
               onClick={() => {
                 setSelectedProviders((prev: string[]) =>
                   prev.includes(provider.id)
@@ -287,7 +291,7 @@ export function MultiCloudAnomalyDashboard({ className }: MultiCloudAnomalyDashb
                     {anomaly.description}
                   </p>
                   <div className="text-xs text-gray-500 dark:text-gray-400">
-                    {anomaly.timestamp.toLocaleString()}
+                    {mounted ? anomaly.timestamp.toLocaleString() : 'Loading time...'}
                   </div>
                 </div>
                 {anomaly.status === 'active' && (
@@ -328,7 +332,7 @@ export function MultiCloudAnomalyDashboard({ className }: MultiCloudAnomalyDashb
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.9, opacity: 0 }}
               className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-xl max-w-md w-full mx-4"
-            onClick={(e: MouseEvent) => e.stopPropagation()}
+              onClick={(e: MouseEvent) => e.stopPropagation()}
             >
               <div className="flex items-center justify-between mb-4">
                 <h3 className="text-lg font-semibold text-gray-900 dark:text-white">

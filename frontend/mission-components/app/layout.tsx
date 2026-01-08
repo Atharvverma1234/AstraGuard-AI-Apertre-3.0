@@ -31,6 +31,8 @@ export const viewport: Viewport = {
   initialScale: 1,
 };
 
+import { ThemeProvider } from "../components/theme-provider";
+
 export default function RootLayout({
   children,
 }: {
@@ -39,9 +41,17 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} ${playfair.variable} ${geistMono.variable}`} suppressHydrationWarning>
       <body className="font-sans antialiased overflow-x-hidden bg-background text-foreground" suppressHydrationWarning>
-        <div className="noise-overlay" />
-        {children}
-        <Analytics />
+        <ThemeProvider
+          attribute="data-theme"
+          defaultTheme="dark"
+          enableSystem={false}
+          disableTransitionOnChange
+          themes={['dark', 'stealth', 'clean', 'high-visibility']}
+        >
+          <div className="noise-overlay" />
+          {children}
+          <Analytics />
+        </ThemeProvider>
       </body>
     </html>
   );
