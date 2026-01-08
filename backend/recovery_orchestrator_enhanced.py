@@ -29,6 +29,12 @@ from enum import Enum
 import yaml
 import os
 
+# Import config loader utility
+try:
+    from config.config_loader import load_config_file
+except ImportError:
+    load_config_file = None
+
 from backend.safe_condition_parser import safe_evaluate_condition
 from core.metrics import (
     RECOVERY_ACTIONS_TOTAL,
