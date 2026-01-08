@@ -54,3 +54,14 @@ Implemented professional PDF generation needed for incident reporting.
 - **Test**: Open any anomaly. Click the Document icon next to the close button.
 - **Result**: A PDF named `AstraGuard_Report_[ID].pdf` is downloaded.
 - **Check**: Verify "TOP SECRET" headers and correct data values.
+
+## 5. CI/CD Pipeline Configuration
+Fixed persistent build errors related to dependency file paths.
+
+### Changes
+- **Requirements Path**: Updated `config/requirements.txt` references in:
+    - `.github/workflows/tests.yml`
+    - `.github/workflows/ci-cd.yml`
+    - `.github/workflows/canary-deploy.yml`
+    - `docker/Dockerfile`
+- **Result**: Build pipelines now correctly locate dependencies in the `config/` directory.
