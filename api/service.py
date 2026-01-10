@@ -822,6 +822,11 @@ async def get_anomaly_history(
     )
 
 
+class ChaosRequest(BaseModel):
+    fault_type: str
+    duration_seconds: int
+
+
 @app.post("/api/v1/chaos/inject")
 async def inject_fault(request: ChaosRequest, api_key: APIKey = Depends(require_permission("admin"))):
     """Trigger a chaos experiment."""
