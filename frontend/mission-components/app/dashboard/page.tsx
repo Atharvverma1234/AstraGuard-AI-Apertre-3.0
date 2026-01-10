@@ -54,7 +54,7 @@ const DashboardContent: React.FC = () => {
   const { isConnected, togglePlay, isReplayMode, toggleReplayMode, isBattleMode, setBattleMode, spaceWeather, distortionIntensity, isGeomagneticStorm, executeSystemReset, debrisObjects, closestDebris, proximityLevel, activePlaybook, setActivePlaybook, biometricData, incrementMissedAlerts, resetMissedAlerts, isAutoPilotActive, enableAutoPilot, disableAutoPilot, groundStations, activeStation, switchStation, dragPhysics, executeReboost } = useDashboard();
   const [showSpaceWeatherAlert, setShowSpaceWeatherAlert] = useState(false);
   const [isRedPhoneCoverOpen, setIsRedPhoneCoverOpen] = useState(false);
-  const [showProximityAlert, setShowProximityAlert] = useState(true);
+  const [showProximityAlert, setShowProximityAlert] = useState(false);
   const [highlightedPanel, setHighlightedPanel] = useState<string | null>(null);
   const [showAutoPilotProposal, setShowAutoPilotProposal] = useState(false);
   const mission = { ...dashboardData.mission, aiHealth: (dashboardData as any).aiHealth, achievements: (dashboardData as any).achievements } as MissionState;
@@ -149,13 +149,6 @@ const DashboardContent: React.FC = () => {
     isReplayMode
   });
 
-  // Show space weather alert when geomagnetic storm begins
-  React.useEffect(() => {
-    if (isGeomagneticStorm && !showSpaceWeatherAlert) {
-      setShowSpaceWeatherAlert(true);
-    }
-  }, [isGeomagneticStorm, showSpaceWeatherAlert]);
-
   return (
     <div className="dashboard-container min-h-screen text-white font-mono antialiased">
       <CommandHUD />
@@ -236,6 +229,9 @@ const DashboardContent: React.FC = () => {
         onToggleProximityAlert={() => setShowProximityAlert(!showProximityAlert)}
         isReplayMode={isReplayMode}
         onToggleReplayMode={toggleReplayMode}
+        showSolarAlert={showSpaceWeatherAlert}
+        onToggleSolarAlert={() => setShowSpaceWeatherAlert(!showSpaceWeatherAlert)}
+        isSolarActivityActive={isGeomagneticStorm || spaceWeather.solarFlux > 50}
       />
 
       {/* Ground Station Panel */}

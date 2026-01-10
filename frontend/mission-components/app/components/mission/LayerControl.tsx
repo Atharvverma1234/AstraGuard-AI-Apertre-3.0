@@ -11,6 +11,9 @@ interface LayerControlProps {
     onToggleProximityAlert: () => void;
     isReplayMode: boolean;
     onToggleReplayMode: () => void;
+    showSolarAlert: boolean;
+    onToggleSolarAlert: () => void;
+    isSolarActivityActive: boolean;
 }
 
 export const LayerControl: React.FC<LayerControlProps> = ({
@@ -23,7 +26,10 @@ export const LayerControl: React.FC<LayerControlProps> = ({
     showProximityAlert,
     onToggleProximityAlert,
     isReplayMode,
-    onToggleReplayMode
+    onToggleReplayMode,
+    showSolarAlert,
+    onToggleSolarAlert,
+    isSolarActivityActive
 }) => {
     return (
         <div className="fixed top-24 right-24 z-40 flex items-center gap-4">
@@ -37,6 +43,18 @@ export const LayerControl: React.FC<LayerControlProps> = ({
                     <span className="text-xs font-bold uppercase tracking-wider">Replay Mode</span>
                 </button>
             )}
+
+            {/* Solar Activity Toggle */}
+            <button
+                onClick={onToggleSolarAlert}
+                className={`flex items-center gap-2 px-4 py-2 rounded-lg border backdrop-blur-md transition-all ${showSolarAlert
+                    ? 'bg-amber-500/20 border-amber-500 text-amber-400 shadow-[0_0_15px_rgba(245,158,11,0.3)]'
+                    : 'bg-black/40 border-white/10 text-slate-400 hover:text-white hover:border-white/30'
+                    } ${!showSolarAlert && isSolarActivityActive ? 'animate-pulse border-amber-500/50 text-amber-500/80 shadow-[0_0_10px_rgba(245,158,11,0.2)]' : ''}`}
+            >
+                <div className={`w-2 h-2 rounded-full ${showSolarAlert ? 'bg-amber-400 animate-pulse' : isSolarActivityActive ? 'bg-amber-500 animate-ping' : 'bg-slate-600'}`} />
+                <span className="text-xs font-bold uppercase tracking-wider">Solar</span>
+            </button>
 
             {/* Ground Stations Toggle */}
             <button

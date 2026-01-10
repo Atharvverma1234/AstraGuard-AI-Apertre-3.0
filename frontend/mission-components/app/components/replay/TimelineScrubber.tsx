@@ -100,20 +100,7 @@ export const TimelineScrubber: React.FC = () => {
     }, [state.mission?.anomalies, timeRange]);
 
     if (!isReplaying) {
-        return (
-            <motion.div
-                initial={{ y: 100, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                className="fixed bottom-6 left-1/2 transform -translate-x-1/2 z-50"
-            >
-                <button
-                    onClick={enterReplayMode}
-                    className="px-6 py-3 bg-cyan-500/20 border border-cyan-500/50 rounded-lg text-cyan-400 font-bold uppercase text-sm tracking-wider hover:bg-cyan-500/30 transition-all shadow-[0_0_20px_rgba(6,182,212,0.3)]"
-                >
-                    📼 Enter Replay Mode
-                </button>
-            </motion.div>
-        );
+        return null;
     }
 
     return (
