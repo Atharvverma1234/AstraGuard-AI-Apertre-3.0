@@ -25,7 +25,7 @@ import docker
 if TYPE_CHECKING:
     from docker.client import DockerClient
 
-from anomaly_injector import AnomalyInjector, AnomalySeverity, AnomalyEvent
+from .anomaly_injector import AnomalyInjector, AnomalySeverity, AnomalyEvent
 
 
 class RecoveryStage(Enum):
