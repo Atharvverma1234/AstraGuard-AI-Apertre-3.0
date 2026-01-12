@@ -31,6 +31,7 @@ from astraguard.swarm.registry import SwarmRegistry, PeerState
 from astraguard.swarm.health_broadcaster import HealthBroadcaster, BroadcastMetrics
 from astraguard.swarm.intent_broadcaster import IntentBroadcaster, IntentStats
 from astraguard.swarm.reliable_delivery import ReliableDelivery, SentMsg, DeliveryStats, AckStatus
+from astraguard.swarm.bandwidth_governor import BandwidthGovernor, TokenBucket, MessagePriority, BandwidthStats
 
 __all__ = [
     # Models (Issue #397)
@@ -69,4 +70,9 @@ __all__ = [
     "SentMsg",
     "DeliveryStats",
     "AckStatus",
+    # Bandwidth Governor (Issue #404)
+    "BandwidthGovernor",
+    "TokenBucket",
+    "MessagePriority",
+    "BandwidthStats",
 ]
