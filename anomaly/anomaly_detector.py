@@ -281,7 +281,10 @@ async def detect_anomaly(data: Dict) -> Tuple[bool, float]:
                     if hasattr(_MODEL, "score_samples")
                     else 0.5
                 )
-                score = max(0, min(score, 1.0))  # Normalize to 0-1
+                # Ensure score is a valid float, default to 0.5 if None
+                if score is None:
+                    score = 0.5
+                score = max(0.0, min(float(score), 1.0))  # Normalize to 0-1
 
                 health_monitor.mark_healthy("anomaly_detector")
 
