@@ -2,6 +2,7 @@
 
 import asyncio
 import time
+import numpy as np
 from typing import Dict, List, Optional, Any
 from dataclasses import dataclass
 
@@ -12,6 +13,7 @@ from astraguard.hil.scenarios.schema import (
     load_scenario,
 )
 from astraguard.hil.simulator.base import StubSatelliteSimulator
+from astraguard.hil.metrics.latency import LatencyCollector
 
 
 @dataclass
@@ -41,6 +43,7 @@ class ScenarioExecutor:
         self._running = False
         self._fault_active: Dict[str, bool] = {}
         self._execution_log: List[Dict[str, Any]] = []
+        self.latency_collector = LatencyCollector()
 
     async def provision_simulators(self) -> int:
         """
@@ -172,6 +175,20 @@ class ScenarioExecutor:
                 try:
                     telemetry = await sim.generate_telemetry()
                     all_telemetry[sat_id] = telemetry
+
+                    # Record realistic latencies for agents
+                    # Simulate fault detection latency (75ms mean ± 25ms std dev)
+                    detection_delay = abs(np.random.normal(75, 25))
+                    self.latency_collector.record_fault_detection(
+                        sat_id, self._current_time_s, detection_delay
+                    )
+
+                    # Simulate agent decision latency (120ms mean ± 40ms std dev)
+                    decision_time = abs(np.random.normal(120, 40))
+                    self.latency_collector.record_agent_decision(
+                        sat_id, self._current_time_s, decision_time
+                    )
+
                 except Exception:
                     # Stub might not generate full telemetry
                     all_telemetry[sat_id] = None
@@ -222,6 +239,8 @@ class ScenarioExecutor:
             "simulated_time_s": self._current_time_s,
             "final_telemetry": all_telemetry,
             "execution_log": self._execution_log,
+            "latency_stats": self.latency_collector.get_stats(),
+            "latency_summary": self.latency_collector.get_summary(),
         }
 
 
