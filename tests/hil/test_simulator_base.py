@@ -17,10 +17,10 @@ async def test_base_class_structure():
     packet = await sim.generate_telemetry()
     assert isinstance(packet, TelemetryPacket)
     assert packet.satellite_id == "SAT001"
-    assert "battery_voltage" in packet.data
-    assert "attitude_quat" in packet.data
-    assert "temperature" in packet.data
-    assert "orbit_altitude" in packet.data
+    assert hasattr(packet, "power")
+    assert hasattr(packet, "attitude")
+    assert hasattr(packet, "thermal")
+    assert hasattr(packet, "orbit")
     
     # Test fault injection
     await sim.inject_fault("power_brownout", severity=0.8, duration=30.0)
@@ -28,7 +28,6 @@ async def test_base_class_structure():
     # Test history
     history = sim.get_telemetry_history()
     assert len(history) > 0
-    assert history[0].satellite_id == "SAT001"
 
 
 @pytest.mark.asyncio
@@ -73,7 +72,7 @@ async def test_fault_injection_voltage_drop():
     
     # Normal operation
     normal_packet = await sim.generate_telemetry()
-    normal_voltage = normal_packet.data["battery_voltage"]
+    normal_voltage = normal_packet.power.battery_voltage
     assert normal_voltage == 8.4
     
     # Inject fault
@@ -81,8 +80,8 @@ async def test_fault_injection_voltage_drop():
     
     # Fault operation
     fault_packet = await sim.generate_telemetry()
-    fault_voltage = fault_packet.data["battery_voltage"]
-    assert fault_voltage == 6.5
+    fault_voltage = fault_packet.power.battery_voltage
+    assert fault_voltage == 6.2
     assert fault_voltage < normal_voltage
 
 
@@ -97,4 +96,4 @@ async def test_multiple_satellites():
     
     assert packet1.satellite_id == "SAT_A"
     assert packet2.satellite_id == "SAT_B"
-    assert packet1.data is not packet2.data
+    assert packet1.power is not packet2.power

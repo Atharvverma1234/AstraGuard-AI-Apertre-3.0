@@ -6,18 +6,15 @@ that powers all HIL testing for AstraGuard swarm behaviors.
 """
 
 from abc import ABC, abstractmethod
-from typing import Dict, Any, List, Optional
+from typing import List, Optional
 from datetime import datetime
-from pydantic import BaseModel
-import uuid
-
-
-class TelemetryPacket(BaseModel):
-    """Temporary telemetry packet model - will migrate to schemas/telemetry.py in #486."""
-    
-    timestamp: datetime
-    satellite_id: str
-    data: Dict[str, Any]
+from ..schemas.telemetry import (
+    TelemetryPacket,
+    AttitudeData,
+    PowerData,
+    ThermalData,
+    OrbitData,
+)
 
 
 class SatelliteSimulator(ABC):
@@ -109,35 +106,67 @@ class StubSatelliteSimulator(SatelliteSimulator):
     
     async def generate_telemetry(self) -> TelemetryPacket:
         """
-        Generate LEO satellite telemetry.
+        Generate LEO satellite telemetry with production schemas.
         
-        Returns telemetry with voltage drop when fault is active.
+        Returns telemetry with voltage/SOC drop and thermal warning when fault is active.
         """
         import random
         
         timestamp = datetime.now()
         
-        # Nadir-pointing attitude quaternion [w, x, y, z]
-        attitude_quat = [0.707, 0.0, 0.0, 0.707]
-        
-        # Simulate voltage drop during power brownout fault
+        # Simulate fault effects across multiple subsystems
         if self._fault_active and self._fault_type == "power_brownout":
-            battery_voltage = 6.5
+            battery_voltage = 6.2
+            battery_soc = 0.45
+            thermal_status = "warning"
+            battery_temp = 25.2  # Raised during fault
         else:
-            battery_voltage = 8.4
+            battery_voltage = 8.4  # Nominal LiIon voltage
+            battery_soc = 0.87
+            thermal_status = "nominal"
+            battery_temp = 15.2
         
-        data = {
-            "attitude_quat": attitude_quat,
-            "battery_voltage": battery_voltage,
-            "temperature": 20 + random.uniform(-5, 5),
-            "orbit_altitude": 520000,  # LEO altitude in meters
-        }
+        # Attitude: near nadir pointing
+        attitude = AttitudeData(
+            quaternion=[0.707, 0.01, 0.02, 0.03],
+            angular_velocity=[0.001, 0.002, 0.001],
+            nadir_pointing_error_deg=random.uniform(0.1, 2.0)
+        )
         
+        # Power: battery + solar
+        power = PowerData(
+            battery_voltage=battery_voltage,
+            battery_soc=battery_soc,
+            solar_current=0.8,
+            load_current=0.3
+        )
+        
+        # Thermal: battery + EPS temps
+        thermal = ThermalData(
+            battery_temp=battery_temp,
+            eps_temp=22.1,
+            status=thermal_status
+        )
+        
+        # Orbit: LEO parameters
+        orbit = OrbitData(
+            altitude_m=520000 + random.uniform(-1000, 1000),
+            ground_speed_ms=7660,
+            true_anomaly_deg=random.uniform(0, 360)
+        )
+        
+        # Build packet
         packet = TelemetryPacket(
             timestamp=timestamp,
             satellite_id=self.sat_id,
-            data=data
+            attitude=attitude,
+            power=power,
+            thermal=thermal,
+            orbit=orbit,
+            mission_mode="nominal",
+            ground_contact=random.choice([True, False])
         )
+        
         self.record_telemetry(packet)
         return packet
     
