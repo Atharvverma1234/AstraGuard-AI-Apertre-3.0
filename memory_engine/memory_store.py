@@ -324,12 +324,12 @@ class AdaptiveMemoryStore:
 
         ages = [event.age_seconds() / 3600 for event in self.memory]
 
-        return {
-            "total_events": len(self.memory),
-            "critical_events": sum(1 for e in self.memory if e.is_critical),
-            "avg_age_hours": np.mean(ages) if np is not None else sum(ages) / len(ages) if ages else 0,
-            "max_recurrence": max(e.recurrence_count for e in self.memory),
-        }
+    return {
+        "total_events": len(self.memory),
+        "critical_events": sum(1 for e in self.memory if e.is_critical),
+        "avg_age_hours": np.mean(ages) if np is not None else sum(ages) / len(ages),
+        "max_recurrence": max(e.recurrence_count for e in self.memory),
+    }
 
     # Private helper methods
 
