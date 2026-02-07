@@ -405,7 +405,18 @@ def create_response(status: str, data: dict = None, **kwargs) -> dict:
 
 
 def process_telemetry_batch(telemetry_list: list) -> dict:
-    """Process a batch of telemetry data and return aggregated results."""
+    """
+    Process a batch of telemetry data and return aggregated results.
+
+    Iterates through specific telemetry items, running anomaly detection on each.
+    Aggregates statistics on processed items and detected anomalies.
+
+    Args:
+        telemetry_list (list): List of telemetry data dictionaries or objects.
+
+    Returns:
+        dict: Summary containing 'processed' count and 'anomalies_detected' count.
+    """
     processed_count = 0
     anomalies_detected = 0
 
@@ -530,12 +541,22 @@ async def metrics(username: str = Depends(get_current_username)):
 @app.post("/api/v1/telemetry", response_model=AnomalyResponse, status_code=status.HTTP_200_OK)
 async def submit_telemetry(telemetry: TelemetryInput, current_user: User = Depends(require_operator)):
     """
-    Submit single telemetry point for anomaly detection.
+    Submit a single telemetry data point for real-time anomaly detection.
 
-    Requires API key authentication with 'write' permission.
+    This endpoint orchestrates the entire analysis pipeline:
+    1. Validates input against physical constraints.
+    2. Runs anomaly detection models (e.g., Isolation Forest, Autoencoder).
+    3. Classifies the type of anomaly if detected.
+    4. Consults the Phase-Aware Handler for context-specific decisions.
+    5. Updates predictive maintenance models.
+
+    Args:
+        telemetry (TelemetryInput): Sensor data from the satellite subsystem.
+        current_user (User): The authenticated operator.
 
     Returns:
-        AnomalyResponse with detection results and recommended actions
+        AnomalyResponse: Detailed analysis including anomaly score, severity,
+        and recommended actions based on the current mission phase.
     """
     request_start = time.time()
     
@@ -742,12 +763,21 @@ async def get_latest_telemetry(api_key: APIKey = Depends(get_api_key)):
 @app.post("/api/v1/telemetry/batch", response_model=BatchAnomalyResponse)
 async def submit_telemetry_batch(batch: TelemetryBatch, current_user: User = Depends(require_operator)):
     """
-    Submit batch of telemetry points for anomaly detection.
+    Submit a batch of telemetry points for efficient anomaly detection.
 
-    Requires API key authentication with 'write' permission.
+    Processes multiple telemetry data points in a single request, suitable for
+    high-throughput streams or buffered data from ground stations.
+
+    Args:
+        batch (TelemetryBatch): A collection of telemetry data points.
+        current_user (User): The authenticated operator submitting the data.
 
     Returns:
-        BatchAnomalyResponse with aggregated results
+        BatchAnomalyResponse: Aggregated results including total processed count,
+        number of anomalies detected, and individual result details.
+
+    Permissions:
+        Requires 'operator' role or higher with 'write' permission.
     """
     results = []
     anomalies_detected = 0
