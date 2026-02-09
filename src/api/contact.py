@@ -358,19 +358,45 @@ async def submit_contact_form(
     
     # Save to database
     try:
-        submission_id = save_submission(submission, ip_address, user_agent)
-    except Exception as e:
-        print(f"Database error: {e}")
+        submission_id = await save_submission(submission, ip_address, user_agent)
+    except aiosqlite.Error as e:
+        logger.error(
+            "Database save failed",
+            error_type=type(e).__name__,
+            error_message=str(e),
+            ip_address=ip_address,
+            email=submission.email,
+            subject=submission.subject
+        )
         raise HTTPException(
             status_code=500,
             detail="Failed to save submission. Please try again later."
         )
+    except Exception as e:
+        logger.error(
+            "Unexpected database error",
+            error_type=type(e).__name__,
+            error_message=str(e),
+            ip_address=ip_address,
+            email=submission.email
+        )
+        raise HTTPException(
+            status_code=500,
+            detail="An unexpected error occurred. Please try again later."
+        )
     
     # Send notification
     try:
-        send_email_notification(submission, submission_id)
+        await send_email_notification(submission, submission_id)
     except Exception as e:
-        print(f"Notification error: {e}")
+        logger.warning(
+            "Notification failed but request succeeded",
+            error_type=type(e).__name__,
+            error_message=str(e),
+            submission_id=submission_id,
+            email=submission.email,
+            subject=submission.subject
+        )
         # Don't fail the request if notification fails
     
     return ContactResponse(
@@ -493,10 +519,10 @@ async def contact_health():
         cursor.execute("SELECT COUNT(*) FROM contact_submissions")
         total_submissions = cursor.fetchone()[0]
         conn.close()
-        
+
         # Check rate limiting
         rate_limiter_status = "redis" if REDIS_AVAILABLE else "in-memory"
-        
+
         return {
             "status": "healthy",
             "database": "connected",
@@ -504,8 +530,24 @@ async def contact_health():
             "rate_limiter": rate_limiter_status,
             "email_configured": SENDGRID_API_KEY is not None
         }
-    except Exception as e:
+    except sqlite3.Error as e:
+        logger.error(
+            "Database health check failed",
+            error_type=type(e).__name__,
+            error_message=str(e),
+            db_path=str(DB_PATH)
+        )
         raise HTTPException(
             status_code=503,
-            detail=f"Contact service unhealthy: {str(e)}"
+            detail="Database connection failed"
+        )
+    except Exception as e:
+        logger.error(
+            "Health check failed",
+            error_type=type(e).__name__,
+            error_message=str(e)
+        )
+        raise HTTPException(
+            status_code=503,
+            detail="Service health check failed"
         )
