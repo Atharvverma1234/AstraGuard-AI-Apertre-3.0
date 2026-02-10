@@ -86,13 +86,13 @@ async def test_no_deadlocks_multiple_locks():
     lock3 = Lock()
     
     async def use_locks(i):
-        # Always acquire in same order to prevent deadlock
+        # Always acquire in same order to prevent deadlock and hold multiple locks concurrently
         async with lock1:
             await asyncio.sleep(0.0001)
-        async with lock2:
-            await asyncio.sleep(0.0001)
-        async with lock3:
-            await asyncio.sleep(0.0001)
+            async with lock2:
+                await asyncio.sleep(0.0001)
+                async with lock3:
+                    await asyncio.sleep(0.0001)
     
     tasks = [use_locks(i) for i in range(100)]
     # Should complete without hanging
