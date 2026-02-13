@@ -3,15 +3,17 @@ Contact Form API
 
 Handles contact form submissions with validation, rate limiting, spam protection,
 and persistence. Includes admin endpoint for reviewing submissions.
+
+Optimized for async I/O performance using aiosqlite and connection pooling.
 """
 
 import os
 import re
-import sqlite3
 import json
 from datetime import datetime, timedelta
 from pathlib import Path
 from typing import Optional, List
+from collections import deque
 from fastapi import APIRouter, HTTPException, Request, Depends, Query
 from pydantic import BaseModel, EmailStr, Field, field_validator
 from fastapi.responses import JSONResponse
@@ -115,8 +117,20 @@ class SubmissionsResponse(BaseModel):
     submissions: List[SubmissionRecord]
 
 
-# Database initialization
-def init_database():
+# Database connection pool
+_db_pool: Optional[aiosqlite.Connection] = None
+
+async def get_db() -> aiosqlite.Connection:
+    """Get or create database connection"""
+    global _db_pool
+    if _db_pool is None:
+        DATA_DIR.mkdir(exist_ok=True)
+        _db_pool = await aiosqlite.connect(DB_PATH)
+        _db_pool.row_factory = aiosqlite.Row
+    return _db_pool
+
+
+async def init_database():
     """
     Initialize SQLite database with required tables and indices.
     
@@ -128,10 +142,9 @@ def init_database():
     """
     DATA_DIR.mkdir(exist_ok=True)
     
-    conn = sqlite3.connect(DB_PATH)
-    cursor = conn.cursor()
+    db = await aiosqlite.connect(DB_PATH)
     
-    cursor.execute("""
+    await db.execute("""
         CREATE TABLE IF NOT EXISTS contact_submissions (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             name TEXT NOT NULL,
@@ -147,47 +160,59 @@ def init_database():
     """)
     
     # Create index for faster queries
-    cursor.execute("""
+    await db.execute("""
         CREATE INDEX IF NOT EXISTS idx_submitted_at 
         ON contact_submissions(submitted_at DESC)
     """)
     
-    cursor.execute("""
+    await db.execute("""
         CREATE INDEX IF NOT EXISTS idx_status 
         ON contact_submissions(status)
     """)
     
-    conn.commit()
-    conn.close()
+    await db.commit()
+    await db.close()
 
 
-# Initialize database on module load
-init_database()
+# Initialize database on module load (run async)
+def _init_db_sync():
+    """Synchronous wrapper for database initialization"""
+    try:
+        asyncio.run(init_database())
+    except RuntimeError:
+        # Event loop already running, schedule as task
+        asyncio.create_task(init_database())
+
+# Initialize database
+_init_db_sync()
 
 
-# Rate limiting helper
+# Rate limiting helper - OPTIMIZED with deque
 class InMemoryRateLimiter:
-    """Simple in-memory rate limiter when Redis is not available"""
+    """Optimized in-memory rate limiter using deque for O(1) operations"""
     def __init__(self):
         self.requests = {}
     
     def is_allowed(self, key: str, limit: int, window: int) -> bool:
-        """Check if request is allowed under rate limit"""
-        now = datetime.now()
-        cutoff = now - timedelta(seconds=window)
+        """Check if request is allowed under rate limit - O(1) complexity"""
+        now = datetime.now().timestamp()
+        cutoff = now - window
         
-        # Clean old entries
-        if key in self.requests:
-            self.requests[key] = [ts for ts in self.requests[key] if ts > cutoff]
-        else:
-            self.requests[key] = []
+        if key not in self.requests:
+            self.requests[key] = deque(maxlen=limit)
         
-        # Check limit
-        if len(self.requests[key]) >= limit:
+        request_deque = self.requests[key]
+        
+        # Remove old entries from the left (oldest) side - O(1) per operation
+        while request_deque and request_deque[0] < cutoff:
+            request_deque.popleft()
+        
+        # Check if we're at the limit
+        if len(request_deque) >= limit:
             return False
         
-        # Add new request
-        self.requests[key].append(now)
+        # Add new request timestamp
+        request_deque.append(now)
         return True
 
 
@@ -240,12 +265,11 @@ async def save_submission(
         int: The primary key ID of the newly created submission record.
 
     Raises:
-        sqlite3.Error: If a database error occurs during insertion.
+        aiosqlite.Error: If a database error occurs during insertion.
     """
-    conn = sqlite3.connect(DB_PATH)
-    cursor = conn.cursor()
+    db = await get_db()
     
-    cursor.execute("""
+    cursor = await db.execute("""
         INSERT INTO contact_submissions 
         (name, email, phone, subject, message, ip_address, user_agent)
         VALUES (?, ?, ?, ?, ?, ?, ?)
@@ -260,8 +284,7 @@ async def save_submission(
     ))
     
     submission_id = cursor.lastrowid
-    conn.commit()
-    conn.close()
+    await db.commit()
     
     return submission_id
 
@@ -422,9 +445,7 @@ async def get_submissions(
     
     Requires admin authentication
     """
-    conn = sqlite3.connect(DB_PATH)
-    conn.row_factory = sqlite3.Row
-    cursor = conn.cursor()
+    db = await get_db()
     
     # Build query
     where_clause = ""
@@ -436,7 +457,9 @@ async def get_submissions(
     
     # Get total count
     count_query = f"SELECT COUNT(*) as total FROM contact_submissions {where_clause}"
-    total = cursor.execute(count_query, params).fetchone()["total"]
+    async with db.execute(count_query, params) as cursor:
+        row = await cursor.fetchone()
+        total = row["total"] if row else 0
     
     # Get submissions
     query = f"""
@@ -447,10 +470,10 @@ async def get_submissions(
         ORDER BY submitted_at DESC
         LIMIT ? OFFSET ?
     """
-    params.extend([limit, offset])
+    params_extended = params + [limit, offset]
     
-    rows = cursor.execute(query, params).fetchall()
-    conn.close()
+    async with db.execute(query, params_extended) as cursor:
+        rows = await cursor.fetchall()
     
     submissions = [
         SubmissionRecord(
@@ -490,20 +513,17 @@ async def update_submission_status(
     
     Requires admin authentication
     """
-    conn = sqlite3.connect(DB_PATH)
-    cursor = conn.cursor()
+    db = await get_db()
     
-    cursor.execute(
+    cursor = await db.execute(
         "UPDATE contact_submissions SET status = ? WHERE id = ?",
         (status, submission_id)
     )
     
     if cursor.rowcount == 0:
-        conn.close()
         raise HTTPException(status_code=404, detail="Submission not found")
     
-    conn.commit()
-    conn.close()
+    await db.commit()
     
     return {"success": True, "message": f"Status updated to {status}"}
 
@@ -514,11 +534,10 @@ async def contact_health():
     """Check contact form service health"""
     try:
         # Check database
-        conn = sqlite3.connect(DB_PATH)
-        cursor = conn.cursor()
-        cursor.execute("SELECT COUNT(*) FROM contact_submissions")
-        total_submissions = cursor.fetchone()[0]
-        conn.close()
+        db = await get_db()
+        async with db.execute("SELECT COUNT(*) as count FROM contact_submissions") as cursor:
+            row = await cursor.fetchone()
+            total_submissions = row["count"] if row else 0
 
         # Check rate limiting
         rate_limiter_status = "redis" if REDIS_AVAILABLE else "in-memory"
@@ -530,7 +549,7 @@ async def contact_health():
             "rate_limiter": rate_limiter_status,
             "email_configured": SENDGRID_API_KEY is not None
         }
-    except sqlite3.Error as e:
+    except aiosqlite.Error as e:
         logger.error(
             "Database health check failed",
             error_type=type(e).__name__,
