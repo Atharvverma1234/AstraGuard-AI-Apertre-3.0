@@ -13,7 +13,7 @@ depending on the current mission phase.
 """
 
 import logging
-from typing import Dict, Any, Optional, Tuple, List, Union
+from typing import Dict, Any, Optional, Tuple, List
 from dataclasses import asdict
 from datetime import datetime, timedelta
 import json
@@ -32,7 +32,7 @@ from anomaly_agent.explainability import build_explanation
 from anomaly.report_generator import get_report_generator
 
 
-logger = logging.getLogger(__name__)
+logger: logging.Logger = logging.getLogger(__name__)
 
 def _log_with_context(
     logger_method,
@@ -99,9 +99,9 @@ class PhaseAwareAnomalyHandler:
         self.policy_engine = MissionPhasePolicyEngine(self.policy_loader.get_policy())
         
         # Recurrence tracking
-        self.enable_recurrence_tracking: bool = enable_recurrence_tracking
+        self.enable_recurrence_tracking = enable_recurrence_tracking
         self.anomaly_history: List[Tuple[str, datetime]] = []  # List of (anomaly_type, timestamp) tuples
-        self.recurrence_window: timedelta = timedelta(seconds=3600)  # 1 hour default
+        self.recurrence_window = timedelta(seconds=3600)  # 1 hour default
         
         logger.info("Phase-aware anomaly handler initialized")
     
@@ -360,7 +360,7 @@ class PhaseAwareAnomalyHandler:
         self, 
         decision: Dict[str, Any], 
         anomaly_metadata: Dict[str, Any]
-    ) -> None: 
+    ) -> None:
         """
         Record anomaly decision for operator feedback loop.
         
@@ -446,8 +446,6 @@ class PhaseAwareAnomalyHandler:
         
         logger.info(f"Anomaly decision: {log_entry}")
     
-
-    
     def _generate_decision_id(self) -> str:
         """Generate a unique decision identifier."""
         import time
@@ -469,8 +467,8 @@ class PhaseAwareAnomalyHandler:
         if phase is None:
             phase = self.state_machine.get_current_phase()
         
-        from typing import cast
-        return cast(Dict[str, Any], self.policy_engine.get_phase_constraints(phase))
+        constraints = self.policy_engine.get_phase_constraints(phase)
+        return constraints if isinstance(constraints, dict) else {}
     
     def get_anomaly_history(self, anomaly_type: Optional[str] = None) -> List[Tuple[str, datetime]]:
         """
@@ -553,7 +551,7 @@ class DecisionTracer:
     
     def __init__(self, max_decisions: int = 1000) -> None:
         """Initialize the decision tracer."""
-        self.max_decisions: int = max_decisions
+        self.max_decisions = max_decisions
         self.decisions: List[Dict[str, Any]] = []
     
     def add_decision(self, decision: Dict[str, Any]) -> None:
