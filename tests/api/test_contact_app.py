@@ -36,13 +36,13 @@ pytestmark = pytest.mark.skipif(
 def clean_modules():
     """Clean up module cache before each test."""
     modules_to_remove = [k for k in sys.modules.keys() 
-                        if k.startswith('api.contact') or k == 'src.api.contact_app']
+                        if k.startswith('api.contact')]
     for mod in modules_to_remove:
         del sys.modules[mod]
     yield
     # Cleanup after test
     modules_to_remove = [k for k in sys.modules.keys() 
-                        if k.startswith('api.contact') or k == 'src.api.contact_app']
+                        if k.startswith('api.contact')]
     for mod in modules_to_remove:
         del sys.modules[mod]
 
@@ -153,20 +153,6 @@ class TestRouterInclusion:
             # App should have routes from the router
             assert contact_app.app is not None
 
-    def test_runtime_error_on_router_inclusion_is_logged_and_reraised(self):
-        """Test that RuntimeError during router inclusion is logged and re-raised."""
-        # This test verifies the error handling pattern exists in the code
-        # We test by verifying the app includes the router successfully when no error
-        mock_router = MagicMock()
-        
-        with patch.dict(sys.modules, {'api.contact': MagicMock(router=mock_router)}):
-            from api import contact_app
-            
-            # The app should have been created successfully
-            assert contact_app.app is not None
-            # The try/except block in the source catches RuntimeError
-            # This test confirms the router inclusion path works
-
     def test_runtime_error_triggers_critical_log_and_reraise(self):
         """Test that RuntimeError during include_router logs critical and re-raises."""
         import runpy
@@ -195,11 +181,19 @@ class TestRouterInclusion:
         # Patch at the fastapi module level before running the module
         with patch.dict(sys.modules, {'api.contact': mock_contact}):
             with patch('fastapi.FastAPI', FailingFastAPI):
-                module_path = os.path.join(os.path.dirname(__file__), '..', '..', 'src', 'api', 'contact_app.py')
-                module_path = os.path.abspath(module_path)
-                
-                with pytest.raises(RuntimeError, match="Router registration failed"):
-                    runpy.run_path(module_path, run_name='api.contact_app')
+                with patch('logging.getLogger') as mock_get_logger:
+                    mock_get_logger.return_value = mock_logger
+                    module_path = os.path.join(os.path.dirname(__file__), '..', '..', 'src', 'api', 'contact_app.py')
+                    module_path = os.path.abspath(module_path)
+                    
+                    with pytest.raises(RuntimeError, match="Router registration failed"):
+                        runpy.run_path(module_path, run_name='api.contact_app')
+                    
+                    # Verify logger.critical was called with exc_info=True
+                    mock_logger.critical.assert_called_once()
+                    call_args = mock_logger.critical.call_args
+                    assert "Failed to include contact router" in call_args[0][0]
+                    assert call_args[1].get('exc_info') is True
 
 
 class TestCORSBehavior:
@@ -255,9 +249,9 @@ class TestCORSBehavior:
                 }
             )
             
-            # Check that credentials header is present when origin matches
-            if "access-control-allow-credentials" in response.headers:
-                assert response.headers["access-control-allow-credentials"] == "true"
+            # Assert credentials header is present and correct
+            assert "access-control-allow-credentials" in response.headers
+            assert response.headers["access-control-allow-credentials"] == "true"
 
 
 class TestAllowedMethods:
@@ -280,8 +274,8 @@ class TestAllowedMethods:
                 }
             )
             
-            if "access-control-allow-methods" in response.headers:
-                assert "GET" in response.headers["access-control-allow-methods"]
+            assert "access-control-allow-methods" in response.headers
+            assert "GET" in response.headers["access-control-allow-methods"]
 
     def test_cors_allows_post_method(self):
         """Test that CORS allows POST method."""
@@ -300,8 +294,8 @@ class TestAllowedMethods:
                 }
             )
             
-            if "access-control-allow-methods" in response.headers:
-                assert "POST" in response.headers["access-control-allow-methods"]
+            assert "access-control-allow-methods" in response.headers
+            assert "POST" in response.headers["access-control-allow-methods"]
 
     def test_cors_allows_put_method(self):
         """Test that CORS allows PUT method."""
@@ -320,8 +314,8 @@ class TestAllowedMethods:
                 }
             )
             
-            if "access-control-allow-methods" in response.headers:
-                assert "PUT" in response.headers["access-control-allow-methods"]
+            assert "access-control-allow-methods" in response.headers
+            assert "PUT" in response.headers["access-control-allow-methods"]
 
     def test_cors_allows_delete_method(self):
         """Test that CORS allows DELETE method."""
@@ -340,8 +334,8 @@ class TestAllowedMethods:
                 }
             )
             
-            if "access-control-allow-methods" in response.headers:
-                assert "DELETE" in response.headers["access-control-allow-methods"]
+            assert "access-control-allow-methods" in response.headers
+            assert "DELETE" in response.headers["access-control-allow-methods"]
 
     def test_cors_allows_patch_method(self):
         """Test that CORS allows PATCH method."""
@@ -360,8 +354,8 @@ class TestAllowedMethods:
                 }
             )
             
-            if "access-control-allow-methods" in response.headers:
-                assert "PATCH" in response.headers["access-control-allow-methods"]
+            assert "access-control-allow-methods" in response.headers
+            assert "PATCH" in response.headers["access-control-allow-methods"]
 
     def test_cors_allows_options_method(self):
         """Test that CORS allows OPTIONS method."""
@@ -380,8 +374,8 @@ class TestAllowedMethods:
                 }
             )
             
-            if "access-control-allow-methods" in response.headers:
-                assert "OPTIONS" in response.headers["access-control-allow-methods"]
+            assert "access-control-allow-methods" in response.headers
+            assert "OPTIONS" in response.headers["access-control-allow-methods"]
 
 
 class TestImportErrorHandling:
@@ -450,16 +444,6 @@ class TestModuleLevel:
 class TestAppConfiguration:
     """Test FastAPI app configuration details."""
 
-    def test_app_type_annotation(self):
-        """Test that app has correct type annotation in module."""
-        mock_router = MagicMock()
-        
-        with patch.dict(sys.modules, {'api.contact': MagicMock(router=mock_router)}):
-            from api import contact_app
-            
-            # Verify app is properly typed as FastAPI
-            assert isinstance(contact_app.app, FastAPI)
-
     def test_cors_allow_headers_is_wildcard(self):
         """Test that CORS allows all headers (wildcard)."""
         mock_router = MagicMock()
@@ -480,8 +464,7 @@ class TestAppConfiguration:
                 }
             )
             
-            # If wildcard is set, custom headers should be allowed
-            if "access-control-allow-headers" in response.headers:
-                # Should either be "*" or include the requested header
-                allow_headers = response.headers["access-control-allow-headers"]
-                assert "*" in allow_headers or "x-custom-header" in allow_headers.lower()
+            # Assert headers are allowed - should either be "*" or include the requested header
+            assert "access-control-allow-headers" in response.headers
+            allow_headers = response.headers["access-control-allow-headers"]
+            assert "*" in allow_headers or "x-custom-header" in allow_headers.lower()
