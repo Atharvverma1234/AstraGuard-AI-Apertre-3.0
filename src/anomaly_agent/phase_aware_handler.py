@@ -61,6 +61,33 @@ def _log_with_context(
     logger_method(message, extra=context)
 
 
+def _log_with_context(
+    logger_method,
+    message: str,
+    decision_id: Optional[str] = None,
+    anomaly_type: Optional[str] = None,
+    **extra_context
+):
+    """
+    Helper to add consistent context to logs.
+    
+    Args:
+        logger_method: Logger method to call (logger.info, logger.error, etc.)
+        message: Log message
+        decision_id: Optional decision ID
+        anomaly_type: Optional anomaly type
+        **extra_context: Additional context fields
+    """
+    context = {}
+    if decision_id:
+        context['decision_id'] = decision_id
+    if anomaly_type:
+        context['anomaly_type'] = anomaly_type
+    context.update(extra_context)
+    
+    logger_method(message, extra=context)
+
+
 
 class PhaseAwareAnomalyHandler:
     """
