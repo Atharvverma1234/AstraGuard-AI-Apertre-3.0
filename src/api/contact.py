@@ -117,6 +117,7 @@ class SubmissionsResponse(BaseModel):
 
 # Database initialization
 def init_database() -> None:
+
     """Initialize SQLite database with contact_submissions table
         Creates the 'contact_submissions' table if it doesn't exist, along with
     indices on 'submitted_at' and 'status' for query performance.
@@ -124,6 +125,7 @@ def init_database() -> None:
     The database file is created at `data/contact_submissions.db` relative to the
     application root.
     """
+
 
     DATA_DIR.mkdir(exist_ok=True)
     
@@ -239,6 +241,7 @@ async def save_submission(
 
     Raises:
         sqlite3.Error: If a database error occurs during insertion"""
+
 
     conn = sqlite3.connect(DB_PATH)
     cursor = conn.cursor()
