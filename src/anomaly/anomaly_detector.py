@@ -158,10 +158,20 @@ async def load_model() -> bool:
         ANOMALY_MODEL_FALLBACK_ACTIVATIONS.inc()
         return False
     except Exception as e:
-        logger.error(f"Unexpected error during model load: {e}")
+        logger.error(
+            f"Unexpected error during model load: {e}",
+            extra={
+                "error_type": type(e).__name__,
+                "model_path": MODEL_PATH,
+                "operation": "model_load",
+                "fallback_active": True
+            },
+            exc_info=True
+        )
         ANOMALY_MODEL_LOAD_ERRORS_TOTAL.inc()
         _USING_HEURISTIC_MODE = True
         return False
+
 
 
 def _detect_anomaly_heuristic(data: Dict) -> Tuple[bool, float]:
@@ -310,7 +320,14 @@ async def detect_anomaly(data: Dict) -> Tuple[bool, float]:
                 return bool(is_anomalous), float(score)
             except Exception as e:
                 logger.warning(
-                    f"Model prediction failed: {e}. Falling back to heuristic."
+                    f"Model prediction failed: {e}. Falling back to heuristic.",
+                    extra={
+                        "error_type": type(e).__name__,
+                        "operation": "model_prediction",
+                        "has_model": _MODEL is not None,
+                        "fallback_active": True
+                    },
+                    exc_info=True
                 )
                 _USING_HEURISTIC_MODE = True
                 health_monitor.mark_degraded(
@@ -340,15 +357,18 @@ async def detect_anomaly(data: Dict) -> Tuple[bool, float]:
 
         return is_anomalous, score
 
-    except AnomalyEngineError as e:
-        logger.error(f"Anomaly detection error: {e.message}")
-        health_monitor.mark_degraded(
-            "anomaly_detector", error_msg=str(e.message), fallback_active=True
-        )
-        # Fall back to heuristic on error
-        return _detect_anomaly_heuristic(data)
     except Exception as e:
-        logger.error(f"Unexpected error in anomaly detection: {e}")
+        logger.error(
+            f"Unexpected error in anomaly detection: {e}",
+            extra={
+                "error_type": type(e).__name__,
+                "operation": "anomaly_detection",
+                "using_heuristic_mode": _USING_HEURISTIC_MODE,
+                "model_loaded": _MODEL_LOADED,
+                "fallback_active": True
+            },
+            exc_info=True
+        )
         health_monitor.mark_degraded(
             "anomaly_detector",
             error_msg=f"Unexpected error: {str(e)}",
