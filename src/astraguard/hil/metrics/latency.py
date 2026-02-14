@@ -3,6 +3,7 @@
 import time
 import csv
 import logging
+import heapq
 from typing import Dict, List, Any, Optional
 from dataclasses import dataclass, asdict
 from datetime import datetime
@@ -26,29 +27,36 @@ class LatencyMeasurement:
 class LatencyCollector:
     """Captures high-resolution timing data across swarm (10Hz cadence)."""
 
-    def __init__(self):
+    def __init__(self) -> None:
         """Initialize collector with empty measurements."""
         self.measurements: List[LatencyMeasurement] = []
-        self._start_time = time.time()
+        self._start_time: float = time.time()
         self._measurement_log: Dict[str, int] = defaultdict(int)
 
     def record_fault_detection(
         self, sat_id: str, scenario_time_s: float, detection_delay_ms: float
     ) -> None:
         """
-        Record fault detection latency.
+        Record the latency of a fault detection event.
+
+        Captures the precise time elapsed between the injection of a fault and
+        its initial detection by the anomaly system.
 
         Args:
-            sat_id: Satellite identifier (e.g., "SAT1")
-            scenario_time_s: Simulation time when detected
-            detection_delay_ms: Time from fault injection to detection
+            sat_id (str): Satellite identifier (e.g., "SAT1").
+            scenario_time_s (float): Simulation time (seconds) when detection occurred.
+            detection_delay_ms (float): Time elapsed (milliseconds) from fault injection
+                                        to detection. Must be non-negative.
+
+        Raises:
+            ValueError: If inputs are invalid (empty ID, negative metrics).
         """
         if not isinstance(sat_id, str) or not sat_id.strip():
             raise ValueError(f"Invalid sat_id: must be non-empty string, got {sat_id}")
-        
+
         if not isinstance(scenario_time_s, (int, float)) or scenario_time_s < 0:
             raise ValueError(f"Invalid scenario_time_s: must be non-negative number, got {scenario_time_s}")
-        
+
         if not isinstance(detection_delay_ms, (int, float)) or detection_delay_ms < 0:
             raise ValueError(f"Invalid detection_delay_ms: must be non-negative number, got {detection_delay_ms}")
 
@@ -170,12 +178,12 @@ class LatencyCollector:
         if not self.measurements:
             return {}
 
-        by_satellite = defaultdict(lambda: defaultdict(list))
+        by_satellite: Dict[str, Dict[str, List[float]]] = defaultdict(lambda: defaultdict(list))
 
         for m in self.measurements:
             by_satellite[m.satellite_id][m.metric_type].append(m.duration_ms)
 
-        stats = {}
+        stats: Dict[str, Dict[str, Any]] = {}
         for sat_id, metrics in by_satellite.items():
             stats[sat_id] = {}
             for metric_type, latencies in metrics.items():
@@ -202,6 +210,10 @@ class LatencyCollector:
 
         Args:
             filename: Path to output CSV file
+            
+        Raises:
+            ValueError: If filename is invalid or no measurements to export
+            OSError: If file cannot be created or written (permissions, disk space, etc.)
         """
         if not isinstance(filename, str) or not filename.strip():
             raise ValueError(f"Invalid filename: must be non-empty string, got {filename}")
@@ -210,27 +222,66 @@ class LatencyCollector:
             raise ValueError("No measurements to export")
 
         filepath = Path(filename)
-        filepath.parent.mkdir(parents=True, exist_ok=True)
+        
+        try:
+            filepath.parent.mkdir(parents=True, exist_ok=True)
+        except OSError as e:
+            logger.error(
+                f"Failed to create directory for CSV export: {e}",
+                extra={
+                    "directory": str(filepath.parent),
+                    "error_type": "OSError",
+                    "operation": "mkdir"
+                },
+                exc_info=True
+            )
+            raise
 
-        with open(filepath, "w", newline="", encoding='utf-8') as f:
-            fieldnames = [
-                "timestamp",
-                "metric_type",
-                "satellite_id",
-                "duration_ms",
-                "scenario_time_s",
-            ]
-            writer = csv.DictWriter(f, fieldnames=fieldnames)
-            writer.writeheader()
+        try:
+            with open(filepath, "w", newline="", encoding='utf-8') as f:
+                fieldnames = [
+                    "timestamp",
+                    "metric_type",
+                    "satellite_id",
+                    "duration_ms",
+                    "scenario_time_s",
+                ]
+                writer = csv.DictWriter(f, fieldnames=fieldnames)
+                writer.writeheader()
 
-            # Write in batches for better performance
-            batch_size = 1000
-            for i in range(0, len(self.measurements), batch_size):
-                batch = self.measurements[i:i + batch_size]
-                for m in batch:
-                    writer.writerow(asdict(m))
+                # Write in batches for better performance
+                batch_size = 1000
+                for i in range(0, len(self.measurements), batch_size):
+                    batch = self.measurements[i:i + batch_size]
+                    for m in batch:
+                        writer.writerow(asdict(m))
 
-        logger.info(f"Exported {len(self.measurements)} measurements to {filepath}")
+            logger.info(f"Exported {len(self.measurements)} measurements to {filepath}")
+            
+        except OSError as e:
+            logger.error(
+                f"Failed to write CSV file: {e}",
+                extra={
+                    "filepath": str(filepath),
+                    "measurement_count": len(self.measurements),
+                    "error_type": "OSError",
+                    "operation": "file_write"
+                },
+                exc_info=True
+            )
+            raise
+        except Exception as e:
+            # Catch unexpected errors during CSV serialization
+            logger.error(
+                f"Unexpected error during CSV export: {e}",
+                extra={
+                    "filepath": str(filepath),
+                    "error_type": type(e).__name__,
+                    "operation": "csv_export"
+                },
+                exc_info=True
+            )
+            raise
 
     def get_summary(self) -> Dict[str, Any]:
         """
@@ -270,7 +321,7 @@ class LatencyCollector:
         count = len(latencies)
 
         # Use heapq to find percentiles without full sort
-        def nth_smallest(n):
+        def nth_smallest(n: int) -> float:
             return heapq.nsmallest(n, latencies)[-1] if n <= count else latencies[-1]
 
         p50_index = count // 2 + 1

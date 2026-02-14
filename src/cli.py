@@ -6,9 +6,10 @@ import subprocess
 import os
 import json
 import time
-from datetime import datetime
+import platform
+from datetime import datetime, timedelta
 from pathlib import Path
-from typing import List, Any, Optional
+from typing import List, Any, Optional, Dict, NoReturn
 
 # Enable UTF-8 output on Windows
 if sys.platform == "win32":
@@ -18,6 +19,18 @@ if sys.platform == "win32":
 
 from models.feedback import FeedbackEvent, FeedbackLabel
 from core.secrets import init_secrets_manager, store_secret, get_secret, rotate_secret, list_secrets, health_check
+from astraguard.logging_config import get_logger
+
+logger = get_logger(__name__)
+
+# Cache for frequently accessed data
+_PHASE_DESCRIPTIONS = {
+    "LAUNCH": "Rocket ascent and orbital insertion",
+    "DEPLOYMENT": "System stabilization and checkout",
+    "NOMINAL_OPS": "Standard mission operations",
+    "PAYLOAD_OPS": "Science/mission payload operations",
+    "SAFE_MODE": "Minimal power survival mode",
+}
 
 
 class FeedbackCLI:
@@ -25,32 +38,88 @@ class FeedbackCLI:
 
     @staticmethod
     def load_pending() -> List[FeedbackEvent]:
-        """Load and validate pending events from feedback_pending.json."""
+        """
+        Load and validate pending feedback events from the local JSON store.
+
+        Reads `feedback_pending.json`, validates each entry against the
+        FeedbackEvent schema, and gracefully handles corruption by clearing
+        invalid files.
+
+        Returns:
+            List[FeedbackEvent]: A list of validated feedback events ready for review.
+        """
         path = Path("feedback_pending.json")
         if not path.exists():
+            logger.info("No pending feedback file found", file_path=str(path))
             return []
 
         try:
-            with open(path) as f:
-                raw = json.load(f)
+            # Optimized: Use Path.read_text() for better performance
+            content = path.read_text(encoding='utf-8')
+            raw = json.loads(content)
             if not isinstance(raw, list):
+                logger.warning("Pending feedback file is not a list, ignoring", file_path=str(path))
                 return []
             return [FeedbackEvent.model_validate(e) for e in raw]
-        except (json.JSONDecodeError, Exception):
-            print("⚠️  Invalid pending store, cleared.")
-            path.unlink(missing_ok=True)
+        except FileNotFoundError:
+            logger.warning("Pending feedback file not found during load", file_path=str(path))
+            return []
+        except PermissionError as e:
+            logger.error("Permission denied accessing pending feedback file", file_path=str(path), error=str(e))
+            return []
+        except json.JSONDecodeError as e:
+            logger.warning("Invalid JSON in pending feedback file, clearing", file_path=str(path), error=str(e))
+            try:
+                path.unlink(missing_ok=True)
+            except OSError as unlink_e:
+                logger.error("Failed to remove corrupted pending feedback file", file_path=str(path), error=str(unlink_e))
+            return []
+        except Exception as e:
+            logger.error(
+                "Unexpected error loading pending feedback",
+                extra={
+                    "file_path": str(path),
+                    "error_type": type(e).__name__,
+                    "operation": "load_feedback",
+                    "error": str(e)
+                },
+                exc_info=True
+            )
             return []
 
     @staticmethod
     def save_processed(events: List[dict[str, Any]]) -> None:
-        """Save processed events to feedback_processed.json."""
-        Path("feedback_processed.json").write_text(
-            json.dumps(events, separators=(",", ":"))
-        )
+        """
+        Save processed feedback events to the permanent storage.
+
+        Writes the list of reviewed events to `feedback_processed.json`.
+        This file serves as the dataset for future model retraining.
+
+        Args:
+            events (List[dict[str, Any]]): List of feedback event dictionaries.
+        """
+        # Optimized: Pre-serialize JSON and write with explicit encoding
+        content = json.dumps(events, separators=(",", ":"), ensure_ascii=False)
+        Path("feedback_processed.json").write_text(content, encoding='utf-8')
 
     @staticmethod
     def review_interactive() -> None:
-        """Main interactive review loop for operator feedback."""
+        """
+        Launch the interactive command-line interface for feedback review.
+
+        Iterates through pending feedback events, prompting the operator to
+        validate or correct the system's decisions. Supported actions:
+        - Confirm (correct)
+        - Flag as insufficient context
+        - Mark as wrong decision
+        - Add optional notes
+
+        Workflow:
+        1.  Load pending events.
+        2.  Present each event details to the user.
+        3.  Capture and validate user input.
+        4.  Save processed events and clear pending queue.
+        """
         pending = FeedbackCLI.load_pending()
         if not pending:
             print("✅ No pending feedback events.")
@@ -92,29 +161,39 @@ class FeedbackCLI:
 
 
 def _get_phase_description(phase: str) -> str:
-    descriptions = {
-        "LAUNCH": "Rocket ascent and orbital insertion",
-        "DEPLOYMENT": "System stabilization and checkout",
-        "NOMINAL_OPS": "Standard mission operations",
-        "PAYLOAD_OPS": "Science/mission payload operations",
-        "SAFE_MODE": "Minimal power survival mode",
-    }
-    return descriptions.get(phase, "Unknown phase")
+    """Get mission phase description from cached dict."""
+    return _PHASE_DESCRIPTIONS.get(phase, "Unknown phase")
 
 
 def run_status(args: argparse.Namespace) -> None:
-    """Display comprehensive system status and health information."""
+    """
+    Display comprehensive system status and health information.
+
+    Aggregates health metrics from all registered components (database, cache,
+    AI models, etc.) and presents a color-coded status report. Also displays
+    environmental info (OS, Python version) and the current mission phase.
+
+    Exit Codes:
+        0: All systems healthy.
+        1: One or more components FAILED.
+        2: One or more components DEGRADED.
+        3: Missing core dependencies.
+
+    Args:
+        args (argparse.Namespace): Command-line arguments (e.g., --verbose).
+    """
     try:
         from core.component_health import get_health_monitor, HealthStatus
-        import platform
 
-        print("\n" + "=" * 70)
+        # Optimized: Use cached f-strings and batch system info
+        separator = "=" * 70
+        print(f"\n{separator}")
         print("🛰️  AstraGuard AI - System Status Report")
-        print("=" * 70)
+        print(separator)
         print(f"Generated: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
         print(f"Platform: {platform.system()} {platform.release()} ({platform.machine()})")
         print(f"Python: {platform.python_version()}")
-        print("=" * 70)
+        print(separator)
 
         print("\n📊 COMPONENT HEALTH STATUS")
         print("-" * 70)
@@ -122,7 +201,12 @@ def run_status(args: argparse.Namespace) -> None:
         try:
             health_monitor = get_health_monitor()
             components = health_monitor.get_all_health()
+        except ImportError as e:
+            logger.warning("Health monitor import failed", error=str(e))
+            print(f"  ⚠️  Unable to get health status: {e}")
+            components = {}
         except Exception as e:
+            logger.error("Failed to retrieve health status", error_type=type(e).__name__, error=str(e))
             print(f"  ⚠️  Unable to get health status: {e}")
             components = {}
 
@@ -132,25 +216,30 @@ def run_status(args: argparse.Namespace) -> None:
         if not components:
             print("  ⚠️  No components registered yet.")
         else:
+            # Optimized: Pre-calculate status icon mapping
+            status_icons = {
+                "healthy": "✅",
+                "degraded": "⚠️ ",
+                "failed": "❌"
+            }
+            
             for name, info in sorted(components.items()):
                 status = info.get("status", "unknown")
-                if status == "healthy":
-                    icon = "✅"
-                elif status == "degraded":
-                    icon = "⚠️ "
+                icon = status_icons.get(status, "❓")
+                
+                # Track counts
+                if status == "degraded":
                     degraded_count += 1
                 elif status == "failed":
-                    icon = "❌"
                     failed_count += 1
-                else:
-                    icon = "❓"
 
-                print(f"  {icon} {name:30s} {status:10s}", end="")
+                # Build status line efficiently
+                status_line = f"  {icon} {name:30s} {status:10s}"
                 if info.get("fallback_active"):
-                    print("  [FALLBACK MODE]", end="")
+                    status_line += "  [FALLBACK MODE]"
                 if info.get("error_count", 0) > 0:
-                    print(f"  (Errors: {info['error_count']})", end="")
-                print()
+                    status_line += f"  (Errors: {info['error_count']})"
+                print(status_line)
 
                 if args.verbose and info.get("last_error"):
                     print(f"       Last Error: {info['last_error']}")
@@ -165,11 +254,17 @@ def run_status(args: argparse.Namespace) -> None:
             print(f"  Description:   {_get_phase_description(phase)}")
         except ImportError as e:
             if "prometheus" in str(e):
+                logger.info("Mission phase unavailable due to missing prometheus dependencies")
                 print("  ⚠️  Mission phase unavailable (missing prometheus dependencies)")
                 print("     Install prometheus-client to see mission phase information")
             else:
+                logger.warning("Mission phase import failed", error=str(e))
                 print(f"  ⚠️  Unable to determine mission phase: {e}")
+        except AttributeError as e:
+            logger.error("State machine attribute error", error=str(e))
+            print(f"  ⚠️  Unable to determine mission phase: {e}")
         except Exception as e:
+            logger.error("Unexpected error getting mission phase", error_type=type(e).__name__, error=str(e))
             print(f"  ⚠️  Unable to determine mission phase: {e}")
 
         print("\n💡 RECOMMENDATIONS")
@@ -188,55 +283,166 @@ def run_status(args: argparse.Namespace) -> None:
         sys.exit(0)
 
     except ImportError as e:
+        logger.error("Missing core dependencies for status command", error=str(e))
         print(f"❌ Missing core dependencies: {e}")
         print("Try installing from requirements.txt.")
+        sys.exit(3)
+    except Exception as e:
+        logger.error("Unexpected error in status command", error_type=type(e).__name__, error=str(e))
+        print(f"❌ Unexpected error generating status report: {e}")
         sys.exit(3)
 
 
 def run_telemetry() -> None:
-    subprocess.run(
-        [sys.executable, os.path.join("astraguard", "telemetry", "telemetry_stream.py")]
-    )
+    """Run telemetry stream generator."""
+    script_path = os.path.join("astraguard", "telemetry", "telemetry_stream.py")
+    if not os.path.exists(script_path):
+        logger.error("Telemetry script not found", path=script_path)
+        print(f"❌ Telemetry script not found: {script_path}")
+        sys.exit(1)
+
+    try:
+        logger.info("Starting telemetry stream")
+        result = subprocess.run([sys.executable, script_path], check=True)
+        logger.info("Telemetry stream completed", returncode=result.returncode)
+    except subprocess.CalledProcessError as e:
+        logger.error("Telemetry stream failed", returncode=e.returncode, error=str(e))
+        print(f"❌ Telemetry stream failed: {e}")
+        sys.exit(1)
+    except FileNotFoundError as e:
+        logger.error("Python executable not found", error=str(e))
+        print(f"❌ Python executable not found: {e}")
+        sys.exit(1)
+    except Exception as e:
+        logger.error("Unexpected error running telemetry", error_type=type(e).__name__, error=str(e))
+        print(f"❌ Unexpected error: {e}")
+        sys.exit(1)
 
 
 def run_dashboard() -> None:
-    subprocess.run(["streamlit", "run", os.path.join("dashboard", "app.py")])
+    """Run Streamlit dashboard UI."""
+    try:
+        logger.info("Starting Streamlit dashboard")
+        result = subprocess.run(["streamlit", "run", os.path.join("dashboard", "app.py")], check=True)
+        logger.info("Dashboard completed", returncode=result.returncode)
+    except subprocess.CalledProcessError as e:
+        logger.error("Dashboard failed", returncode=e.returncode, error=str(e))
+        print(f"❌ Dashboard failed: {e}")
+        sys.exit(1)
+    except FileNotFoundError as e:
+        logger.error("Streamlit not found", error=str(e))
+        print(f"❌ Streamlit not found. Install with: pip install streamlit")
+        sys.exit(1)
+    except Exception as e:
+        logger.error("Unexpected error running dashboard", error_type=type(e).__name__, error=str(e))
+        print(f"❌ Unexpected error: {e}")
+        sys.exit(1)
 
 
 def run_simulation() -> None:
-    subprocess.run([sys.executable, os.path.join("simulation", "attitude_3d.py")])
+    """Run 3D attitude simulation."""
+    script_path = os.path.join("simulation", "attitude_3d.py")
+    if not os.path.exists(script_path):
+        logger.error("Simulation script not found", path=script_path)
+        print(f"❌ Simulation script not found: {script_path}")
+        sys.exit(1)
 
+    try:
+        logger.info("Starting 3D attitude simulation")
+        result = subprocess.run([sys.executable, script_path], check=True)
+        logger.info("Simulation completed", returncode=result.returncode)
+    except subprocess.CalledProcessError as e:
+        logger.error("Simulation failed", returncode=e.returncode, error=str(e))
+        print(f"❌ Simulation failed: {e}")
+        sys.exit(1)
+    except FileNotFoundError as e:
+        logger.error("Python executable not found", error=str(e))
+        print(f"❌ Python executable not found: {e}")
+        sys.exit(1)
+    except Exception as e:
+        logger.error("Unexpected error running simulation", error_type=type(e).__name__, error=str(e))
+        print(f"❌ Unexpected error: {e}")
+        sys.exit(1)
+
+def run_classifier() -> None:
+    """Run fault classifier tests."""
+    try:
+        from classifier.fault_classifier import run_tests
+        run_tests()
+    except ImportError as e:
+        logger.error("Fault classifier not available", error=str(e))
+        print("❌ Fault classifier not available. Missing dependencies.")
+        sys.exit(1)
+    except Exception as e:
+        logger.error(
+            f"Classifier failed: {e}",
+            extra={
+                "error_type": type(e).__name__,
+                "operation": "run_classifier",
+                "command": "classify"
+            },
+            exc_info=True
+        )
+        print(f"❌ Classifier failed: {e}")
+        sys.exit(1)
 
 def run_report(args: argparse.Namespace) -> None:
-    """Generate and export anomaly reports."""
+    """
+    Generate and export anomaly detection reports.
+
+    Orchestrates the report generation process:
+    1.  Initialize the AnomalyReportGenerator.
+    2.  Calculate the time window based on the `--hours` argument.
+    3.  Export the data to the specified format (JSON or Text).
+    4.  Print a summary to the console.
+
+    Args:
+        args (argparse.Namespace): Parsed command-line arguments.
+    """
     try:
         from anomaly.report_generator import get_report_generator
-        from datetime import datetime, timedelta
-        
+
         report_generator = get_report_generator()
-        
+
+        # Validate hours argument
+        if args.hours <= 0:
+            logger.error("Invalid hours value", hours=args.hours)
+            print("❌ Hours must be a positive integer")
+            sys.exit(1)
+
         # Calculate time range
         end_time = datetime.now()
         start_time = end_time - timedelta(hours=args.hours)
-        
+
         # Generate default output filename
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
         if args.output:
             output_file = args.output
+            # Validate output path
+            try:
+                output_dir = os.path.dirname(output_file)
+                if output_dir and not os.path.exists(output_dir):
+                    os.makedirs(output_dir, exist_ok=True)
+            except OSError as e:
+                logger.error("Invalid output path", path=output_file, error=str(e))
+                print(f"❌ Invalid output path: {e}")
+                sys.exit(1)
         else:
             ext = "json" if args.format == "json" else "txt"
             output_file = f"anomaly_report_{timestamp}.{ext}"
-        
+
+        logger.info("Starting report generation", format=args.format, hours=args.hours, output=output_file)
         print(f"Generating {args.format.upper()} anomaly report...")
         print(f"Time range: {start_time.strftime('%Y-%m-%d %H:%M:%S')} to {end_time.strftime('%Y-%m-%d %H:%M:%S')}")
-        
+
         if args.format == "json":
             file_path = report_generator.export_json(output_file, start_time, end_time)
         else:  # text format
             file_path = report_generator.export_text(output_file, start_time, end_time)
-        
+
+        logger.info("Report exported successfully", file_path=file_path)
         print(f"✅ Report exported to: {file_path}")
-        
+
         # Show brief summary
         report = report_generator.generate_report(start_time, end_time)
         summary = report.get("summary", {})
@@ -246,11 +452,21 @@ def run_report(args: argparse.Namespace) -> None:
         print(f"  Critical: {summary.get('critical_anomalies', 0)}")
         if summary.get('average_mttr_seconds'):
             print(f"  Avg MTTR: {summary['average_mttr_seconds']:.1f}s")
-        
-    except ImportError:
+
+    except ImportError as e:
+        logger.error("Anomaly reporting not available", error=str(e))
         print("❌ Anomaly reporting not available. Missing dependencies.")
         sys.exit(1)
+    except ValueError as e:
+        logger.error("Invalid report parameters", error=str(e))
+        print(f"❌ Invalid parameters: {e}")
+        sys.exit(1)
+    except OSError as e:
+        logger.error("File system error during report generation", error=str(e))
+        print(f"❌ File system error: {e}")
+        sys.exit(1)
     except Exception as e:
+        logger.error("Unexpected error generating report", error_type=type(e).__name__, error=str(e))
         print(f"❌ Failed to generate report: {e}")
         sys.exit(1)
 
@@ -311,6 +527,16 @@ def run_secrets_command(args: argparse.Namespace) -> None:
             sys.exit(1)
 
     except Exception as e:
+        logger.error(
+            f"Secrets operation failed: {e}",
+            extra={
+                "error_type": type(e).__name__,
+                "operation": "secrets_management",
+                "secrets_command": getattr(args, 'secrets_command', 'unknown'),
+                "key": getattr(args, 'key', None)
+            },
+            exc_info=True
+        )
         print(f"❌ Secrets operation failed: {e}")
         sys.exit(1)
 
@@ -381,6 +607,8 @@ def main() -> None:
         run_report(args)
     elif args.command == "feedback" and args.action == "review":
         FeedbackCLI.review_interactive()
+    elif args.command == "secrets":
+        run_secrets_command(args)
     else:
         parser.print_help()
 
