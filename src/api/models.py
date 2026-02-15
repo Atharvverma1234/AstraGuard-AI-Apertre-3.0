@@ -574,3 +574,18 @@ class FeedbackPendingResponse(BaseModel):
     timestamp: datetime = Field(default_factory=datetime.now, description="Response timestamp")
     
     model_config = ConfigDict(json_encoders={datetime: lambda v: v.isoformat()})
+
+
+
+class PrecisionMetrics(BaseModel):
+    """Analytics response for precision metrics."""
+    
+    precision: float = Field(..., ge=0.0, le=1.0, description="Overall precision score (0.0-1.0)")
+    total_feedback: int = Field(..., ge=0, description="Total number of feedback items analyzed")
+    correct_detections: int = Field(..., ge=0, description="Number of correct detections (true positives)")
+    incorrect_detections: int = Field(..., ge=0, description="Number of incorrect detections (false positives)")
+    by_anomaly_type: Dict[str, float] = Field(default_factory=dict, description="Precision by anomaly type")
+    by_mission_phase: Dict[str, float] = Field(default_factory=dict, description="Precision by mission phase")
+    timestamp: datetime = Field(default_factory=datetime.now, description="Calculation timestamp")
+    
+    model_config = ConfigDict(json_encoders={datetime: lambda v: v.isoformat()})

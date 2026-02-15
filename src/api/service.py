@@ -46,6 +46,7 @@ from api.models import (
     FeedbackLabel,
     FeedbackPendingItem,
     FeedbackPendingResponse,
+    PrecisionMetrics,
 )
 from core.auth import (
     get_auth_manager,
@@ -1230,6 +1231,131 @@ async def get_pending_feedback(
         raise HTTPException(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
             detail=f"Failed to retrieve pending feedback: {str(e)}"
+        ) from e
+
+
+@app.get("/api/v1/analytics/precision", response_model=PrecisionMetrics, status_code=status.HTTP_200_OK)
+async def get_precision_metrics(
+    current_user: User = Depends(require_analyst)
+) -> PrecisionMetrics:
+    """
+    Calculate precision metrics from operator feedback.
+    
+    Precision = True Positives / (True Positives + False Positives)
+    - True Positives: Feedback labeled as "correct"
+    - False Positives: Feedback labeled as "wrong" or "insufficient"
+    
+    This endpoint analyzes both pending and processed feedback to calculate
+    overall precision and breakdowns by anomaly type and mission phase.
+    
+    Requires analyst, operator, or admin role authentication.
+    
+    Args:
+        current_user: Authenticated user (analyst, operator, or admin)
+    
+    Returns:
+        PrecisionMetrics with overall precision and detailed breakdowns
+    
+    Raises:
+        HTTPException 401: Authentication required
+        HTTPException 403: Insufficient permissions
+        HTTPException 500: Internal server error during calculation
+    """
+    try:
+        import json
+        from pathlib import Path
+        from collections import defaultdict
+        
+        # Load feedback from both pending and processed files
+        feedback_data = []
+        
+        # Load pending feedback
+        pending_file = Path("feedback_pending.json")
+        if pending_file.exists():
+            try:
+                pending = json.loads(pending_file.read_text())
+                if isinstance(pending, list):
+                    feedback_data.extend(pending)
+            except json.JSONDecodeError:
+                logger.warning("feedback_pending.json is corrupted, skipping")
+        
+        # Load processed feedback
+        processed_file = Path("feedback_processed.json")
+        if processed_file.exists():
+            try:
+                processed = json.loads(processed_file.read_text())
+                if isinstance(processed, list):
+                    feedback_data.extend(processed)
+            except json.JSONDecodeError:
+                logger.warning("feedback_processed.json is corrupted, skipping")
+        
+        # Calculate metrics
+        total_feedback = 0
+        correct_detections = 0
+        incorrect_detections = 0
+        
+        # Track by anomaly type and mission phase
+        by_type = defaultdict(lambda: {"correct": 0, "total": 0})
+        by_phase = defaultdict(lambda: {"correct": 0, "total": 0})
+        
+        for item in feedback_data:
+            label = item.get('label')
+            if not label:
+                continue  # Skip items without labels
+            
+            total_feedback += 1
+            anomaly_type = item.get('anomaly_type', 'unknown')
+            mission_phase = item.get('mission_phase', 'unknown')
+            
+            # Count correct vs incorrect
+            if label == 'correct':
+                correct_detections += 1
+                by_type[anomaly_type]["correct"] += 1
+                by_phase[mission_phase]["correct"] += 1
+            else:  # 'wrong' or 'insufficient'
+                incorrect_detections += 1
+            
+            by_type[anomaly_type]["total"] += 1
+            by_phase[mission_phase]["total"] += 1
+        
+        # Calculate overall precision
+        if total_feedback > 0:
+            precision = correct_detections / total_feedback
+        else:
+            precision = 0.0
+        
+        # Calculate precision by anomaly type
+        precision_by_type = {}
+        for anom_type, counts in by_type.items():
+            if counts["total"] > 0:
+                precision_by_type[anom_type] = counts["correct"] / counts["total"]
+        
+        # Calculate precision by mission phase
+        precision_by_phase = {}
+        for phase, counts in by_phase.items():
+            if counts["total"] > 0:
+                precision_by_phase[phase] = counts["correct"] / counts["total"]
+        
+        logger.info(
+            f"Precision metrics calculated: {precision:.2f} "
+            f"({correct_detections}/{total_feedback} correct) for user {current_user.username}"
+        )
+        
+        return PrecisionMetrics(
+            precision=round(precision, 4),
+            total_feedback=total_feedback,
+            correct_detections=correct_detections,
+            incorrect_detections=incorrect_detections,
+            by_anomaly_type=precision_by_type,
+            by_mission_phase=precision_by_phase,
+            timestamp=datetime.now()
+        )
+        
+    except Exception as e:
+        logger.error(f"Failed to calculate precision metrics: {str(e)}")
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail=f"Failed to calculate precision metrics: {str(e)}"
         ) from e
 
 
