@@ -1075,8 +1075,8 @@ def test_run_report_output_directory_creation():
                 args = argparse.Namespace(format="json", output="reports/new_dir/report.json", hours=24)
                 stdout, stderr = get_captured_output(run_report, args)
                 
-                # Should attempt to create directory
-                mock_makedirs.assert_called_once()
+                # Should attempt to create directory with correct path and flags
+                mock_makedirs.assert_called_once_with("reports/new_dir", exist_ok=True)
     finally:
         cleanup(original)
 
