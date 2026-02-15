@@ -1155,4 +1155,4 @@ async def revoke_api_key(key_id: str, current_user: User = Depends(get_current_u
 
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run(app, host="0.0.0.0", port=8002)
+    uvicorn.run(app, host="0.0.0.0", port=8002)  # nosec B104

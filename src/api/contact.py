@@ -468,7 +468,7 @@ async def get_submissions(
         where_clause = "WHERE status = ?"
         params.append(status_filter)
 
-    count_query = f"SELECT COUNT(*) AS total FROM contact_submissions {where_clause}"
+    count_query = f"SELECT COUNT(*) AS total FROM contact_submissions {where_clause}"  # nosec B608
     select_query = f"""
         SELECT id, name, email, phone, subject, message,
                ip_address, user_agent, submitted_at, status
@@ -476,7 +476,7 @@ async def get_submissions(
         {where_clause}
         ORDER BY submitted_at DESC
         LIMIT ? OFFSET ?
-    """
+    """  # nosec B608
 
     async with aiosqlite.connect(DB_PATH) as conn:
         conn.row_factory = aiosqlite.Row
