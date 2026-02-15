@@ -7,7 +7,7 @@ FastAPI-based REST API for telemetry ingestion and anomaly detection.
 import os
 import time
 import asyncio
-from typing import List, Optional, Any, Union
+from typing import List, Optional, Any, Union, Dict, TYPE_CHECKING
 from datetime import datetime, timedelta
 from collections import deque
 from asyncio import Lock
@@ -61,11 +61,13 @@ from anomaly.anomaly_detector import detect_anomaly, load_model
 from classifier.fault_classifier import classify
 from core.component_health import get_health_monitor
 from memory_engine.memory_store import AdaptiveMemoryStore
-from security_engine.predictive_maintenance import (
-    get_predictive_maintenance_engine,
+from security_engine.contracts import (
     TimeSeriesData,
     PredictionResult
 )
+
+if TYPE_CHECKING:
+    from security_engine.predictive_maintenance import PredictiveMaintenanceEngine
 from fastapi.responses import Response
 from core.metrics import get_metrics_text, get_metrics_content_type
 from core.rate_limiter import RateLimiter, RateLimitMiddleware, get_rate_limit_config
@@ -102,7 +104,7 @@ state_machine = None
 policy_loader = None
 phase_aware_handler = None
 memory_store = None
-predictive_engine = None
+predictive_engine: Optional["PredictiveMaintenanceEngine"] = None
 latest_telemetry_data = None # Store latest telemetry for dashboard
 anomaly_history = deque(maxlen=MAX_ANOMALY_HISTORY_SIZE)  # Bounded deque prevents memory exhaustion
 active_faults = {} # Stores active chaos experiments: {fault_type: expiration_timestamp}
@@ -133,6 +135,7 @@ async def initialize_components() -> None:
     if memory_store is None:
         memory_store = AdaptiveMemoryStore()
     if predictive_engine is None:
+        from security_engine.predictive_maintenance import get_predictive_maintenance_engine
         predictive_engine = await get_predictive_maintenance_engine(memory_store)
 
 
