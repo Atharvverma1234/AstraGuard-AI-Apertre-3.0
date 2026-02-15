@@ -21,6 +21,9 @@ from backend.orchestration.recovery_orchestrator import (
     RecoveryMetrics,
 )
 
+# Mark recovery orchestrator tests as slow
+pytestmark = [pytest.mark.slow, pytest.mark.timeout(45)]
+
 # ============================================================================
 # FIXTURES
 # ============================================================================
