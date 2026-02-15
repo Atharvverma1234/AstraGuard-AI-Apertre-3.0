@@ -14,7 +14,7 @@ import asyncio
 from datetime import datetime, timedelta
 from unittest.mock import Mock, AsyncMock, patch, MagicMock
 
-from backend.recovery_orchestrator import (
+from backend.orchestration.recovery_orchestrator import (
     RecoveryOrchestrator,
     RecoveryConfig,
     RecoveryAction,
