@@ -112,6 +112,9 @@ async def get_api_key(
             status_code=status.HTTP_401_UNAUTHORIZED,
             detail="API key required. Include 'X-API-Key' header."
         )
+    
+    api_key = api_key.strip()
+    key_prefix = api_key[:8] if len(api_key) >= 8 else api_key[:4]
 
     key_manager = get_api_key_manager()
     masked_key = _mask_api_key(api_key)
@@ -139,6 +142,7 @@ async def get_api_key(
             }
         )
 
+    try:
         # Check rate limit
         try:
             key_manager.check_rate_limit(api_key)
@@ -203,6 +207,10 @@ async def get_api_key(
             detail=str(e)
         )
 
+    return key
+
+
+
 
 def require_permission(permission: str) -> Callable[[APIKey], Awaitable[APIKey]]:
     """
@@ -257,7 +265,7 @@ def require_permission(permission: str) -> Callable[[APIKey], Awaitable[APIKey]]
 
 
 # Initialize API keys from environment variable (optional)
-def initialize_from_env() -> None:
+def initialize_from_env():
     """Initialize API keys from environment variables."""
     logger.info("Attempting to initialize API keys from environment")
     

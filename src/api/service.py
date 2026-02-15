@@ -6,7 +6,8 @@ FastAPI-based REST API for telemetry ingestion and anomaly detection.
 
 import os
 import time
-from typing import List
+import asyncio
+from typing import List, Optional, Any, Union
 from datetime import datetime, timedelta
 from collections import deque
 from asyncio import Lock
@@ -14,8 +15,9 @@ from fastapi import FastAPI, HTTPException, status, Depends
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.security import HTTPBasic, HTTPBasicCredentials
 from contextlib import asynccontextmanager
-from typing import AsyncGenerator
+from typing import Any, AsyncGenerator, Deque, Dict, List, Optional, Tuple, Union
 import secrets
+import asyncio
 from core.secrets import get_secret, mask_secret
 from pydantic import BaseModel
 
@@ -53,6 +55,7 @@ from core.auth import (
     APIKey,
 )
 from api.auth import get_api_key
+from api.logging_middleware import RequestLoggingMiddleware, get_correlation_id
 from state_machine.state_engine import StateMachine, MissionPhase
 from config.mission_phase_policy_loader import MissionPhasePolicyLoader
 from anomaly_agent.phase_aware_handler import PhaseAwareAnomalyHandler
@@ -97,20 +100,20 @@ except ImportError:
 MAX_ANOMALY_HISTORY_SIZE: int = 10000  # Maximum number of anomalies to keep in memory
 
 # Global state
-state_machine = None
-policy_loader = None
-phase_aware_handler = None
-memory_store = None
-predictive_engine = None
-latest_telemetry_data = None # Store latest telemetry for dashboard
-anomaly_history = deque(maxlen=MAX_ANOMALY_HISTORY_SIZE)  # Bounded deque prevents memory exhaustion
-active_faults = {} # Stores active chaos experiments: {fault_type: expiration_timestamp}
+state_machine: Optional[StateMachine] = None
+policy_loader: Optional[MissionPhasePolicyLoader] = None
+phase_aware_handler: Optional[PhaseAwareAnomalyHandler] = None
+memory_store: Optional[AdaptiveMemoryStore] = None
+predictive_engine: Optional[Any] = None
+latest_telemetry_data: Optional[Dict[str, Any]] = None  # Store latest telemetry for dashboard
+anomaly_history: Deque[AnomalyResponse] = deque(maxlen=MAX_ANOMALY_HISTORY_SIZE)  # Bounded deque prevents memory exhaustion
+active_faults: Dict[str, float] = {}  # Stores active chaos experiments: {fault_type: expiration_timestamp}
 
 # Locks for global state protection
-telemetry_lock = Lock()
-anomaly_lock = Lock()
-faults_lock = Lock()
-start_time = time.time()
+telemetry_lock: Lock = Lock()
+anomaly_lock: Lock = Lock()
+faults_lock: Lock = Lock()
+start_time: float = time.time()
 
 
 # Rate limiting
@@ -123,16 +126,30 @@ async def initialize_components() -> None:
     """Initialize application components (called on startup or in tests)."""
     global state_machine, policy_loader, phase_aware_handler, memory_store, predictive_engine
 
-    if state_machine is None:
-        state_machine = StateMachine()
-    if policy_loader is None:
-        policy_loader = MissionPhasePolicyLoader()
-    if phase_aware_handler is None:
-        phase_aware_handler = PhaseAwareAnomalyHandler(state_machine, policy_loader)
-    if memory_store is None:
-        memory_store = AdaptiveMemoryStore()
-    if predictive_engine is None:
-        predictive_engine = await get_predictive_maintenance_engine(memory_store)
+    try:
+        if state_machine is None:
+            state_machine = StateMachine()
+            logger.info("StateMachine initialized")
+            
+        if policy_loader is None:
+            policy_loader = MissionPhasePolicyLoader()
+            logger.info("MissionPhasePolicyLoader initialized")
+            
+        if phase_aware_handler is None:
+            phase_aware_handler = PhaseAwareAnomalyHandler(state_machine, policy_loader)
+            logger.info("PhaseAwareAnomalyHandler initialized")
+            
+        if memory_store is None:
+            memory_store = AdaptiveMemoryStore()
+            logger.info("AdaptiveMemoryStore initialized")
+            
+        if predictive_engine is None:
+            predictive_engine = await get_predictive_maintenance_engine(memory_store)
+            logger.info("PredictiveMaintenanceEngine initialized")
+            
+    except Exception as e:
+        logger.critical(f"Critical component initialization failed: {e}", exc_info=True)
+        raise RuntimeError(f"Component initialization failed: {str(e)}") from e
 
 
 def _check_credential_security() -> None:
@@ -229,34 +246,40 @@ async def lifespan(app: FastAPI) -> AsyncGenerator[None, None]:
     await load_model()
 
     # Initialize rate limiting
+    # Initialize rate limiting
     try:
         redis_url: Optional[str] = get_secret("redis_url")
-        redis_client = RedisClient(redis_url=redis_url)
-        await redis_client.connect()
+        if not redis_url:
+            logger.warning("Redis URL not found in secrets. Rate limiting will be disabled.")
+        else:
+            redis_client = RedisClient(redis_url=redis_url)
+            await redis_client.connect()
 
-        # Get rate limit configurations
-        rate_configs: Dict[str, Tuple[int, int]] = get_rate_limit_config()
+            # Get rate limit configurations
+            rate_configs: Dict[str, Tuple[int, int]] = get_rate_limit_config()
 
-        # Create rate limiters
-        telemetry_limiter = RateLimiter(
-            redis_client.redis,
-            "telemetry",
-            rate_configs["telemetry"][0],  # rate_per_second
-            rate_configs["telemetry"][1]   # burst_capacity
-        )
-        api_limiter = RateLimiter(
-            redis_client.redis,
-            "api",
-            rate_configs["api"][0],  # rate_per_second
-            rate_configs["api"][1]   # burst_capacity
-        )
+            # Create rate limiters
+            telemetry_limiter = RateLimiter(
+                redis_client.redis,
+                "telemetry",
+                rate_configs["telemetry"][0],  # rate_per_second
+                rate_configs["telemetry"][1]   # burst_capacity
+            )
+            api_limiter = RateLimiter(
+                redis_client.redis,
+                "api",
+                rate_configs["api"][0],  # rate_per_second
+                rate_configs["api"][1]   # burst_capacity
+            )
 
-        # Note: RateLimitMiddleware can only be added during app setup, not in lifespan
-        # This is a limitation of Starlette/FastAPI - middleware stack is locked after startup
+            # Note: RateLimitMiddleware can only be added during app setup, not in lifespan
+            # This is a limitation of Starlette/FastAPI - middleware stack is locked after startup
 
-        print("[OK] Rate limiting initialized successfully")
+            print("[OK] Rate limiting initialized successfully")
+    except (ConnectionError, TimeoutError) as e:
+        logger.warning(f"Redis connection failed (rate limiting disabled): {e}")
     except Exception as e:
-        print(f"[WARNING] Rate limiting initialization failed: {e}")
+        logger.error(f"Unexpected error initializing rate limiting: {e}", exc_info=True)
         print("Rate limiting will be disabled")
 
     # Initialize observability (if available)
@@ -269,8 +292,10 @@ async def lifespan(app: FastAPI) -> AsyncGenerator[None, None]:
             instrument_fastapi(app)
             startup_metrics_server(port=9090)
             logger.info("event", "observability_initialized", service="astra-guard", version="1.0.0")
+        except ImportError as e:
+            logger.warning(f"Observability module missing dependency: {e}")
         except Exception as e:
-            print(f"Warning: Observability initialization failed: {e}")
+            logger.warning(f"Observability initialization failed: {e}")
 
     yield
 
@@ -307,6 +332,15 @@ app.add_middleware(
     allow_credentials=True,
     allow_methods=["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allow_headers=["Content-Type", "Authorization", "Accept"],
+)
+
+# Request logging middleware
+log_level = get_secret("log_level", "INFO")
+sample_rate = float(get_secret("log_sample_rate", "0.1"))  # 10% sampling for high-traffic endpoints
+app.add_middleware(
+    RequestLoggingMiddleware,
+    log_level=log_level,
+    sample_rate=sample_rate,
 )
 
 security = HTTPBasic()
@@ -375,7 +409,7 @@ async def check_chaos_injection(fault_type: str) -> bool:
     """Check if a chaos fault is currently active."""
     async with faults_lock:
         if fault_type in active_faults:
-            expiration = active_faults[fault_type]
+            expiration: float = active_faults[fault_type]
             if time.time() > expiration:
                 del active_faults[fault_type]
                 return False
@@ -383,20 +417,18 @@ async def check_chaos_injection(fault_type: str) -> bool:
         return False
 
 
-async def cleanup_expired_faults():
-
+async def cleanup_expired_faults() -> None:
     """Clean up expired chaos faults."""
-    current_time = time.time()
+    current_time: float = time.time()
     async with faults_lock:
-        expired = [k for k, v in active_faults.items() if current_time > v]
+        expired: List[str] = [k for k, v in active_faults.items() if current_time > v]
         for k in expired:
             del active_faults[k]
 
 
-async def inject_chaos_fault(fault_type: str, duration_seconds: int) -> dict:
-
+async def inject_chaos_fault(fault_type: str, duration_seconds: int) -> Dict[str, Any]:
     """Inject a chaos fault for the specified duration."""
-    expiration = time.time() + duration_seconds
+    expiration: float = time.time() + duration_seconds
     async with faults_lock:
         active_faults[fault_type] = expiration
     return {
@@ -418,39 +450,6 @@ def create_response(status: str, data: Optional[Dict[str, Any]] = None, **kwargs
     return response
 
 
-async def process_telemetry_batch(telemetry_list: list) -> dict:
-    """Process a batch of telemetry data and return aggregated results."""
-    processed_count = 0
-    anomalies_detected = 0
-
-    for telemetry in telemetry_list:
-        try:
-            # Process individual telemetry (extracted from submit_telemetry logic)
-            processed_count += 1
-
-            # Check for anomalies
-            anomaly_score = anomaly_detector.detect_anomaly(telemetry)
-            if anomaly_score > 0.7:
-                anomalies_detected += 1
-
-                # Store anomaly
-                anomaly = AnomalyEvent(
-                    timestamp=datetime.now(),
-                    metric=telemetry.get('metric', 'unknown'),
-                    value=telemetry.get('value', 0.0),
-                    severity_score=anomaly_score,
-                    context=telemetry
-                )
-                async with anomaly_lock:
-                    anomaly_history.append(anomaly)
-
-        except Exception as e:
-            logger.error(f"Failed to process telemetry: {e}")
-            continue
-    return {
-        "processed": processed_count,
-        "anomalies_detected": anomalies_detected
-    }
 
 # ============================================================================
 # API Endpoints
@@ -527,7 +526,16 @@ async def health_check() -> HealthCheckResponse:
                 for name, comp in components.items()
             }
         )
+    except AttributeError as e:
+        logger.error(f"Health check failed - component missing: {e}")
+        return HealthCheckResponse(
+            status="unhealthy",
+            version="1.0.0",
+            timestamp=datetime.now(),
+            error=f"Component missing: {str(e)}"
+        )
     except Exception as e:
+        logger.error(f"Health check unexpected error: {e}", exc_info=True)
         # If health check fails, return degraded status
         return HealthCheckResponse(
             status="unhealthy",
@@ -535,6 +543,134 @@ async def health_check() -> HealthCheckResponse:
             timestamp=datetime.now(),
             error=str(e)
         )
+
+
+@app.get("/health/live")
+async def health_live() -> Dict[str, Any]:
+    """
+    Liveness probe endpoint.
+    
+    Returns 200 if the service is running and can handle requests.
+    This is a lightweight check that doesn't verify dependencies.
+    
+    Used by Kubernetes/Docker for liveness probes.
+    """
+    return {
+        "status": "alive",
+        "timestamp": datetime.now().isoformat(),
+        "version": "1.0.0"
+    }
+
+
+@app.get("/health/ready")
+async def health_ready() -> Response:
+    """
+    Readiness probe endpoint.
+    
+    Returns 200 if the service is ready to accept traffic.
+    Checks all critical dependencies:
+    - Redis connectivity
+    - Database connection (if applicable)
+    - Component health
+    
+    Used by Kubernetes/Docker for readiness probes.
+    Returns 503 if any critical dependency is unavailable.
+    """
+    checks = {
+        "redis": {"status": "unknown", "message": ""},
+        "components": {"status": "unknown", "message": ""},
+        "overall": {"status": "unknown", "ready": False}
+    }
+    
+    all_ready = True
+    
+    # Check Redis connectivity
+    try:
+        if redis_client is not None:
+            # Try to ping Redis
+            await redis_client.redis.ping()
+            checks["redis"] = {
+                "status": "healthy",
+                "message": "Redis connection active"
+            }
+        else:
+            checks["redis"] = {
+                "status": "not_configured",
+                "message": "Redis client not initialized (optional)"
+            }
+            # Redis is optional, don't fail readiness
+    except (ConnectionError, TimeoutError) as e:
+        logger.warning(f"Redis health check failed: {e}")
+        checks["redis"] = {
+            "status": "unhealthy",
+            "message": f"Redis connection failed: {str(e)}"
+        }
+        all_ready = False
+    except Exception as e:
+        logger.error(f"Redis health check unexpected error: {e}", exc_info=True)
+        checks["redis"] = {
+            "status": "unhealthy",
+            "message": f"Redis connection failed: {str(e)}"
+        }
+        all_ready = False
+    
+    # Check component health
+    try:
+        health_monitor = get_health_monitor()
+        components = health_monitor.get_all_health()
+        
+        unhealthy_components = [
+            name for name, comp in components.items()
+            if comp.get("status") != "HEALTHY"
+        ]
+        
+        if unhealthy_components:
+            checks["components"] = {
+                "status": "degraded",
+                "message": f"Unhealthy components: {', '.join(unhealthy_components)}"
+            }
+            all_ready = False
+        else:
+            checks["components"] = {
+                "status": "healthy",
+                "message": f"All {len(components)} components healthy"
+            }
+    except AttributeError as e:
+        logger.error(f"Component health check failed - attribute missing: {e}")
+        checks["components"] = {
+            "status": "error",
+            "message": f"Component configuration error: {str(e)}"
+        }
+        all_ready = False
+    except Exception as e:
+        logger.error(f"Component health check unexpected error: {e}", exc_info=True)
+        checks["components"] = {
+            "status": "error",
+            "message": f"Component health check failed: {str(e)}"
+        }
+        all_ready = False
+    
+    # Set overall status
+    checks["overall"] = {
+        "status": "ready" if all_ready else "not_ready",
+        "ready": all_ready
+    }
+    
+    # Return appropriate HTTP status code
+    status_code = status.HTTP_200_OK if all_ready else status.HTTP_503_SERVICE_UNAVAILABLE
+    
+    response_data = {
+        "status": "ready" if all_ready else "not_ready",
+        "timestamp": datetime.now().isoformat(),
+        "version": "1.0.0",
+        "checks": checks
+    }
+    
+    return Response(
+        content=json.dumps(response_data, default=str),
+        media_type="application/json",
+        status_code=status_code
+    )
 
 
 @app.get("/metrics")
@@ -547,7 +683,7 @@ async def metrics(username: str = Depends(get_current_username)) -> Response:
 
 
 @app.post("/api/v1/telemetry", response_model=AnomalyResponse, status_code=status.HTTP_200_OK)
-async def submit_telemetry(telemetry: TelemetryInput, current_user: User = Depends(require_operator)):
+async def submit_telemetry(telemetry: TelemetryInput, current_user: User = Depends(require_operator)) -> AnomalyResponse:
     """
     Submit single telemetry point for anomaly detection.
 
@@ -591,161 +727,184 @@ async def submit_telemetry(telemetry: TelemetryInput, current_user: User = Depen
 
         return response
 
+    except ValueError as e:
+        logger.warning(f"Invalid telemetry data: {e}")
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail=f"Invalid telemetry format: {str(e)}"
+        )
+    except RuntimeError as e:
+        logger.error(f"Telemetry system error: {e}")
+        raise HTTPException(
+            status_code=status.HTTP_503_SERVICE_UNAVAILABLE,
+            detail="System temporarily unavailable"
+        )
     except Exception as e:
         if OBSERVABILITY_ENABLED:
             logger = get_logger(__name__)
             log_error(logger, e, {"endpoint": "/api/v1/telemetry"})
         
+        logger.error(f"Unexpected error in submit_telemetry: {e}", exc_info=True)
         raise HTTPException(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-            detail=f"Anomaly detection failed: {str(e)}"
+            detail="Internal server error processing telemetry"
         ) from e
 
 
 async def _process_telemetry(telemetry: TelemetryInput, request_start: float) -> AnomalyResponse:
     """Internal telemetry processing logic."""
-    # Type assertions for initialized globals
-    assert state_machine is not None
-    assert phase_aware_handler is not None
-    assert memory_store is not None
-    
-    # Convert telemetry to dict
-    data = {
-        "voltage": telemetry.voltage,
-        "temperature": telemetry.temperature,
-        "gyro": telemetry.gyro,
-        "current": telemetry.current or 0.0,
-        "wheel_speed": telemetry.wheel_speed or 0.0,
-    }
+    try:
+        # Type assertions for initialized globals
+        if state_machine is None or phase_aware_handler is None or memory_store is None:
+            raise RuntimeError("System components not initialized")
 
-    # Update global latest telemetry
-    async with telemetry_lock:
-        global latest_telemetry_data
-        latest_telemetry_data = {
-            "data": data,
-            "timestamp": datetime.now()
+        # Convert telemetry to dict
+        data = {
+            "voltage": telemetry.voltage,
+            "temperature": telemetry.temperature,
+            "gyro": telemetry.gyro,
+            "current": telemetry.current or 0.0,
+            "wheel_speed": telemetry.wheel_speed or 0.0,
         }
 
-    # Detect anomaly (uses heuristic if model not loaded)
-    is_anomaly, anomaly_score = await detect_anomaly(data)
+        # Update global latest telemetry
+        async with telemetry_lock:
+            global latest_telemetry_data
+            latest_telemetry_data = {
+                "data": data,
+                "timestamp": datetime.now()
+            }
 
-    # Classify fault type
-    anomaly_type = classify(data)
-
-    # Predictive Maintenance: Add training data and check for predictions
-    predictive_actions = []
-    if predictive_engine:
+        # Run detect_anomaly() and classify() concurrently for better performance
+        # detect_anomaly is async, classify is sync (run in thread pool)
         try:
-            # Create time-series data point
-            ts_data = TimeSeriesData(
-                timestamp=datetime.now(),
-                cpu_usage=telemetry.cpu_usage or 0.0,
-                memory_usage=telemetry.memory_usage or 0.0,
-                network_latency=telemetry.network_latency or 0.0,
-                disk_io=telemetry.disk_io or 0.0,
-                error_rate=telemetry.error_rate or 0.0,
-                response_time=telemetry.response_time or 0.0,
-                active_connections=telemetry.active_connections or 0,
-                failure_occurred=is_anomaly
+            (is_anomaly, anomaly_score), anomaly_type = await asyncio.gather(
+                detect_anomaly(data),
+                asyncio.to_thread(classify, data)
+            )
+        except Exception as e:
+            logger.error(f"Anomaly detection calculation failed: {e}", extra={"telemetry": data})
+            # Fallback values
+            is_anomaly, anomaly_score, anomaly_type = False, 0.0, "unknown_error"
+
+        # Predictive Maintenance: Add training data and check for predictions
+        predictive_actions = []
+        if predictive_engine:
+            try:
+                # Create time-series data point
+                ts_data = TimeSeriesData(
+                    timestamp=datetime.now(),
+                    cpu_usage=telemetry.cpu_usage or 0.0,
+                    memory_usage=telemetry.memory_usage or 0.0,
+                    network_latency=telemetry.network_latency or 0.0,
+                    disk_io=telemetry.disk_io or 0.0,
+                    error_rate=telemetry.error_rate or 0.0,
+                    response_time=telemetry.response_time or 0.0,
+                    active_connections=telemetry.active_connections or 0,
+                    failure_occurred=is_anomaly
+                )
+
+                # Add training data
+                await predictive_engine.add_training_data(ts_data)
+
+                # Check for failure predictions
+                predictions = await predictive_engine.predict_failures(ts_data)
+
+                if predictions:
+                    logger.info(f"Predictive maintenance: {len(predictions)} failure predictions made")
+
+                    # Trigger preventive actions
+                    actions = await predictive_engine.trigger_preventive_actions(predictions)
+                    predictive_actions = actions
+
+                    # Log predictions for monitoring
+                    for prediction in predictions:
+                        logger.warning(f"PREDICTED FAILURE: {prediction.failure_type.value} "
+                                     f"at {prediction.predicted_time} (prob: {prediction.probability:.2f})")
+
+            except Exception as e:
+                logger.error(f"Predictive maintenance failed: {e}")
+                # Don't fail the request if predictive maintenance fails
+
+        # Get phase-aware decision if anomaly detected
+        if is_anomaly:
+            decision = phase_aware_handler.handle_anomaly(
+                anomaly_type=anomaly_type,
+                severity_score=anomaly_score,
+                confidence=0.85,
+                anomaly_metadata={"telemetry": data}
             )
 
-            # Add training data
-            await predictive_engine.add_training_data(ts_data)
+            response = AnomalyResponse(
+                is_anomaly=True,
+                anomaly_score=anomaly_score,
+                anomaly_type=decision['anomaly_type'],
+                severity_score=decision['severity_score'],
+                severity_level=decision['policy_decision']['severity'],
+                mission_phase=decision['mission_phase'],
+                recommended_action=decision['recommended_action'],
+                escalation_level=decision['policy_decision']['escalation_level'],
+                is_allowed=decision['policy_decision']['is_allowed'],
+                allowed_actions=decision['policy_decision']['allowed_actions'],
+                should_escalate_to_safe_mode=decision['should_escalate_to_safe_mode'],
+                confidence=decision['detection_confidence'],
+                reasoning=decision['reasoning'],
+                recurrence_count=decision['recurrence_info']['count'],
+                timestamp=telemetry.timestamp if telemetry.timestamp else datetime.now()
+            )
 
-            # Check for failure predictions
-            predictions = await predictive_engine.predict_failures(ts_data)
+            # Store in history
+            async with anomaly_lock:
+                anomaly_history.append(response)
 
-            if predictions:
-                logger.info(f"Predictive maintenance: {len(predictions)} failure predictions made")
+            # Store in memory with embedding (simple feature vector)
+            embedding = np.array([
+                telemetry.voltage,
+                telemetry.temperature,
+                abs(telemetry.gyro),
+                telemetry.current or 0.0,
+                telemetry.wheel_speed or 0.0
+            ])
+            await memory_store.write(
+                embedding=embedding,
+                metadata={
+                    "anomaly_type": anomaly_type,
+                    "severity": anomaly_score,
+                    "critical": decision['should_escalate_to_safe_mode']
+                },
+                timestamp=telemetry.timestamp
+            )
 
-                # Trigger preventive actions
-                actions = await predictive_engine.trigger_preventive_actions(predictions)
-                predictive_actions = actions
+        else:
+            # No anomaly
+            response = AnomalyResponse(
+                is_anomaly=False,
+                anomaly_score=anomaly_score,
+                anomaly_type="normal",
+                severity_score=0.0,
+                severity_level="LOW",
+                mission_phase=state_machine.get_current_phase().value,
+                recommended_action="NO_ACTION",
+                escalation_level="NO_ACTION",
+                is_allowed=True,
+                allowed_actions=[],
+                should_escalate_to_safe_mode=False,
+                confidence=0.9,
+                reasoning="All telemetry parameters within normal range",
+                recurrence_count=0,
+                timestamp=telemetry.timestamp if telemetry.timestamp else datetime.now()
+            )
 
-                # Log predictions for monitoring
-                for prediction in predictions:
-                    logger.warning(f"PREDICTED FAILURE: {prediction.failure_type.value} "
-                                 f"at {prediction.predicted_time} (prob: {prediction.probability:.2f})")
+        # Record latency in observability (if enabled)
+        if OBSERVABILITY_ENABLED:
+            elapsed_ms = (time.time() - request_start) * 1000
+            DETECTION_LATENCY.observe(elapsed_ms / 1000.0)
 
-        except Exception as e:
-            logger.error(f"Predictive maintenance failed: {e}")
-            # Don't fail the request if predictive maintenance fails
+        return response
 
-    # Get phase-aware decision if anomaly detected
-    if is_anomaly:
-        decision = phase_aware_handler.handle_anomaly(
-            anomaly_type=anomaly_type,
-            severity_score=anomaly_score,
-            confidence=0.85,
-            anomaly_metadata={"telemetry": data}
-        )
-
-        response = AnomalyResponse(
-            is_anomaly=True,
-            anomaly_score=anomaly_score,
-            anomaly_type=decision['anomaly_type'],
-            severity_score=decision['severity_score'],
-            severity_level=decision['policy_decision']['severity'],
-            mission_phase=decision['mission_phase'],
-            recommended_action=decision['recommended_action'],
-            escalation_level=decision['policy_decision']['escalation_level'],
-            is_allowed=decision['policy_decision']['is_allowed'],
-            allowed_actions=decision['policy_decision']['allowed_actions'],
-            should_escalate_to_safe_mode=decision['should_escalate_to_safe_mode'],
-            confidence=decision['detection_confidence'],
-            reasoning=decision['reasoning'],
-            recurrence_count=decision['recurrence_info']['count'],
-            timestamp=telemetry.timestamp if telemetry.timestamp else datetime.now()
-        )
-
-        # Store in history
-        async with anomaly_lock:
-            anomaly_history.append(response)
-
-        # Store in memory with embedding (simple feature vector)
-        embedding = np.array([
-            telemetry.voltage,
-            telemetry.temperature,
-            abs(telemetry.gyro),
-            telemetry.current or 0.0,
-            telemetry.wheel_speed or 0.0
-        ])
-        await memory_store.write(
-            embedding=embedding,
-            metadata={
-                "anomaly_type": anomaly_type,
-                "severity": anomaly_score,
-                "critical": decision['should_escalate_to_safe_mode']
-            },
-            timestamp=telemetry.timestamp
-        )
-
-    else:
-        # No anomaly
-        response = AnomalyResponse(
-            is_anomaly=False,
-            anomaly_score=anomaly_score,
-            anomaly_type="normal",
-            severity_score=0.0,
-            severity_level="LOW",
-            mission_phase=state_machine.get_current_phase().value,
-            recommended_action="NO_ACTION",
-            escalation_level="NO_ACTION",
-            is_allowed=True,
-            allowed_actions=[],
-            should_escalate_to_safe_mode=False,
-            confidence=0.9,
-            reasoning="All telemetry parameters within normal range",
-            recurrence_count=0,
-            timestamp=telemetry.timestamp if telemetry.timestamp else datetime.now()
-        )
-
-    # Record latency in observability (if enabled)
-    if OBSERVABILITY_ENABLED:
-        elapsed_ms = (time.time() - request_start) * 1000
-        DETECTION_LATENCY.observe(elapsed_ms / 1000.0)
-
-    return response
+    except Exception as e:
+        logger.error(f"Telemetry processing internal error: {e}", exc_info=True)
+        raise RuntimeError(f"Processing failed: {str(e)}") from e
 
 
 @app.get("/api/v1/telemetry/latest")
@@ -759,7 +918,7 @@ async def get_latest_telemetry(api_key: APIKey = Depends(get_api_key)) -> Dict[s
 
 
 @app.post("/api/v1/telemetry/batch", response_model=BatchAnomalyResponse)
-async def submit_telemetry_batch(batch: TelemetryBatch, current_user: User = Depends(require_operator)):
+async def submit_telemetry_batch(batch: TelemetryBatch, current_user: User = Depends(require_operator)) -> BatchAnomalyResponse:
     """
     Submit batch of telemetry points for anomaly detection.
 
@@ -800,8 +959,10 @@ async def submit_telemetry_batch(batch: TelemetryBatch, current_user: User = Dep
             )
             processed_results.append(error_response)
         else:
-            processed_results.append(result)
-            if result.is_anomaly:
+            # Type narrowing: result is AnomalyResponse after excluding BaseException
+            anomaly_result: AnomalyResponse = result
+            processed_results.append(anomaly_result)
+            if anomaly_result.is_anomaly:
                 anomalies_detected += 1
 
     return BatchAnomalyResponse(
@@ -812,7 +973,7 @@ async def submit_telemetry_batch(batch: TelemetryBatch, current_user: User = Dep
 
 
 @app.get("/api/v1/status", response_model=SystemStatus)
-async def get_status(api_key: APIKey = Depends(get_api_key)):
+async def get_status(api_key: APIKey = Depends(get_api_key)) -> SystemStatus:
     """Get system health and status.
 
     Requires API key authentication with 'read' permission.
@@ -862,7 +1023,7 @@ async def get_phase(api_key: APIKey = Depends(get_api_key)) -> Dict[str, Any]:
 
 
 @app.post("/api/v1/phase", response_model=PhaseUpdateResponse)
-async def update_phase(request: PhaseUpdateRequest, current_user: User = Depends(require_phase_update)):
+async def update_phase(request: PhaseUpdateRequest, current_user: User = Depends(require_phase_update)) -> PhaseUpdateResponse:
     """Update mission phase."""
     assert state_machine is not None
     
@@ -887,15 +1048,28 @@ async def update_phase(request: PhaseUpdateRequest, current_user: User = Depends
             timestamp=datetime.now()
         )
 
-    except Exception as e:
+    except ValueError as e:
+        logger.warning(f"Invalid phase transition requested: {e}")
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
-            detail=f"Phase transition failed: {str(e)}"
+            detail=str(e)
+        )
+    except RuntimeError as e:
+         logger.error(f"Phase transition system error: {e}")
+         raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail=f"Transition failed: {str(e)}"
+         )
+    except Exception as e:
+        logger.error(f"Unexpected phase transition error: {e}", exc_info=True)
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail="Internal phase transition error"
         ) from e
 
 
 @app.get("/api/v1/memory/stats", response_model=MemoryStats)
-async def get_memory_stats(api_key: APIKey = Depends(get_api_key)):
+async def get_memory_stats(api_key: APIKey = Depends(get_api_key)) -> MemoryStats:
     """Query memory store statistics.
 
     Requires API key authentication with 'read' permission.
@@ -1036,4 +1210,4 @@ async def revoke_api_key(key_id: str, current_user: User = Depends(get_current_u
 
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run(app, host="0.0.0.0", port=8002)
+    uvicorn.run(app, host="0.0.0.0", port=8002)  # nosec B104
