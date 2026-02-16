@@ -19,7 +19,56 @@ import errno
 logger: logging.Logger = logging.getLogger(__name__)
 
 # Cache for metrics to avoid repeated registry lookups
+# NOTE: Bounded to prevent unbounded memory growth in long-running services.
+# Label cardinality must be bounded and safe for production use.
 _metric_cache: Dict[str, Any] = {}
+_MAX_METRIC_CACHE_SIZE = 1000  # Maximum number of metrics to cache
+
+# Cache for labeled metrics to avoid repeated label object creation
+# Key: (id(metric), tuple(sorted(label_items)))
+# Value: labeled_metric
+# NOTE: Bounded cache with LRU eviction to prevent memory exhaustion.
+# Label cardinality must be bounded and safe for production use.
+_labeled_metric_cache: Dict[tuple, Any] = {}
+_MAX_LABELED_CACHE_SIZE = 5000  # Maximum number of labeled metrics to cache
+
+
+
+def _get_cached_labels(metric: Any, **labels: Any) -> Any:
+    """
+    Get or create a cached labeled metric to avoid repeated label object creation.
+    
+    Args:
+        metric: The base metric object (e.g., Histogram, Counter)
+        **labels: Label key-value pairs
+        
+    Returns:
+        The labeled metric object
+        
+    Note:
+        Cache key includes both label names and values to prevent collisions
+        when different label sets share the same values.
+    """
+    # Create a hashable key from metric id and label name-value pairs
+    # Use items() to include both names and values, preventing collisions
+    label_items = tuple(sorted(labels.items()))
+    cache_key = (id(metric), label_items)
+    
+    # Check cache size and evict if necessary (simple LRU-like behavior)
+    if len(_labeled_metric_cache) >= _MAX_LABELED_CACHE_SIZE:
+        # Remove oldest entry (first key)
+        try:
+            oldest_key = next(iter(_labeled_metric_cache))
+            del _labeled_metric_cache[oldest_key]
+        except StopIteration:
+            pass
+    
+    if cache_key not in _labeled_metric_cache:
+        _labeled_metric_cache[cache_key] = metric.labels(**labels)
+    
+    return _labeled_metric_cache[cache_key]
+
+
 
 # Cache for labeled metrics to avoid repeated label object creation
 # Key: (id(metric), tuple(sorted(label_values)))
@@ -62,6 +111,14 @@ def _safe_create_metric(
     # Check cache first
     if name in _metric_cache:
         return _metric_cache[name]
+
+    # Check cache size and evict if necessary
+    if len(_metric_cache) >= _MAX_METRIC_CACHE_SIZE:
+        try:
+            oldest_key = next(iter(_metric_cache))
+            del _metric_cache[oldest_key]
+        except StopIteration:
+            pass
 
     try:
         metric = metric_class(*args, **kwargs)
@@ -111,6 +168,7 @@ def _safe_create_metric(
         else:
             logger.error(f"ValueError creating metric {name}: {e}")
             raise
+
 
 # ============================================================================
 # CORE HTTP METRICS
@@ -539,6 +597,7 @@ async def async_track_anomaly_detection() -> AsyncGenerator[None, None]:
         if DETECTION_LATENCY:
             DETECTION_LATENCY.observe(duration)
     except Exception as e:
+        duration = time.perf_counter() - start
         logger.error(f"Anomaly detection failed: {e}")
         if ERRORS:
             _get_cached_labels(ERRORS, type=type(e).__name__, endpoint="anomaly_detection").inc()

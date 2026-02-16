@@ -347,6 +347,7 @@ class LatencyCollector:
             "stats_by_satellite": stats_by_satellite,
         }
 
+
     def reset(self) -> None:
         """Clear all measurements."""
         self.measurements.clear()
