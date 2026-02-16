@@ -558,8 +558,9 @@ async def submit_telemetry(telemetry: TelemetryInput, current_user: User = Depen
     Returns:
         AnomalyResponse with detection results and recommended actions
     """
-    request_start = time.time()
+    request_start = time.perf_counter()
     return await _process_single_telemetry(telemetry, request_start)
+
 
 
 
@@ -728,8 +729,9 @@ async def submit_telemetry_batch(batch: TelemetryBatch, current_user: User = Dep
         BatchAnomalyResponse with aggregated results
     """
     # Process telemetry in parallel using internal function to avoid endpoint overhead
-    request_start = time.time()
+    request_start = time.perf_counter()
     tasks = [_process_single_telemetry(telemetry, request_start) for telemetry in batch.telemetry]
+
     results = await asyncio.gather(*tasks, return_exceptions=True)
 
     # Handle any exceptions that occurred during processing
