@@ -185,7 +185,6 @@ async def get_api_key(
                     "endpoint": request.url.path
                 }
             )
-
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
             detail=str(e)
