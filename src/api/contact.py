@@ -136,38 +136,80 @@ class SubmissionsResponse(BaseModel):
 
 
 def init_database() -> None:
-    DATA_DIR.mkdir(exist_ok=True)
-
-    conn = sqlite3.connect(DB_PATH)
-    cursor = conn.cursor()
-
-    cursor.execute("""
-        CREATE TABLE IF NOT EXISTS contact_submissions (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            name TEXT NOT NULL,
-            email TEXT NOT NULL,
-            phone TEXT,
-            subject TEXT NOT NULL,
-            message TEXT NOT NULL,
-            ip_address TEXT,
-            user_agent TEXT,
-            submitted_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-            status TEXT DEFAULT 'pending'
+    """Initialize contact submissions database with error handling."""
+    try:
+        DATA_DIR.mkdir(exist_ok=True)
+    except OSError as e:
+        logger.error(
+            "Failed to create data directory",
+            extra={
+                "error_type": type(e).__name__,
+                "error_message": str(e),
+                "directory": str(DATA_DIR),
+                "operation": "mkdir"
+            },
+            exc_info=True
         )
-    """)
+        raise RuntimeError(f"Cannot create data directory: {e}") from e
 
-    cursor.execute("""
-        CREATE INDEX IF NOT EXISTS idx_submitted_at
-        ON contact_submissions(submitted_at DESC)
-    """)
+    try:
+        conn = sqlite3.connect(DB_PATH)
+        cursor = conn.cursor()
 
-    cursor.execute("""
-        CREATE INDEX IF NOT EXISTS idx_status
-        ON contact_submissions(status)
-    """)
+        cursor.execute("""
+            CREATE TABLE IF NOT EXISTS contact_submissions (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                name TEXT NOT NULL,
+                email TEXT NOT NULL,
+                phone TEXT,
+                subject TEXT NOT NULL,
+                message TEXT NOT NULL,
+                ip_address TEXT,
+                user_agent TEXT,
+                submitted_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                status TEXT DEFAULT 'pending'
+            )
+        """)
 
-    conn.commit()
-    conn.close()
+        cursor.execute("""
+            CREATE INDEX IF NOT EXISTS idx_submitted_at
+            ON contact_submissions(submitted_at DESC)
+        """)
+
+        cursor.execute("""
+            CREATE INDEX IF NOT EXISTS idx_status
+            ON contact_submissions(status)
+        """)
+
+        conn.commit()
+        conn.close()
+        
+        logger.info("Contact database initialized successfully", db_path=str(DB_PATH))
+        
+    except sqlite3.Error as e:
+        logger.error(
+            "Failed to initialize contact database",
+            extra={
+                "error_type": type(e).__name__,
+                "error_message": str(e),
+                "db_path": str(DB_PATH),
+                "operation": "init_database"
+            },
+            exc_info=True
+        )
+        raise RuntimeError(f"Cannot initialize contact database: {e}") from e
+    except Exception as e:
+        logger.error(
+            "Unexpected error initializing contact database",
+            extra={
+                "error_type": type(e).__name__,
+                "error_message": str(e),
+                "db_path": str(DB_PATH),
+                "operation": "init_database"
+            },
+            exc_info=True
+        )
+        raise
 
 
 class InMemoryRateLimiter:
@@ -220,7 +262,7 @@ class InMemoryRateLimiter:
             return is_allowed, metadata
 
 # Initialize database
-_init_db_sync()
+init_database()
 
 _in_memory_limiter: InMemoryRateLimiter = InMemoryRateLimiter()
 
@@ -256,31 +298,85 @@ async def save_submission(
     ip_address: str,
     user_agent: str,
 ) -> Optional[int]:
-    async with aiosqlite.connect(DB_PATH) as conn:
-        cursor = await conn.execute(
-            """
-            INSERT INTO contact_submissions
-                (name, email, phone, subject, message, ip_address, user_agent)
-            VALUES (?, ?, ?, ?, ?, ?, ?)
-            """,
-            (
-                submission.name,
-                submission.email,
-                submission.phone,
-                submission.subject,
-                submission.message,
-                ip_address,
-                user_agent,
-            ),
+    """Save contact submission to database with error handling."""
+    try:
+        async with aiosqlite.connect(DB_PATH) as conn:
+            cursor = await conn.execute(
+                """
+                INSERT INTO contact_submissions
+                    (name, email, phone, subject, message, ip_address, user_agent)
+                VALUES (?, ?, ?, ?, ?, ?, ?)
+                """,
+                (
+                    submission.name,
+                    submission.email,
+                    submission.phone,
+                    submission.subject,
+                    submission.message,
+                    ip_address,
+                    user_agent,
+                ),
+            )
+            await conn.commit()
+            submission_id = cursor.lastrowid
+            
+            logger.info(
+                "Contact submission saved",
+                extra={
+                    "submission_id": submission_id,
+                    "email": submission.email,
+                    "ip_address": ip_address
+                }
+            )
+            
+            return submission_id
+            
+    except aiosqlite.IntegrityError as e:
+        logger.error(
+            "Database integrity error saving submission",
+            extra={
+                "error_type": type(e).__name__,
+                "error_message": str(e),
+                "email": submission.email,
+                "ip_address": ip_address,
+                "operation": "save_submission"
+            },
+            exc_info=True
         )
-        await conn.commit()
-        return cursor.lastrowid
+        raise
+    except aiosqlite.OperationalError as e:
+        logger.error(
+            "Database operational error (locked or inaccessible)",
+            extra={
+                "error_type": type(e).__name__,
+                "error_message": str(e),
+                "db_path": str(DB_PATH),
+                "email": submission.email,
+                "operation": "save_submission"
+            },
+            exc_info=True
+        )
+        raise
+    except aiosqlite.Error as e:
+        logger.error(
+            "Database error saving submission",
+            extra={
+                "error_type": type(e).__name__,
+                "error_message": str(e),
+                "email": submission.email,
+                "ip_address": ip_address,
+                "operation": "save_submission"
+            },
+            exc_info=True
+        )
+        raise
 
 
 async def log_notification(
     submission: ContactSubmission,
     submission_id: Optional[int],
 ) -> None:
+    """Log notification to file with error handling."""
     log_entry = {
         "timestamp": datetime.now().isoformat(),
         "submission_id": submission_id,
@@ -294,8 +390,44 @@ async def log_notification(
         ),
     }
 
-    async with aiofiles.open(NOTIFICATION_LOG, "a") as f:
-        await f.write(json.dumps(log_entry) + "\n")
+    try:
+        async with aiofiles.open(NOTIFICATION_LOG, "a") as f:
+            await f.write(json.dumps(log_entry) + "\n")
+            
+        logger.debug(
+            "Notification logged to file",
+            extra={
+                "submission_id": submission_id,
+                "log_file": str(NOTIFICATION_LOG)
+            }
+        )
+        
+    except PermissionError as e:
+        logger.error(
+            "Permission denied writing notification log",
+            extra={
+                "error_type": type(e).__name__,
+                "error_message": str(e),
+                "log_file": str(NOTIFICATION_LOG),
+                "submission_id": submission_id,
+                "operation": "log_notification"
+            },
+            exc_info=True
+        )
+        raise
+    except OSError as e:
+        logger.error(
+            "I/O error writing notification log (disk full or inaccessible)",
+            extra={
+                "error_type": type(e).__name__,
+                "error_message": str(e),
+                "log_file": str(NOTIFICATION_LOG),
+                "submission_id": submission_id,
+                "operation": "log_notification"
+            },
+            exc_info=True
+        )
+        raise
 
 
 async def send_email_notification(
@@ -456,6 +588,7 @@ async def get_submissions(
     status_filter: Optional[str] = Query(None, pattern="^(pending|resolved|spam)$"),
     current_user: Any = Depends(get_admin_user),
 ) -> SubmissionsResponse:
+    """Get contact submissions with pagination and filtering."""
 
     where_clause = ""
     params: list[Any] = []
@@ -474,40 +607,91 @@ async def get_submissions(
         LIMIT ? OFFSET ?
     """
 
-    async with aiosqlite.connect(DB_PATH) as conn:
-        conn.row_factory = aiosqlite.Row
+    try:
+        async with aiosqlite.connect(DB_PATH) as conn:
+            conn.row_factory = aiosqlite.Row
 
-        async with conn.execute(count_query, params) as cursor:
-            row = await cursor.fetchone()
-            if row is None:
-                raise HTTPException(status_code=500, detail="Failed to count submissions")
-            total: int = row["total"]
+            async with conn.execute(count_query, params) as cursor:
+                row = await cursor.fetchone()
+                if row is None:
+                    raise HTTPException(status_code=500, detail="Failed to count submissions")
+                total: int = row["total"]
 
-        async with conn.execute(select_query, [*params, limit, offset]) as cursor:
-            rows = await cursor.fetchall()
+            async with conn.execute(select_query, [*params, limit, offset]) as cursor:
+                rows = await cursor.fetchall()
 
-    submissions = [
-        SubmissionRecord(
-            id=row["id"],
-            name=row["name"],
-            email=row["email"],
-            phone=row["phone"],
-            subject=row["subject"],
-            message=row["message"],
-            ip_address=row["ip_address"],
-            user_agent=row["user_agent"],
-            submitted_at=row["submitted_at"],
-            status=row["status"],
+        submissions = [
+            SubmissionRecord(
+                id=row["id"],
+                name=row["name"],
+                email=row["email"],
+                phone=row["phone"],
+                subject=row["subject"],
+                message=row["message"],
+                ip_address=row["ip_address"],
+                user_agent=row["user_agent"],
+                submitted_at=row["submitted_at"],
+                status=row["status"],
+            )
+            for row in rows
+        ]
+
+        return SubmissionsResponse(
+            total=total,
+            limit=limit,
+            offset=offset,
+            submissions=submissions,
         )
-        for row in rows
-    ]
-
-    return SubmissionsResponse(
-        total=total,
-        limit=limit,
-        offset=offset,
-        submissions=submissions,
-    )
+        
+    except aiosqlite.OperationalError as e:
+        logger.error(
+            "Database operational error fetching submissions",
+            extra={
+                "error_type": type(e).__name__,
+                "error_message": str(e),
+                "db_path": str(DB_PATH),
+                "limit": limit,
+                "offset": offset,
+                "operation": "get_submissions"
+            },
+            exc_info=True
+        )
+        raise HTTPException(
+            status_code=503,
+            detail="Database temporarily unavailable"
+        )
+    except aiosqlite.Error as e:
+        logger.error(
+            "Database error fetching submissions",
+            extra={
+                "error_type": type(e).__name__,
+                "error_message": str(e),
+                "db_path": str(DB_PATH),
+                "operation": "get_submissions"
+            },
+            exc_info=True
+        )
+        raise HTTPException(
+            status_code=500,
+            detail="Failed to fetch submissions"
+        )
+    except HTTPException:
+        # Re-raise HTTP exceptions (500 from count query)
+        raise
+    except Exception as e:
+        logger.error(
+            "Unexpected error fetching submissions",
+            extra={
+                "error_type": type(e).__name__,
+                "error_message": str(e),
+                "operation": "get_submissions"
+            },
+            exc_info=True
+        )
+        raise HTTPException(
+            status_code=500,
+            detail="An unexpected error occurred"
+        )
 
 
 @router.patch("/submissions/{submission_id}/status")
@@ -516,18 +700,79 @@ async def update_submission_status(
     status: str = Query(..., pattern="^(pending|resolved|spam)$"),
     current_user: Any = Depends(get_admin_user),
 ) -> dict[str, Any]:
+    """Update submission status with error handling."""
+    
+    try:
+        async with aiosqlite.connect(DB_PATH) as conn:
+            cursor = await conn.execute(
+                "UPDATE contact_submissions SET status = ? WHERE id = ?",
+                (status, submission_id),
+            )
+            await conn.commit()
 
-    async with aiosqlite.connect(DB_PATH) as conn:
-        cursor = await conn.execute(
-            "UPDATE contact_submissions SET status = ? WHERE id = ?",
-            (status, submission_id),
+            if cursor.rowcount == 0:
+                raise HTTPException(status_code=404, detail="Submission not found")
+
+        logger.info(
+            "Submission status updated",
+            extra={
+                "submission_id": submission_id,
+                "new_status": status
+            }
         )
-        await conn.commit()
 
-        if cursor.rowcount == 0:
-            raise HTTPException(status_code=404, detail="Submission not found")
-
-    return {"success": True, "message": f"Status updated to {status}"}
+        return {"success": True, "message": f"Status updated to {status}"}
+        
+    except HTTPException:
+        # Re-raise HTTP exceptions (404)
+        raise
+    except aiosqlite.OperationalError as e:
+        logger.error(
+            "Database operational error updating submission status",
+            extra={
+                "error_type": type(e).__name__,
+                "error_message": str(e),
+                "submission_id": submission_id,
+                "status": status,
+                "operation": "update_submission_status"
+            },
+            exc_info=True
+        )
+        raise HTTPException(
+            status_code=503,
+            detail="Database temporarily unavailable"
+        )
+    except aiosqlite.Error as e:
+        logger.error(
+            "Database error updating submission status",
+            extra={
+                "error_type": type(e).__name__,
+                "error_message": str(e),
+                "submission_id": submission_id,
+                "status": status,
+                "operation": "update_submission_status"
+            },
+            exc_info=True
+        )
+        raise HTTPException(
+            status_code=500,
+            detail="Failed to update submission status"
+        )
+    except Exception as e:
+        logger.error(
+            "Unexpected error updating submission status",
+            extra={
+                "error_type": type(e).__name__,
+                "error_message": str(e),
+                "submission_id": submission_id,
+                "operation": "update_submission_status"
+            },
+            exc_info=True
+        )
+        raise HTTPException(
+            status_code=500,
+            detail="An unexpected error occurred"
+        )
 
 
 @router.get("/health")
